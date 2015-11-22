@@ -43,6 +43,13 @@ namespace CSharp_Robotics_Library.Autonomous
             countFinished = countTimeOut = 0;
         }
 
+        public AutonReporter(string key, string _title, AutonScheduler routine)
+        {
+            routine.CommandFinished += OnCommandFinished;
+            routine.CommandTimedOut += OnCommandTimedOut;
+            routine.SequenceFinished += OnSequenceFinished;
+        }
+
         /// <summary>
         /// Subscribe this method to an instance of AutonScheduler.CommandFinished
         /// </summary>
@@ -68,7 +75,7 @@ namespace CSharp_Robotics_Library.Autonomous
         /// <summary>
         /// Subscribe this method to an instance of AutonScheduler.SequenceFinished
         /// </summary>
-        public void OnSequenceFinisned()
+        public void OnSequenceFinished()
         {
             currentLine += $"Sequence Complete. Commands Completed Successfully: {countFinished}/{countFinished + countTimeOut}. Commands Timed Out: {countTimeOut}/{countFinished + countTimeOut}";
         }
