@@ -22,33 +22,45 @@ namespace CSharp_Robotics_Library.Autonomous
         /// <summary>
         /// Dashboard Variable Name to write the report to
         /// </summary>
-        public string Key { get; set; }
+        public string ReportKey { get; set; }
 
         /// <summary>
-        /// Creates a new, untitled AutonReporter
+        /// Dashboard Variable Name to write the Progress of the current command to
         /// </summary>
-        /// <param name="key">Dashboard Variable Name to write the report to</param>
-        public AutonReporter(string key) : this(key, "Untitled Autonomous Routine Report:") { }
+        public string ProgressKey { get; set; }
 
         /// <summary>
         /// Creates a new AutonReporter with a title
         /// </summary>
         /// <param name="key">Dashboard Variable Name to write the report to</param>
         /// <param name="_title">Title to be wrote in place of the untitled message</param>
-        public AutonReporter(string key, string _title)
+        public AutonReporter(string _title = "Untitled Autonomous Routine:")
         {
-            Key = key;
             report = new List<string>();
             title = _title;
             countFinished = countTimeOut = 0;
         }
 
-        public AutonReporter(string key, string _title, AutonScheduler routine)
+        /// <summary>
+        /// Creates a new AutonReporter with a title, automatically linked to the specified routine
+        /// </summary>
+        /// <param name="key">Dashboard Variable name to write the report to</param>
+        /// <param name="_title">Title to begin the report with</param>
+        /// <param name="routine">Routine to subscribe methods to</param>
+        public AutonReporter(string _title, AutonRoutine routine) : this(_title)
         {
             routine.CommandFinished += OnCommandFinished;
             routine.CommandTimedOut += OnCommandTimedOut;
             routine.SequenceFinished += OnSequenceFinished;
+            routine.Periodic += OnSequencePeriodic;
         }
+
+        /// <summary>
+        /// Creates a new AutonReporter automatically linked to the specified routine
+        /// </summary>
+        /// <param name="key">Dashboard Variable name to write the report to</param>
+        /// <param name="routine">Routine to subscribe methods to</param>
+        public AutonReporter(AutonRoutine routine) : this("Untitled Autonomous Routine:", routine) { }
 
         /// <summary>
         /// Subscribe this method to an instance of AutonScheduler.CommandFinished
@@ -70,6 +82,17 @@ namespace CSharp_Robotics_Library.Autonomous
             currentLine = a.ToString() + "...Timed Out";
             NewLine();
             countTimeOut++;
+        }
+
+        /// <summary>
+        /// Subscribe this method to an instance of AutonScheduler.Periodic
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="progress"></param>
+        public void OnSequencePeriodic(AutonCommand a, double progress)
+        {
+            if (null != ProgressKey)
+                SmartDashboard.PutNumber(ProgressKey, progress);
         }
 
         /// <summary>
@@ -102,7 +125,8 @@ namespace CSharp_Robotics_Library.Autonomous
 
             toSend += currentLine;
 
-            SmartDashboard.PutString(Key, toSend);
+             if(null != ReportKey)
+                SmartDashboard.PutString(ReportKey, toSend);
         }
     }
 }

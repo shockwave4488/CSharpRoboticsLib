@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp Robotics Library", "CSharp Robotics Library\CSharp Robotics Library.csproj", "{08792B9C-AB04-4FD0-A52A-D3A864D9758A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpRoboticsLib", "CSharp Robotics Library\CSharpRoboticsLib.csproj", "{08792B9C-AB04-4FD0-A52A-D3A864D9758A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

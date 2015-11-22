@@ -10,14 +10,13 @@ namespace CSharp_Robotics_Library.Autonomous
     /// <summary>
     /// Simpler command-based autonomous framework.
     /// </summary>
-    public class AutonScheduler : Queue<AutonCommand>
+    public class AutonRoutine : Queue<AutonCommand>
     {
         private DateTime timeOut;
-        private EdgeTrigger FinishedTrigger;
 
         public event Action<AutonCommand> CommandFinished;
         public event Action<AutonCommand> CommandTimedOut;
-        public event Action<AutonCommand> Periodic;
+        public event Action<AutonCommand, double> Periodic;
         public event Action SequenceFinished;
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace CSharp_Robotics_Library.Autonomous
         /// Creates a new scheduler with the specified commands
         /// </summary>
         /// <param name="_commands">commands to be contained by the scheduler</param>
-        public AutonScheduler(IEnumerable<AutonCommand> _commands) : base(_commands)
+        public AutonRoutine(IEnumerable<AutonCommand> _commands) : base(_commands)
         {
             setTimeOut();
         }
@@ -37,7 +36,7 @@ namespace CSharp_Robotics_Library.Autonomous
         /// <summary>
         /// Creates a new, empty scheduler
         /// </summary>
-        public AutonScheduler() : base()
+        public AutonRoutine() : base()
         {
             setTimeOut();
         }
@@ -47,7 +46,8 @@ namespace CSharp_Robotics_Library.Autonomous
         /// </summary>
         public void Run()
         {
-            if (!finished && (Peek().Execute() || timeOut < DateTime.Now))
+            double progress = 0;
+            if (!finished && ((progress = Peek().Execute()) >= 1 || timeOut < DateTime.Now))
             {
                 if (DateTime.Now > timeOut)
                     CommandTimedOut(Peek());
@@ -55,15 +55,24 @@ namespace CSharp_Robotics_Library.Autonomous
                     CommandFinished(Peek());
                 Dequeue();
                 setTimeOut();
-                Periodic(Peek());
+                Periodic(Peek(), progress);
+
+                if (finished)
+                    SequenceFinished();
             }
-            else if (FinishedTrigger.GetRisingUpdate(finished))
-                SequenceFinished();
         }
 
         private void setTimeOut()
         {
-            timeOut = DateTime.Now.AddSeconds(Peek().TimeOut);
+            if(!finished)
+                timeOut = DateTime.Now.AddSeconds(Peek().TimeOut);
+        }
+
+        private bool TimedOut()
+        {
+            if (Peek().TimeOut < 0)
+                return false;
+            else return Peek().TimeOut > 0 && DateTime.Now > timeOut;
         }
     }
 }

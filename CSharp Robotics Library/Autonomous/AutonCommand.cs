@@ -14,17 +14,12 @@ namespace CSharp_Robotics_Library.Autonomous
         /// <summary>
         /// Command intended to be run once per AutonomousPeriodic loop.
         /// </summary>
-        /// <returns>True if the command is complete</returns>
-        bool Execute();
-
-        /// <summary>
-        /// Double from 0 to 1, reporting how close to completion the command is
-        /// </summary>
-        /// <returns>Double 0 - 1</returns>
-        double PercentComplete();
+        /// <returns>Percent complete - 1 if done</returns>
+        double Execute();
 
         /// <summary>
         /// Time until the command will exit, regardless of what Execute() returns.
+        /// Set to negative if you don't wait the command to time out.
         /// </summary>
         double TimeOut { get; set; }
     }
