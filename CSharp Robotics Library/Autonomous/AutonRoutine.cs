@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CSharp_Robotics_Library.FlowControl;
 
-namespace CSharp_Robotics_Library.Autonomous
+namespace CSharpRoboticsLib.Autonomous
 {
     /// <summary>
     /// Simpler command-based autonomous framework.

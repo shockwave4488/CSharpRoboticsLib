@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WPILib;
 using WPILib.SmartDashboards;
 
-namespace CSharp_Robotics_Library.Autonomous
+namespace CSharpRoboticsLib.Autonomous
 {
     /// <summary>
     /// Class that reports the autonoumous routine running. Meant to be used with the AutonScheduler class.

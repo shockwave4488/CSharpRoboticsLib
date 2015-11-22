@@ -66,6 +66,7 @@
     <Compile Include="Autonomous\AutonCommand.cs" />
     <Compile Include="Autonomous\AutonReporter.cs" />
     <Compile Include="Autonomous\AutonRoutine.cs" />
+    <Compile Include="Autonomous\AutonSelector.cs" />
     <Compile Include="ControlSystems\SimplePID.cs" />
     <Compile Include="ControlSystems\SimplePIDSystem.cs" />
     <Compile Include="Extras\AnalogueUltrasonic.cs" />
