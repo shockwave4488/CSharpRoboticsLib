@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WPILib.SmartDashboards;
 using WPILib.Interfaces;
-using CSharpRoboticsLib.Autonomous;
 
 namespace CSharpRoboticsLib.Autonomous
 {

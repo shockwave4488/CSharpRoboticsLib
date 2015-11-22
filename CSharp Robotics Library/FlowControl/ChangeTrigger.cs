@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharp_Robotics_Library.FlowControl
+﻿namespace CSharp_Robotics_Library.FlowControl
 {
     /// <summary>
     /// Can detect a change in data for any given equatable type
