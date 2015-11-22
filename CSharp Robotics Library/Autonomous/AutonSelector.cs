@@ -4,6 +4,10 @@ using WPILib.Interfaces;
 
 namespace CSharpRoboticsLib.Autonomous
 {
+    /// <summary>
+    /// Class that encapsulates all the functionality of selecting an autonomous routine from a dashboard
+    /// </summary>
+    /// <typeparam name="T">Dashboard Variable Type</typeparam>
     public class AutonSelector<T> : Dictionary<T, AutonRoutine> where T : INamedSendable
     {
         private T defaultKey;
