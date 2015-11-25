@@ -1,25 +1,33 @@
-﻿namespace CSharp_Robotics_Library.FlowControl
+﻿using System;
+
+namespace CSharp_Robotics_Library.FlowControl
 {
     /// <summary>
     /// Will return true after a threshold has been met by waiting for a number of call counts
     /// </summary>
     public class WaitByCallCount
     {
-        private int count;
-        private int threshold;
+        private int m_count;
+        public int Threshold { get; set; }
 
         /// <summary>
         /// New instance of WaitByCallCount
         /// </summary>
-        /// <param name="count_">the threshold after which it should return true</param>
-        public WaitByCallCount(int count_)
+        /// <param name="count">the threshold after which it should return true</param>
+        public WaitByCallCount(int count)
         {
-            threshold = count_;
+            if (count < 1)
+                throw new ArgumentException($"Call Count to wait ({count}) less than one");
+            Threshold = count;
+            m_count = 0;
         }
 
+        /// <summary>
+        /// returns if the update function has been called enough times
+        /// </summary>
         public bool WaitComplete
         {
-            get { return count > threshold; }
+            get { return m_count >= Threshold; }
         }
 
         /// <summary>
@@ -27,7 +35,24 @@
         /// </summary>
         public void Update(bool increase)
         {
-            count = increase ? count + 1 : 0;
+            m_count = increase ? m_count + 1 : 0;
+        }
+
+        /// <summary>
+        /// Increases the internal count by 1
+        /// </summary>
+        public void Update()
+        {
+            m_count++;
+        }
+        
+        /// <summary>
+        /// Increases the internal count by the amount specified
+        /// </summary>
+        /// <param name="count">amount to increase by</param>
+        public void Update(int count)
+        {
+            m_count += count;
         }
     }
 }

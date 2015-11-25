@@ -5,10 +5,10 @@
     /// </summary>
     public class Toggle
     {
-        private bool _state;
-        private bool feedback;
+        private bool m_state;
+        private bool m_feedback;
 
-        public Toggle() { feedback = false; _state = false; }
+        public Toggle() { m_feedback = false; m_state = false; }
 
         /// <summary>
         /// Set or get the state of the toggle latch
@@ -17,14 +17,14 @@
         {
             get
             {
-                return _state;
+                return m_state;
             }
             set
             {
-                if (value && !feedback)
-                    _state = !_state;
+                if (value && !m_feedback)
+                    m_state = !m_state;
 
-                feedback = value;
+                m_feedback = value;
             }
         }
 
@@ -33,7 +33,7 @@
         /// </summary>
         public void Force(bool value)
         {
-            _state = value;
+            m_state = value;
         }
     }
 }

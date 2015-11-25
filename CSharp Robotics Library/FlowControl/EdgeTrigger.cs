@@ -5,11 +5,11 @@
     /// </summary>
     public class EdgeTrigger
     {
-        private bool feedback;
+        private bool m_feedback;
 
         public EdgeTrigger()
         {
-            feedback = false;
+            m_feedback = false;
         }
 
         /// <summary>
@@ -18,7 +18,7 @@
         /// <param name="trigger">Current value of the edge triggered state</param>
         public void Update(bool trigger)
         {
-            feedback = trigger;
+            m_feedback = trigger;
         }
 
         /// <summary>
@@ -28,8 +28,8 @@
         /// <returns>Rising Edge</returns>
         public bool GetRisingUpdate(bool trigger)
         {
-            bool toReturn = (trigger && !feedback);
-            feedback = trigger;
+            bool toReturn = (trigger && !m_feedback);
+            m_feedback = trigger;
             return toReturn;
         }
 
@@ -40,8 +40,8 @@
         /// <returns>Falling Edge</returns>
         public bool GetFallingUpdate(bool trigger)
         {
-            bool toReturn = (!trigger && feedback);
-            feedback = trigger;
+            bool toReturn = (!trigger && m_feedback);
+            m_feedback = trigger;
             return toReturn;
         }
 
@@ -52,7 +52,7 @@
         /// <returns>Rising edge</returns>
         public bool GetRising(bool trigger)
         {
-            return (trigger && !feedback);
+            return (trigger && !m_feedback);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@
         /// <returns>Falling edge</returns>
         public bool GetFalling(bool trigger)
         {
-            return (!trigger && feedback);
+            return (!trigger && m_feedback);
         }
     }
 }

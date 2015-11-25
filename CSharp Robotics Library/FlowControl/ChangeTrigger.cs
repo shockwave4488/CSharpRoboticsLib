@@ -6,14 +6,14 @@
     /// <typeparam name="T">An equatable type</typeparam>
     public class ChangeTrigger<T>
     {
-        T state;
+        T m_state;
 
         /// <summary>
         /// Creates a new ChangeTrigger with a default initial state
         /// </summary>
         public ChangeTrigger()
         {
-            state = default(T);
+            m_state = default(T);
         }
 
         /// <summary>
@@ -21,7 +21,7 @@
         /// </summary>
         public ChangeTrigger(T initialState)
         {
-            state = initialState;
+            m_state = initialState;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@
         /// <returns>change in value</returns>
         public bool GetChange(T toCompare)
         {
-            return !state.Equals(toCompare);
+            return !m_state.Equals(toCompare);
         }
 
         /// <summary>
@@ -39,10 +39,10 @@
         /// </summary>
         /// <param name="toCompare">value to compare and update the internal state with</param>
         /// <returns>Change in value</returns>
-        public bool getChangeUpdate(T toCompare)
+        public bool GetChangeUpdate(T toCompare)
         {
-            bool toReturn = !state.Equals(toCompare);
-            state = toCompare;
+            bool toReturn = !m_state.Equals(toCompare);
+            m_state = toCompare;
             return toReturn;
         }
 
@@ -52,7 +52,7 @@
         /// <param name="newValue">New internal state</param>
         public void Update(T newValue)
         {
-            state = newValue;
+            m_state = newValue;
         }
     }
 }
