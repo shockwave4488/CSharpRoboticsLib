@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharp_Robotics_Library.FlowControl
+namespace CSharpRoboticsLib.FlowControl
 {
     /// <summary>
     /// Will return true after a threshold has been met by waiting for a number of call counts
@@ -53,6 +53,14 @@ namespace CSharp_Robotics_Library.FlowControl
         public void Update(int count)
         {
             m_count += count;
+        }
+
+        /// <summary>
+        /// Resets the internal count to zero
+        /// </summary>
+        public void ResetCount()
+        {
+            m_count = 0;
         }
     }
 }

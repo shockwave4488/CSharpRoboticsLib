@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace CSharp_Robotics_Library.FlowControl
+namespace CSharpRoboticsLib.FlowControl
 {
     public class WaitByTime
     {
-        private DateTime doneWaiting;
+        private DateTime m_doneWaiting;
 
         /// <summary>
-        /// Time until the timer is finished in seconds
+        /// Time until the timer is finished in seconds. Does not reset the timer.
         /// </summary>
         public double WaitTimeSeconds
         {
@@ -16,7 +16,7 @@ namespace CSharp_Robotics_Library.FlowControl
         }
 
         /// <summary>
-        /// Time until the timer is finished in milliseconds
+        /// Time until the timer is finished in milliseconds. Does not reset the timer.
         /// </summary>
         public int WaitTimeMilliseconds { get; set; }
         
@@ -46,12 +46,12 @@ namespace CSharp_Robotics_Library.FlowControl
         /// </summary>
         public void Reset()
         {
-            doneWaiting = DateTime.Now.AddMilliseconds(WaitTimeMilliseconds);
+            m_doneWaiting = DateTime.Now.AddMilliseconds(WaitTimeMilliseconds);
         }
         
         /// <summary>
         /// Returns true if enough time has passed since last reset
         /// </summary>
-        public bool DoneWaiting => DateTime.Now > doneWaiting;
+        public bool DoneWaiting => DateTime.Now > m_doneWaiting;
     }
 }

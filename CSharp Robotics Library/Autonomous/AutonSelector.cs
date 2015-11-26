@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using WPILib.SmartDashboards;
 using WPILib.Interfaces;
 
@@ -52,8 +53,9 @@ namespace CSharpRoboticsLib.Autonomous
             {
                 return this[value];
             }
-            catch(KeyNotFoundException e)
+            catch(KeyNotFoundException)
             {
+                Console.WriteLine($"Autonomous Routine {value} could not be found");
                 return this[defaultKey];
             }
         }

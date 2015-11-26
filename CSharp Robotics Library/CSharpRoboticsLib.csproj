@@ -8,8 +8,8 @@
     <ProjectGuid>{08792B9C-AB04-4FD0-A52A-D3A864D9758A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharp_Robotics_Library</RootNamespace>
-    <AssemblyName>CSharp Robotics Library</AssemblyName>
+    <RootNamespace>CSharpRoboticsLib</RootNamespace>
+    <AssemblyName>CSharpRoboticsLib</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>

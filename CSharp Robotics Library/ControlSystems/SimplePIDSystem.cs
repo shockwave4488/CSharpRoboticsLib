@@ -1,6 +1,6 @@
 ﻿using WPILib.Interfaces;
 
-namespace CSharp_Robotics_Library.ControlSystems
+namespace CSharpRoboticsLib.ControlSystems
 {
     /// <summary>
     /// Extendable controller for a PID Controlled mechanism.

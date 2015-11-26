@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSharp_Robotics_Library.FlowControl;
+using CSharpRoboticsLib.FlowControl;
 
 namespace FlowControlTests
 {

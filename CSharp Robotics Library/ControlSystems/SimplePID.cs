@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharp_Robotics_Library.ControlSystems
+namespace CSharpRoboticsLib.ControlSystems
 {
     /// <summary>
     /// Simpler form of PID logic

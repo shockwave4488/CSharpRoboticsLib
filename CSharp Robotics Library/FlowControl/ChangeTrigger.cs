@@ -1,4 +1,4 @@
-﻿namespace CSharp_Robotics_Library.FlowControl
+﻿namespace CSharpRoboticsLib.FlowControl
 {
     /// <summary>
     /// Can detect a change in data for any given equatable type
@@ -31,7 +31,7 @@
         /// <returns>change in value</returns>
         public bool GetChange(T toCompare)
         {
-            return !m_state.Equals(toCompare);
+            return !m_state?.Equals(toCompare) ?? null == toCompare;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@
         /// <returns>Change in value</returns>
         public bool GetChangeUpdate(T toCompare)
         {
-            bool toReturn = !m_state.Equals(toCompare);
+            bool toReturn = !m_state?.Equals(toCompare) ?? null == toCompare;
             m_state = toCompare;
             return toReturn;
         }

@@ -1,6 +1,6 @@
 ﻿using WPILib;
 
-namespace CSharp_Robotics_Library.Extras
+namespace CSharpRoboticsLib.Extras
 {
     /// <summary>
     /// An analogue Ultrasonic sensor class complete with built-in scaling
@@ -23,7 +23,7 @@ namespace CSharp_Robotics_Library.Extras
         /// Gets the value of the ultrasonic sensor modified by the scaling factor
         /// </summary>
         /// <returns></returns>
-        public new double GetValue()
+        public double Get()
         {
             return GetAverageVoltage() / scalingFactor;
         }
@@ -34,7 +34,7 @@ namespace CSharp_Robotics_Library.Extras
         /// <returns></returns>
         public new double PidGet()
         {
-            return GetAverageVoltage() / scalingFactor;
+            return Get();
         }
     }
 }

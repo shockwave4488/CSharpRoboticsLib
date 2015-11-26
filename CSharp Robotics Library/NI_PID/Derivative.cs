@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharp_Robotics_Library.NI_PID
+namespace CSharpRoboticsLib.NI_PID
 {
     /// <summary>
     /// Single-Order derivative function

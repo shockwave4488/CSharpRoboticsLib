@@ -1,4 +1,4 @@
-﻿namespace CSharp_Robotics_Library.FlowControl
+﻿namespace CSharpRoboticsLib.FlowControl
 {
     /// <summary>
     /// Toggle Latch
@@ -8,7 +8,24 @@
         private bool m_state;
         private bool m_feedback;
 
-        public Toggle() { m_feedback = false; m_state = false; }
+        /// <summary>
+        /// Creates a new toggle set to false
+        /// </summary>
+        public Toggle()
+        {
+            m_feedback = false;
+            m_state = false;
+        }
+
+        /// <summary>
+        /// Creates a new toggle set to an initial state
+        /// </summary>
+        /// <param name="initialState">state to initialize the toggle with</param>
+        public Toggle(bool initialState)
+        {
+            m_feedback = false;
+            m_state = true;
+        }
 
         /// <summary>
         /// Set or get the state of the toggle latch

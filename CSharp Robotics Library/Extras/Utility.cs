@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharp_Robotics_Library.Extras
+namespace CSharpRoboticsLib.Extras
 {
     /// <summary>
     /// Provides various mathematical and logical utilitarian functions

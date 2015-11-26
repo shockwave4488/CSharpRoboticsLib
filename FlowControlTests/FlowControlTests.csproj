@@ -58,6 +58,8 @@
     <Compile Include="EdgeTriggerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToggleTest.cs" />
+    <Compile Include="ChangeTriggerTest.cs" />
+    <Compile Include="WaitByTimeTest.cs" />
     <Compile Include="WaitByCallCountTest.cs" />
   </ItemGroup>
   <Choose>

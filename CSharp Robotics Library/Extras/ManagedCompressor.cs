@@ -1,10 +1,10 @@
 ﻿using WPILib;
-using CSharp_Robotics_Library.FlowControl;
+using CSharpRoboticsLib.FlowControl;
 
-namespace CSharp_Robotics_Library.Extras
+namespace CSharpRoboticsLib.Extras
 {
     /// <summary>
-    /// A Compressor which will not run if the coltage is too low.
+    /// A Compressor which will not run if the voltage is too low.
     /// </summary>
     public class ManagedCompressor : Compressor
     {

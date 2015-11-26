@@ -1,4 +1,4 @@
-﻿﻿namespace CSharp_Robotics_Library.FlowControl
+﻿namespace CSharpRoboticsLib.FlowControl
 {
     /// <summary>
     /// Used to detect changes in a boolean state

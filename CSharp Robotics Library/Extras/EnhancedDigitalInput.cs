@@ -1,15 +1,15 @@
 ﻿using WPILib;
-using CSharp_Robotics_Library.FlowControl;
+using CSharpRoboticsLib.FlowControl;
 
-namespace CSharp_Robotics_Library.Extras
+namespace CSharpRoboticsLib.Extras
 {
     /// <summary>
     /// Digital input with built-in edge detecting and inversion
     /// </summary>
     public class EnhancedDigitalInput : DigitalInput
     {
-        private EdgeTrigger Edge;
-
+        private EdgeTrigger m_edge;
+        
         /// <summary>
         /// Inverts the read value of the Digital Input
         /// </summary>
@@ -21,7 +21,7 @@ namespace CSharp_Robotics_Library.Extras
         /// <param name="channel">Channel to assign to this input</param>
         public EnhancedDigitalInput(int channel) : base(channel)
         {
-            Edge = new EdgeTrigger();
+            m_edge = new EdgeTrigger();
             Inverted = false;
         }
 
@@ -31,36 +31,36 @@ namespace CSharp_Robotics_Library.Extras
         /// <returns></returns>
         public new bool Get()
         {
-            return Get() ^ Inverted;
+            return base.Get() ^ Inverted;
         }
 
         /// <summary>
         /// Returns true if there is a rising edge, does not update the internal state
         /// </summary>
         /// <returns></returns>
-        public bool GetRising() => Edge.GetRising(Get());
+        public bool GetRising() => m_edge.GetRising(Get());
 
         /// <summary>
         /// Returns true if there is a falling edge, does not update the internal state
         /// </summary>
         /// <returns></returns>
-        public bool GetFalling() => Edge.GetFalling(Get());
+        public bool GetFalling() => m_edge.GetFalling(Get());
 
         /// <summary>
         /// Returns true if there is a rising edge and updates the internal state
         /// </summary>
         /// <returns></returns>
-        public bool GetRisingUpdate() => Edge.GetRisingUpdate(Get());
+        public bool GetRisingUpdate() => m_edge.GetRisingUpdate(Get());
 
         /// <summary>
         /// Returns true if there is a falling edge and updates the internal state
         /// </summary>
         /// <returns></returns>
-        public bool GetFallingUpdate() => Edge.GetFallingUpdate(Get());
+        public bool GetFallingUpdate() => m_edge.GetFallingUpdate(Get());
 
         /// <summary>
         /// Manually update the internal state of the edge trigger
         /// </summary>
-        public void Update() => Edge.Update(Get());
+        public void Update() => m_edge.Update(Get());
     }
 }

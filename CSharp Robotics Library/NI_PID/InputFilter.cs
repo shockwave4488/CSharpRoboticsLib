@@ -1,4 +1,4 @@
-﻿namespace CSharp_Robotics_Library.NI_PID
+﻿namespace CSharpRoboticsLib.NI_PID
 {
     /// <summary>
     /// Input filter functionally identical to that in the NI LabVIEW PID library
