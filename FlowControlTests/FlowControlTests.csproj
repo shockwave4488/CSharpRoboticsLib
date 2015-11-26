@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharp Robotics Library">
-      <HintPath>..\CSharp Robotics Library\bin\Debug\CSharp Robotics Library.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -61,6 +58,12 @@
     <Compile Include="ChangeTriggerTest.cs" />
     <Compile Include="WaitByTimeTest.cs" />
     <Compile Include="WaitByCallCountTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSharp Robotics Library\CSharpRoboticsLib.csproj">
+      <Project>{08792b9c-ab04-4fd0-a52a-d3a864d9758a}</Project>
+      <Name>CSharpRoboticsLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/d2ytj177vgjto2xm/branch/master?svg=true)](https://ci.appveyor.com/project/ThadHouse/csharproboticslib/branch/master)
