@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Diagnostics;
 
 namespace CSharpRoboticsLib.NILabview
 {
@@ -8,7 +8,7 @@ namespace CSharpRoboticsLib.NILabview
     public class Derivative
     {
         private double xPrev1, xPrev2;
-        private DateTime dt;
+        private Stopwatch dt;
 
         /// <summary>
         /// Creates a new Derivative object.
@@ -17,7 +17,7 @@ namespace CSharpRoboticsLib.NILabview
         public Derivative(double InitialCondition)
         {
             xPrev1 = xPrev2 = InitialCondition;
-            dt = DateTime.Now;
+            dt = new Stopwatch();
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace CSharpRoboticsLib.NILabview
         {
             xPrev2 = xPrev1;
             xPrev1 = x;
-            dt = DateTime.Now;
+            dt.Restart();
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace CSharpRoboticsLib.NILabview
         /// <returns>dx/dt</returns>
         public double Get()
         {
-            double toReturn = (xPrev1 - xPrev2) * TimeSpan.TicksPerSecond / (DateTime.Now - dt).Ticks;
+            double toReturn = (xPrev1 - xPrev2) / dt.Elapsed.TotalSeconds;
             toReturn = double.IsNaN(toReturn) ? 0 : toReturn; //handling division by zero errors
             return toReturn;
         }
