@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpRoboticsLib.NI_PID
+namespace CSharpRoboticsLib.NILabview
 {
     /// <summary>
     /// Describes a Higher Order derivative function

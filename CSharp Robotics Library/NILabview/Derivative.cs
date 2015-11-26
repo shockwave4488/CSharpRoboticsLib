@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpRoboticsLib.NI_PID
+namespace CSharpRoboticsLib.NILabview
 {
     /// <summary>
     /// Single-Order derivative function
@@ -21,6 +21,11 @@ namespace CSharpRoboticsLib.NI_PID
         }
 
         /// <summary>
+        /// Creates a new derivative object with the initial value set to zero.
+        /// </summary>
+        public Derivative() : this(0) { }
+
+        /// <summary>
         /// Updates the derivative. Call this after Get() has been used.
         /// </summary>
         /// <param name="x">new value of x</param>
@@ -37,7 +42,9 @@ namespace CSharpRoboticsLib.NI_PID
         /// <returns>dx/dt</returns>
         public double Get()
         {
-            return (xPrev1 - xPrev2) / (DateTime.Now - dt).TotalSeconds;
+            double toReturn = (xPrev1 - xPrev2) * TimeSpan.TicksPerSecond / (DateTime.Now - dt).Ticks;
+            toReturn = double.IsNaN(toReturn) ? 0 : toReturn; //handling division by zero errors
+            return toReturn;
         }
     }
 }

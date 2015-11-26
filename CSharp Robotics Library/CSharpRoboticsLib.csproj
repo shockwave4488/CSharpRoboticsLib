@@ -79,9 +79,9 @@
     <Compile Include="FlowControl\Toggle.cs" />
     <Compile Include="FlowControl\WaitByCallCount.cs" />
     <Compile Include="FlowControl\WaitByTime.cs" />
-    <Compile Include="NI_PID\Derivative.cs" />
-    <Compile Include="NI_PID\InputFilter.cs" />
-    <Compile Include="NI_PID\OrderDerivative.cs" />
+    <Compile Include="NILabview\Derivative.cs" />
+    <Compile Include="NILabview\InputFilter.cs" />
+    <Compile Include="NILabview\OrderDerivative.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
