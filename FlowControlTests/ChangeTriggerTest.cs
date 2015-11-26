@@ -15,5 +15,14 @@ namespace FlowControlTests
             Assert.IsTrue(s.GetChangeUpdate("This is a Test"));
             Assert.IsFalse(s.GetChange("This is a Test"));
         }
+
+        [TestMethod]
+        public void ChangeDetectedInt()
+        {
+            ChangeTrigger<int> s = new ChangeTrigger<int>();
+            Assert.IsTrue(s.GetChange(1));
+            Assert.IsTrue(s.GetChangeUpdate(1));
+            Assert.IsFalse(s.GetChange(1));
+        }
     }
 }
