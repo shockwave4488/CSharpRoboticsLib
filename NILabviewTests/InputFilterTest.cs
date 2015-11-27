@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using CSharpRoboticsLib.NILabview;
 
 namespace NILabviewTests
 {
-    [TestClass]
+    [TestFixture]
     public class InputFilterTest
     {
-        [TestMethod]
+        [Test]
         public void FilterPositive()
         {
             InputFilter t = new InputFilter(0);
@@ -19,7 +19,7 @@ namespace NILabviewTests
             Assert.AreEqual(1, t.Value, 0);
         }
 
-        [TestMethod]
+        [Test]
         public void FilterNegative()
         {
             InputFilter t = new InputFilter();
@@ -31,7 +31,7 @@ namespace NILabviewTests
             Assert.AreEqual(-1, t.Value, 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ReInitializeTest()
         {
             InputFilter t = new InputFilter();

@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using CSharpRoboticsLib.FlowControl;
 
 namespace FlowControlTests
 {
-    [TestClass]
+    [TestFixture]
     public class EdgeTriggerTest
     {
-        [TestMethod]
+        [Test]
         public void AutoUpdateRisingToFalling()
         {
             EdgeTrigger t = new EdgeTrigger();
@@ -16,7 +16,7 @@ namespace FlowControlTests
             Assert.IsTrue(t.GetFallingUpdate(false));
         }
 
-        [TestMethod]
+        [Test]
         public void AutoUpdateFallingToRising()
         {
             EdgeTrigger t = new EdgeTrigger();
@@ -25,7 +25,7 @@ namespace FlowControlTests
             Assert.IsTrue(t.GetRisingUpdate(true));
         }
 
-        [TestMethod]
+        [Test]
         public void ManualUpdateRisingToFalling()
         {
             EdgeTrigger t = new EdgeTrigger();
@@ -35,7 +35,7 @@ namespace FlowControlTests
             Assert.IsTrue(t.GetFalling(false));
         }
 
-        [TestMethod]
+        [Test]
         public void ManualUpdateFallingToRising()
         {
             EdgeTrigger t = new EdgeTrigger();

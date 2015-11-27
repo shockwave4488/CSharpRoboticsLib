@@ -1,14 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using CSharpRoboticsLib.FlowControl;
 using System.Threading;
 
 namespace FlowControlTests
 {
-    [TestClass]
+    [TestFixture]
     public class WaitByTimeTest
     {
-        [TestMethod]
+        [Test]
         public void WaitCompleteTest()
         {
             WaitByTime t = new WaitByTime(100);

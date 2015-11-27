@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using CSharpRoboticsLib.FlowControl;
 
 namespace FlowControlTests
 {
-    [TestClass]
+    [TestFixture]
     public class WaitByCallCountTest
     {
-        [TestMethod]
+        [Test]
         public void WaitCompleteTest()
         {
             WaitByCallCount t = new WaitByCallCount(2);

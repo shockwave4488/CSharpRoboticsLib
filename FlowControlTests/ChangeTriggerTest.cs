@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using CSharpRoboticsLib.FlowControl;
 
 namespace FlowControlTests
 {
-    [TestClass]
+    [TestFixture]
     public class ChangeTriggerTest
     {
-        [TestMethod]
+        [Test]
         public void ChangeDetectedString()
         {
             ChangeTrigger<string> s = new ChangeTrigger<string>();
@@ -16,7 +16,7 @@ namespace FlowControlTests
             Assert.IsFalse(s.GetChange("This is a Test"));
         }
 
-        [TestMethod]
+        [Test]
         public void ChangeDetectedInt()
         {
             ChangeTrigger<int> s = new ChangeTrigger<int>();

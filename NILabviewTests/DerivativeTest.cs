@@ -1,11 +1,10 @@
 ﻿using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using CSharpRoboticsLib.NILabview;
-using System.Threading;
 
 namespace NILabviewTests
 {
-    [TestClass]
+    [TestFixture]
     public class DerivativeTest
     {
         private const double PercentAccuracy = 99;
@@ -21,7 +20,7 @@ namespace NILabviewTests
                 ;
         }
 
-        [TestMethod]
+        [Test]
         public void DerivativePositiveTest10hz()
         {
             Derivative d = new Derivative(0);
@@ -34,7 +33,7 @@ namespace NILabviewTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void DerivativeNegativeTest10hz()
         {
             Derivative d = new Derivative(0);
@@ -47,7 +46,7 @@ namespace NILabviewTests
             }
         }
         
-        [TestMethod]
+        [Test]
         public void DerivativePositiveTest100hz()
         {
             Derivative d = new Derivative(0);
@@ -60,7 +59,7 @@ namespace NILabviewTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void DerivativeNegativeTest100hz()
         {
             Derivative d = new Derivative(0);

@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using CSharpRoboticsLib.FlowControl;
 
 namespace FlowControlTests
 {
-    [TestClass]
+    [TestFixture]
     public class ToggleTest
     {
-        [TestMethod]
+        [Test]
         public void ToggleOnOffTest()
         {
             //Also checks edge detection
@@ -28,7 +28,7 @@ namespace FlowControlTests
             Assert.IsFalse(t.state);
         }
 
-        [TestMethod]
+        [Test]
         public void ToggleForceTest()
         {
             //Also checking that force doesn't interfere with toggle
