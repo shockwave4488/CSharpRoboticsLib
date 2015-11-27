@@ -7,7 +7,7 @@ namespace NILabviewTests
     [TestFixture]
     public class DerivativeTest
     {
-        private const double PercentAccuracy = 99;
+        private const double PercentAccuracy = 98;
         private const int TestRepeats = 10;
         private static double AcceptibleError => 1.0 - (PercentAccuracy / 100);
 

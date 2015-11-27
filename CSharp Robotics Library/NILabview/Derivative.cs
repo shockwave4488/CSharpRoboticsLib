@@ -3,7 +3,7 @@
 namespace CSharpRoboticsLib.NILabview
 {
     /// <summary>
-    /// Single-Order derivative function. Tested to have 99% accuracy.
+    /// Single-Order derivative function.
     /// </summary>
     public class Derivative
     {
