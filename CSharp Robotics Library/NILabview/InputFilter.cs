@@ -9,6 +9,11 @@
         private double[] internalState;
 
         /// <summary>
+        /// Length of the internal status buffer
+        /// </summary>
+        public const int BufferLength = 5;
+
+        /// <summary>
         /// Constructs a new InputFilter
         /// </summary>
         /// <param name="initialState">Initial state of the filter</param>
@@ -16,6 +21,11 @@
         {
             ReInitialize(initialState);
         }
+
+        /// <summary>
+        /// Constructs a new InputFilter initialized to Zero
+        /// </summary>
+        public InputFilter() : this(0) { }
 
         /// <summary>
         /// sets all internal states to the double specified
@@ -42,14 +52,16 @@
         /// <summary>
         /// Gets the filtered output of the internal state
         /// </summary>
-        public double GetValue()
+        public double Value
         {
-            double toReturn = 0;
-            for (int i = 0; i < internalState.Length; i++)
-                toReturn += internalState[i] * forewardCoefficients[i];
+            get
+            {
+                double toReturn = 0;
+                for (int i = 0; i < internalState.Length; i++)
+                    toReturn += internalState[i] * forewardCoefficients[i];
 
-            return toReturn;
+                return toReturn;
+            }
         }
-
     }
 }
