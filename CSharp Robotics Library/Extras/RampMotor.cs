@@ -4,13 +4,13 @@ using WPILib.Interfaces;
 namespace CSharpRoboticsLib.Extras
 {
     /// <summary>
-    /// A subclass of a motor controller intended to allow controlled change in power, for safety or voltage regulation means.
+    /// A subclass of a motor controller intended to allow controlled change in power, for safety or voltage regulation.
     /// </summary>
     /// <typeparam name="T">Type of motor controller</typeparam>
     public class RampMotor<T> : ISpeedController where T : ISpeedController
     {
-        ISpeedController controller;
-        private double power;
+        private ISpeedController m_controller;
+        private double m_power;
 
         /// <summary>
         /// The max amount of change in power the motor can accelerate with
@@ -35,8 +35,8 @@ namespace CSharpRoboticsLib.Extras
         /// </summary>
         public bool Inverted
         {
-            get { return controller.Inverted; }
-            set { controller.Inverted = value; }
+            get { return m_controller.Inverted; }
+            set { m_controller.Inverted = value; }
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace CSharpRoboticsLib.Extras
         /// <param name="channel">The PWM channel that the motor is attached to. 0-9 are on-board, 10-19 are on the MXP port</param>
         public RampMotor(int port)
         {
-            controller = (ISpeedController)Activator.CreateInstance(typeof(T), port);
+            m_controller = (ISpeedController)Activator.CreateInstance(typeof(T), port);
         }
 
         /// <summary>
@@ -57,16 +57,16 @@ namespace CSharpRoboticsLib.Extras
             //The motor is DECELLERATING if |value| < |power| OR value and power are not both positive or both negative
             //Likewise, the motor is ACCELERATING if |value| > |power| AND value and power are both negative or both positive
             //if the motor is ACCELERATING, use MaxAccel. If the robot is DECELLERATING, use MaxDecel.
-            double delta = Math.Sign(value) == Math.Sign(power) && Math.Abs(value) > Math.Abs(power) ? MaxAccel : MaxDecel;
+            double delta = Math.Sign(value) == Math.Sign(m_power) && Math.Abs(value) > Math.Abs(m_power) ? MaxAccel : MaxDecel;
 
-            if (value > power + delta) //If the motor wants to change power faster than it is allowed, change it by the max power change allowed
-                power += delta;
-            else if (value < power - delta)
-                power -= delta;
+            if (value > m_power + delta) //If the motor wants to change power faster than it is allowed, change it by the max power change allowed
+                m_power += delta;
+            else if (value < m_power - delta)
+                m_power -= delta;
             else //If the motor wants to go to a power within the change limitations, set the power to the value.
-                power = value;
+                m_power = value;
 
-            controller.Set(value);
+            m_controller.Set(value);
         }
 
         /// <summary>
@@ -75,26 +75,26 @@ namespace CSharpRoboticsLib.Extras
         /// <param name="value">Power to set to</param>
         public void ForcePower(double value)
         {
-            power = value;
+            m_power = value;
         }
 
         /// <summary>
-        /// returns the last value of this controller
+        /// Returns the last value set to this controller
         /// </summary>
         /// <returns></returns>
         public double Get()
         {
-            return controller.Get();
+            return m_controller.Get();
         }
 
         /// <summary>
-        /// sets the output value of the controller
+        /// Sets the output value for this controller
         /// </summary>
         /// <param name="value"></param>
         /// <param name="syncGroup"></param>
         public void Set(double value, byte syncGroup)
         {
-            controller.Set(value, syncGroup);
+            m_controller.Set(value, syncGroup);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace CSharpRoboticsLib.Extras
         /// </summary>
         public void Disable()
         {
-            controller.Disable();
+            m_controller.Disable();
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace CSharpRoboticsLib.Extras
         /// </summary>
         public void Dispose()
         {
-            controller.Dispose();
+            m_controller.Dispose();
         }
     }
 }
