@@ -7,9 +7,9 @@ namespace CSharpRoboticsLib.ControlSystems
     /// </summary>
     public class SimplePID
     {
-        private double P, I, D;
-        private double accumulatedIntegral;
-        private double currentPointFeedback;
+        private double m_P, m_I, m_D;
+        private double m_accumulatedIntegral;
+        private double m_currentPointFeedback;
         
         /// <summary>
         /// Maximum value the PID Controller can return
@@ -24,7 +24,7 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <summary>
         /// Current setpoint the PID Controller is reacting to
         /// </summary>
-        public double setpoint { get; set; }
+        public double SetPoint { get; set; }
 
         /// <summary>
         /// Creates a new instance of the SimplePID class
@@ -39,11 +39,12 @@ namespace CSharpRoboticsLib.ControlSystems
             if(max < min)
                 throw new Exception("Invalid Arguments: " + max + " Is less than " + min);
 
-            P = p; I = i; D = d;
-            accumulatedIntegral = 0;
-            currentPointFeedback = 0;
+            m_P = p; m_I = i; m_D = d;
+            m_accumulatedIntegral = 0;
+            m_currentPointFeedback = 0;
             Max = max;
             Min = min;
+            SetPoint = 0;
         }
 
         /// <summary>
@@ -59,9 +60,9 @@ namespace CSharpRoboticsLib.ControlSystems
         /// </summary>
         /// <param name="currentPoint">current point of the system as read by a sensor</param>
         /// <returns>value calculated by the PID loop</returns>
-        public double get(double currentPoint)
+        public double Get(double currentPoint)
         {
-            return limit(((setpoint - currentPoint) * P) + ((currentPoint - currentPointFeedback) * -D) + accumulatedIntegral);
+            return limit(((SetPoint - currentPoint) * m_P) + ((currentPoint - m_currentPointFeedback) * m_D) + m_accumulatedIntegral * m_I);
         }
 
         /// <summary>
@@ -70,8 +71,11 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <param name="currentPoint">Current point as read by a sensor</param>
         public void Update(double currentPoint)
         {
-            if (I != 0) accumulatedIntegral += (currentPoint - currentPointFeedback) * I;
-            if (D != 0) currentPointFeedback = currentPoint;
+            if (m_I != 0)
+                m_accumulatedIntegral += (SetPoint - currentPoint);
+
+            if (m_D != 0)
+                m_currentPointFeedback = currentPoint;
         }
 
         private double limit(double value)

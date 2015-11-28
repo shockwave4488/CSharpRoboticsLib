@@ -21,7 +21,7 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <summary>
         /// Motor Controller to be controlled by the PID Controller.
         /// </summary>
-        protected ISpeedController Motor;
+        protected ISpeedController motor;
 
         /// <summary>
         /// Positional tolerance of the setpoint, used in the AtSetPoint property.
@@ -40,7 +40,7 @@ namespace CSharpRoboticsLib.ControlSystems
         {
             get
             {
-                return (sensor.PidGet() < PID.setpoint + setpointTolerance) && (sensor.PidGet() > PID.setpoint - setpointTolerance);
+                return (sensor.PidGet() < PID.SetPoint + setpointTolerance) && (sensor.PidGet() > PID.SetPoint - setpointTolerance);
             }
         }
 
@@ -49,8 +49,8 @@ namespace CSharpRoboticsLib.ControlSystems
         /// </summary>
         public virtual double SetPoint
         {
-            get { return PID.setpoint; }
-            set { PID.setpoint = value; }
+            get { return PID.SetPoint; }
+            set { PID.SetPoint = value; }
         }
 
         /// <summary>
@@ -59,9 +59,9 @@ namespace CSharpRoboticsLib.ControlSystems
         public virtual void Update()
         {
             if (!Manual)
-                Motor.Set(PID.get(sensor.PidGet()));
+                motor.Set(PID.Get(sensor.PidGet()));
             else
-                Motor.Set(0);
+                motor.Set(0);
 
             PID.Update(sensor.PidGet());
         }
@@ -74,7 +74,7 @@ namespace CSharpRoboticsLib.ControlSystems
         {
             Update();
             if (Manual)
-                Motor.Set(manual);
+                motor.Set(manual);
         }
     }
 }
