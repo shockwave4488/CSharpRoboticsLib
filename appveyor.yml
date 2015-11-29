@@ -18,9 +18,9 @@ build:
 test_script:
 - nuget install OpenCover -Version 4.6.166 -OutputDirectory packages
 
-- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\FlowControlTests\Output\FlowControlTests.dll /noshadow /framework:net-4.0 " -filter:"+[*]* -[FlowControlTests.*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
-- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\ControlSystemsTests\Output\ControlSystemsTests.dll /noshadow /framework:net-4.0 " -filter:"+[*]* -[ControlSystemsTests.*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
-- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\NILabviewTests\Output\NILabviewTests.dll /noshadow /framework:net-4.0 " -filter:"+[*]* -[NILabviewTests.*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
+- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\FlowControlTests\Output\FlowControlTests.dll --framework=net-4.0 " -filter:"+[*]* -[FlowControlTests.*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
+- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\ControlSystemsTests\Output\ControlSystemsTests.dll --framework=net-4.0 " -filter:"+[*]* -[ControlSystemsTests.*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
+- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\NILabviewTests\Output\NILabviewTests.dll --framework=net-4.0 " -filter:"+[*]* -[NILabviewTests.*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
 
 - ps >-
   $wc = New-Object 'System.Net.WebClient'
