@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NILabviewTests", "NILabviewTests\NILabviewTests.csproj", "{13D00E1A-556A-47DB-91DF-BA8258B75E50}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlSystemsTests", "ControlSystemsTests\ControlSystemsTests.csproj", "{EE2DAF52-D3F0-4B95-AB31-B13691A5FFBB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{08792B9C-AB04-4FD0-A52A-D3A864D9758A} = {08792B9C-AB04-4FD0-A52A-D3A864D9758A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -58,13 +58,13 @@
     <Compile Include="WaitByCallCountTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\CSharp Robotics Library\CSharpRoboticsLib.csproj">
       <Project>{08792b9c-ab04-4fd0-a52a-d3a864d9758a}</Project>
       <Name>CSharpRoboticsLib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
