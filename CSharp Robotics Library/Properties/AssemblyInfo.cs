@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CSharp Robotics Library")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A C# robotics library created by Shockwave")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Shockwave4488")]
 [assembly: AssemblyProduct("CSharp Robotics Library")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
