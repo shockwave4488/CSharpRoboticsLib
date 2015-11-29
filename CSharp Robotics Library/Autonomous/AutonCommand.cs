@@ -8,8 +8,12 @@
         /// <summary>
         /// Command intended to be run once per AutonomousPeriodic loop.
         /// </summary>
-        /// <returns>Percent complete - 1 if done</returns>
-        double Execute();
+        void Execute();
+
+        /// <summary>
+        /// If the current command is finished.
+        /// </summary>
+        bool Finished { get; }
 
         /// <summary>
         /// Time until the command will exit, regardless of what Execute() returns.

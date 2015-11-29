@@ -8,6 +8,7 @@ namespace CSharpRoboticsLib.Autonomous.DriveCommands.Interfaces
 {
     /// <summary>
     /// Defines functions for a tank drive with encoders.
+    /// If your robot has both encoders and a gyroscope, use this.
     /// </summary>
     interface IEncoderDrive : ITankDrive
     {
@@ -15,12 +16,12 @@ namespace CSharpRoboticsLib.Autonomous.DriveCommands.Interfaces
         /// Gets the encoder associated with the left motor(s).
         /// </summary>
         /// <returns>Left-Side Encoder</returns>
-        Encoder GetLeftEncoder();
+        Encoder LeftEncoder { get; }
 
         /// <summary>
         /// Gets the encoder associated with the right motor(s).
         /// </summary>
         /// <returns>Right-Side Encoder</returns>
-        Encoder GetRightEncoder();
+        Encoder RightEncoder { get; }
     }
 }

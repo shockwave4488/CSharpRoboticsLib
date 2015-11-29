@@ -8,7 +8,8 @@ using WPILib;
 namespace CSharpRoboticsLib.Autonomous.DriveCommands.Interfaces
 {
     /// <summary>
-    /// Defines functions for a Tank Drive with a gyroscope
+    /// Defines functions for a Tank Drive with a gyroscope.
+    /// If your robot has both encoders and a gyroscope, use <see cref="IEncoderDrive"/>
     /// </summary>
     interface IGyroscopeDrive : ITankDrive
     {
@@ -16,6 +17,6 @@ namespace CSharpRoboticsLib.Autonomous.DriveCommands.Interfaces
         /// Returns the gyroscope reference
         /// </summary>
         /// <returns>Robot's Gyroscope</returns>
-        Gyro GetGyroscope();
+        Gyro Gyroscope { get; }
     }
 }

@@ -74,6 +74,7 @@
     <Compile Include="ControlSystems\SimplePIDSystem.cs" />
     <Compile Include="Extras\AnalogueUltrasonic.cs" />
     <Compile Include="Extras\EnhancedDigitalInput.cs" />
+    <Compile Include="Extras\EnhancedEncoder.cs" />
     <Compile Include="Extras\ManagedCompressor.cs" />
     <Compile Include="Extras\RampMotor.cs" />
     <Compile Include="Extras\Utility.cs" />

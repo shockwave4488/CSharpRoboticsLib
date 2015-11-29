@@ -43,7 +43,7 @@ namespace CSharpRoboticsLib.Autonomous
         public void Run()
         {
             double progress = 0;
-            if (!finished && ((progress = Peek().Execute()) >= 1 || timeOut < DateTime.Now))
+            if (!finished && (Peek().)
             {
                 if (DateTime.Now > timeOut)
                     CommandTimedOut(Peek());

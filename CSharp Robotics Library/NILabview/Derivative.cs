@@ -46,5 +46,22 @@ namespace CSharpRoboticsLib.NILabview
             toReturn = double.IsNaN(toReturn) ? 0 : toReturn; //handling division by zero errors
             return toReturn;
         }
+
+        /// <summary>
+        /// resets the derivative to the specified value
+        /// </summary>
+        /// <param name="value">value to reset to</param>
+        public void ReInitialize(double value)
+        {
+            xPrev1 = xPrev2 = value;
+        }
+
+        /// <summary>
+        /// resets the derivative to zero
+        /// </summary>
+        public void ReInitialize()
+        {
+            ReInitialize(0);
+        }
     }
 }
