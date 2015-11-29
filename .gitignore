@@ -204,6 +204,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
-nuget.exe
 buildLocal.bat
 *.suo

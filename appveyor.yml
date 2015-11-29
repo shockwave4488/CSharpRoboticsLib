@@ -1,0 +1,43 @@
+version: 2016.0.0.{build}
+os: Visual Studio 2015
+configuration: Release
+install:
+- cmd: >-
+    nuget restore
+
+    appveyor DownloadFile https://github.com/nunit/nunit/releases/download/3.0.0/NUnit-3.0.0.zip
+
+    7z x -oC:\Tools\NUnit3 nunit-3.0.0.zip > NUL
+
+    set PATH=C:\Tools\NUnit3\bin;%PATH%
+before_build:
+- cmd: nuget restore
+build:
+  verbosity: minimal
+
+test_script:
+- nuget install OpenCover -Version 4.6.166
+
+- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\FlowControlTests\Output\FlowControlTests.dll /noshadow /framework:net-4.0 " -filter:"+[*]* -[FlowControlTests.*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
+- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\ControlSystemsTests\Output\ControlSystemsTests.dll /noshadow /framework:net-4.0 " -filter:"+[*]* -[ControlSystemsTests.*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
+- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\NILabviewTests\Output\NILabviewTests.dll /noshadow /framework:net-4.0 " -filter:"+[*]* -[NILabviewTests.*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
+
+- ps >-
+  $wc = New-Object 'System.Net.WebClient'
+  $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\TestResult.xml))
+
+- cmd: >-
+
+- "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+- pip install codecov
+- codecov -f "coverage.xml"
+
+on_success:
+- ps: >-
+    
+    If (($env:APPVEYOR_REPO_BRANCH -eq "master") -and (!$env:APPVEYOR_PULL_REQUEST_NUMBER)) {
+
+    ./nuget pack "$env:APPVEYOR_BUILD_FOLDER\CSharp Robotics Library\CSharpRoboticsLib.csproj" -Properties "Configuration=Release;Platform=AnyCPU" -Symbols
+
+    Get-ChildItem .\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+    }
