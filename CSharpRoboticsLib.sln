@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpRoboticsLib", "CSharp Robotics Library\CSharpRoboticsLib.csproj", "{08792B9C-AB04-4FD0-A52A-D3A864D9758A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpRoboticsLib", "CSharpRoboticsLibrary\CSharpRoboticsLib.csproj", "{08792B9C-AB04-4FD0-A52A-D3A864D9758A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndependentTests", "ControlSystemsTests\IndependentTests.csproj", "{EE2DAF52-D3F0-4B95-AB31-B13691A5FFBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndependentTests", "IndependentTests\IndependentTests.csproj", "{EE2DAF52-D3F0-4B95-AB31-B13691A5FFBB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{08792B9C-AB04-4FD0-A52A-D3A864D9758A} = {08792B9C-AB04-4FD0-A52A-D3A864D9758A}
 	EndProjectSection

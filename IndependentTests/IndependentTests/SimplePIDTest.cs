@@ -1,11 +1,11 @@
-﻿using System;
-using NUnit.Framework;
-using CSharpRoboticsLib.ControlSystems;
+﻿using CSharpRoboticsLib.ControlSystems;
 using CSharpRoboticsLib.Extras;
+using NUnit.Framework;
 
-namespace IndependentTests.ControlSystemsTests
+namespace IndependentTests.IndependentTests
 {
     [TestFixture]
+    [Category("TimeBased")]
     public class SimplePIDTest
     {
         [Test]

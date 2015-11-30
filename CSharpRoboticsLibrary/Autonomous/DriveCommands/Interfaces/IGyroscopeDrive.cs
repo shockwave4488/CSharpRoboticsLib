@@ -17,6 +17,6 @@ namespace CSharpRoboticsLib.Autonomous.DriveCommands.Interfaces
         /// Returns the gyroscope reference
         /// </summary>
         /// <returns>Robot's Gyroscope</returns>
-        Gyro Gyroscope { get; }
+        AnalogGyro Gyroscope { get; }
     }
 }

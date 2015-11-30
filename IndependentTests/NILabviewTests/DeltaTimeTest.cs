@@ -6,6 +6,7 @@ using CSharpRoboticsLib.Extras;
 namespace IndependentTests.NILabviewTests
 {
     [TestFixture]
+    [Category("TimeBased")]
     public class DeltaTimeTest
     {
         const int TestRepeats = 20;

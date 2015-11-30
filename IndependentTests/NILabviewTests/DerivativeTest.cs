@@ -6,6 +6,7 @@ using CSharpRoboticsLib.Extras;
 namespace IndependentTests.NILabviewTests
 {
     [TestFixture]
+    [Category("TimeBased")]
     public class DerivativeTest
     {
         private const double PercentAccuracy = 98;

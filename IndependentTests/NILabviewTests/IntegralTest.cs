@@ -6,6 +6,7 @@ using NUnit.Framework;
 namespace IndependentTests.NILabviewTests
 {
     [TestFixture]
+    [Category("TimeBased")]
     public class IntegralTest
     {
         [Test]

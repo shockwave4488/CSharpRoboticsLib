@@ -5,6 +5,7 @@ using CSharpRoboticsLib.Extras;
 namespace IndependentTests.ExtrasTests
 {
     [TestFixture]
+    [Category("TimeBased")]
     public class UtilityTest
     {
         const int TestRepeats = 50;
