@@ -30,5 +30,14 @@ namespace CSharpRoboticsLib.NILabview
             m_value += (x * dt.Value);
             return m_value;
         }
+
+        /// <summary>
+        /// Gets the value of the integral
+        /// </summary>
+        /// <returns>Integral(x)dt</returns>
+        public double Get()
+        {
+            return m_value;
+        }
     }
 }

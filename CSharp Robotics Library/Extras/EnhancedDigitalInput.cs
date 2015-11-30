@@ -29,7 +29,7 @@ namespace CSharpRoboticsLib.Extras
         /// Get the value from the Enhanced Digital Input Channel
         /// </summary>
         /// <returns></returns>
-        public new bool Get()
+        public new bool Get() //Change to override when new version of WPILIB happens
         {
             return base.Get() ^ Inverted;
         }

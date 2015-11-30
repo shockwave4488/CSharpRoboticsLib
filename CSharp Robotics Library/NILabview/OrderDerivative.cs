@@ -7,7 +7,7 @@ namespace CSharpRoboticsLib.NILabview
     /// <summary>
     /// Describes a Higher Order derivative function
     /// </summary>
-    public class OrderDerivative
+    class OrderDerivative
     {
         private Queue<double> values;
         private DateTime dt;

@@ -32,7 +32,7 @@ namespace CSharpRoboticsLib.Extras
         /// Gets the value of the ultrasonic sensor modified by the scaling factor
         /// </summary>
         /// <returns></returns>
-        public new double PidGet()
+        public new double PidGet() //Change to override when new version of WPILIB happens
         {
             return Get();
         }

@@ -43,7 +43,7 @@ namespace CSharpRoboticsLib.Extras
         /// Gets the velocity reported by the encoder.
         /// </summary>
         /// <returns>Derivative of the distance</returns>
-        public new double GetRate()
+        public new double GetRate() //Change to override when new version of WPILIB happens
         {
             return m_velocityFilter.Get(GetDistance());
         }
@@ -60,7 +60,7 @@ namespace CSharpRoboticsLib.Extras
         /// <summary>
         /// Resets the encoder and derivative
         /// </summary>
-        public new void Reset()
+        public new void Reset() //Change to override when new version of WPILIB happens
         {
             base.Reset();
             m_velocityFilter.ReInitialize();
