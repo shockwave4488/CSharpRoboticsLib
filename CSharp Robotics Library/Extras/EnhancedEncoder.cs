@@ -12,7 +12,7 @@ namespace CSharpRoboticsLib.Extras
     /// </summary>
     public class EnhancedEncoder : Encoder
     {
-        private Derivative m_speedfilter;
+        private Derivative m_velocityFilter;
 
         /// <summary>
         /// Resets the encoder when this DigitalInput is pressed
@@ -26,7 +26,7 @@ namespace CSharpRoboticsLib.Extras
         /// <param name="bChannel"></param>
         public EnhancedEncoder(int aChannel, int bChannel) : base(aChannel, bChannel)
         {
-            m_speedfilter = new Derivative();
+            m_velocityFilter = new Derivative();
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace CSharpRoboticsLib.Extras
         /// <returns>Derivative of the distance</returns>
         public new double GetRate()
         {
-            return m_speedfilter.Get();
+            return m_velocityFilter.Get(GetDistance());
         }
 
         /// <summary>
@@ -55,7 +55,6 @@ namespace CSharpRoboticsLib.Extras
         {
             if (ResetOn?.Get() ?? false)
                 Reset();
-            m_speedfilter.Update(GetDistance());
         }
 
         /// <summary>
@@ -64,7 +63,7 @@ namespace CSharpRoboticsLib.Extras
         public new void Reset()
         {
             base.Reset();
-            m_speedfilter.ReInitialize();
+            m_velocityFilter.ReInitialize();
         }
     }
 }

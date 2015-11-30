@@ -53,6 +53,7 @@
     <Compile Include="DerivativeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InputFilterTest.cs" />
+    <Compile Include="DeltaTimeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace CSharpRoboticsLib.Extras
 {
     /// <summary>
-    /// Provides various mathematical and logical utilitarian functions
+    /// Provides various mathematical and logical utility functions
     /// </summary>
     public static class Utility
     {
@@ -41,6 +42,30 @@ namespace CSharpRoboticsLib.Extras
             if (value < high)
                 return high;
             return value;
+        }
+
+        /// <summary>
+        /// Waits for a specified time more accurately than Thread.Sleep()
+        /// </summary>
+        /// <param name="time">Time in seconds to wait</param>
+        public static void AccurateWaitSeconds(double time)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Restart();
+            while (timer.Elapsed.TotalSeconds < time)
+                ;
+        }
+
+        /// <summary>
+        /// Waits for a specified time more accurately than Thread.Sleep()
+        /// </summary>
+        /// <param name="time">Time in milliseconds to wait</param>
+        public static void AccurateWaitMilliseconds(double time)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Restart();
+            while (timer.Elapsed.TotalMilliseconds < time)
+                ;
         }
     }
 }

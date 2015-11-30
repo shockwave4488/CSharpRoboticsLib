@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestSettings>
+  <TestRepeats>
+    20
+  </TestRepeats>
+  <PercentAccuracy>
+    98
+  </PercentAccuracy>
+</TestSettings>

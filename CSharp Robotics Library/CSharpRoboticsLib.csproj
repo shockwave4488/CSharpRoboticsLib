@@ -67,6 +67,7 @@
     <Compile Include="Autonomous\AutonReporter.cs" />
     <Compile Include="Autonomous\AutonRoutine.cs" />
     <Compile Include="Autonomous\AutonSelector.cs" />
+    <Compile Include="Autonomous\DriveCommands\AutonomousBaseCommand.cs" />
     <Compile Include="Autonomous\DriveCommands\Interfaces\IEncoderDrive.cs" />
     <Compile Include="Autonomous\DriveCommands\Interfaces\IGyroscopeDrive.cs" />
     <Compile Include="Autonomous\DriveCommands\Interfaces\ITankDrive.cs" />
@@ -83,8 +84,10 @@
     <Compile Include="FlowControl\Toggle.cs" />
     <Compile Include="FlowControl\WaitByCallCount.cs" />
     <Compile Include="FlowControl\WaitByTime.cs" />
+    <Compile Include="NILabview\DeltaTime.cs" />
     <Compile Include="NILabview\Derivative.cs" />
     <Compile Include="NILabview\InputFilter.cs" />
+    <Compile Include="NILabview\Integral.cs" />
     <Compile Include="NILabview\OrderDerivative.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using NUnit.Framework;
 using CSharpRoboticsLib.NILabview;
+using CSharpRoboticsLib.Extras;
 
 namespace NILabviewTests
 {
@@ -8,28 +9,18 @@ namespace NILabviewTests
     public class DerivativeTest
     {
         private const double PercentAccuracy = 98;
-        private const int TestRepeats = 10;
+        private const int TestRepeats = 20;
         private static double AcceptibleError => 1.0 - (PercentAccuracy / 100);
-
-        private static Stopwatch timer = new Stopwatch();
-
-        private static void AccurateWait(double seconds)
-        {
-            timer.Restart();
-            while (timer.Elapsed.TotalSeconds < seconds)
-                ;
-        }
 
         [Test]
         public void DerivativePositiveTest10hz()
         {
             Derivative d = new Derivative(0);
-            Assert.AreEqual(0, d.Get(), double.Epsilon);
+            Assert.AreEqual(0, d.Get(0), double.Epsilon);
             for (int i = 0; i < TestRepeats; i++)
             {
-                d.Update(0.1 * (i + 1));
-                AccurateWait(0.1);
-                Assert.AreEqual(1, d.Get(), AcceptibleError);
+                Utility.AccurateWaitSeconds(0.1);
+                Assert.AreEqual(1, d.Get(0.1 * (i + 1)), AcceptibleError);
             }
         }
 
@@ -37,12 +28,11 @@ namespace NILabviewTests
         public void DerivativeNegativeTest10hz()
         {
             Derivative d = new Derivative(0);
-            Assert.AreEqual(0, d.Get(), double.Epsilon);
+            Assert.AreEqual(0, d.Get(0), double.Epsilon);
             for (int i = 0; i < TestRepeats; i++)
             {
-                d.Update(-0.1 * (i + 1));
-                AccurateWait(0.1);
-                Assert.AreEqual(-1, d.Get(), AcceptibleError);
+                Utility.AccurateWaitSeconds(0.1);
+                Assert.AreEqual(-1, d.Get(-0.1 * (i + 1)), AcceptibleError);
             }
         }
         
@@ -50,12 +40,11 @@ namespace NILabviewTests
         public void DerivativePositiveTest100hz()
         {
             Derivative d = new Derivative(0);
-            Assert.AreEqual(0, d.Get(), double.Epsilon);
+            Assert.AreEqual(0, d.Get(0), double.Epsilon);
             for (int i = 0; i < TestRepeats; i++)
             {
-                d.Update(0.01 * (i + 1));
-                AccurateWait(0.01);
-                Assert.AreEqual(1, d.Get(), AcceptibleError);
+                Utility.AccurateWaitSeconds(0.01);
+                Assert.AreEqual(1, d.Get(0.01 * (i + 1)), AcceptibleError);
             }
         }
 
@@ -63,12 +52,11 @@ namespace NILabviewTests
         public void DerivativeNegativeTest100hz()
         {
             Derivative d = new Derivative(0);
-            Assert.AreEqual(0, d.Get(), double.Epsilon);
+            Assert.AreEqual(0, d.Get(0), double.Epsilon);
             for (int i = 0; i < TestRepeats; i++)
             {
-                d.Update(-0.01 * (i + 1));
-                AccurateWait(0.01);
-                Assert.AreEqual(-1, d.Get(), AcceptibleError);
+                Utility.AccurateWaitSeconds(0.01);
+                Assert.AreEqual(-1, d.Get(-0.01 * (i + 1)), AcceptibleError);
             }
         }
         
