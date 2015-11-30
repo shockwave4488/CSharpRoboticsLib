@@ -40,6 +40,16 @@ namespace CSharpRoboticsLib.Extras
         }
 
         /// <summary>
+        /// Gets the raw encoder value. You probably don't want this.
+        /// </summary>
+        /// <returns>Raw encoder value</returns>
+        public new double GetRaw() //Change to override when new version of WPILIB happens
+        {
+            UpdateReset();
+            return base.GetRaw();
+        }
+
+        /// <summary>
         /// Gets the velocity reported by the encoder.
         /// </summary>
         /// <returns>Derivative of the distance</returns>
@@ -49,9 +59,10 @@ namespace CSharpRoboticsLib.Extras
         }
 
         /// <summary>
-        /// Updates the derivative and 
+        /// Updates the resetting digital input.
+        /// Called during any Get() Function.
         /// </summary>
-        public void Update()
+        public void UpdateReset()
         {
             if (ResetOn?.Get() ?? false)
                 Reset();

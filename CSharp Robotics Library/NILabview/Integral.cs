@@ -12,12 +12,25 @@ namespace CSharpRoboticsLib.NILabview
     public class Integral
     {
         private double m_value;
-        private DeltaTime dt;
+        private DeltaTime m_dt;
 
+        /// <summary>
+        /// The change in time for this particular PID loop in seconds.
+        /// Set to negative to determine dt automatically.
+        /// </summary>
+        public double Dt
+        {
+            get { return m_dt.Value; }
+            set { m_dt.Value = value; }
+        }
+
+        /// <summary>
+        /// New Integral.
+        /// </summary>
         public Integral()
         {
             m_value = 0;
-            dt = new DeltaTime();
+            m_dt = new DeltaTime();
         }
 
         /// <summary>
@@ -27,7 +40,7 @@ namespace CSharpRoboticsLib.NILabview
         /// <returns>Integral(x)dt</returns>
         public double Get(double x)
         {
-            m_value += (x * dt.Value);
+            m_value += (x * m_dt.Value);
             return m_value;
         }
 
@@ -38,6 +51,23 @@ namespace CSharpRoboticsLib.NILabview
         public double Get()
         {
             return m_value;
+        }
+
+        /// <summary>
+        /// Reinitialize the integral to the specified value.
+        /// </summary>
+        /// <param name="value">value to set the integral to</param>
+        public void ReInitialize(double value)
+        {
+            m_value = value;
+        }
+
+        /// <summary>
+        /// Reinitialize the integral to zero.
+        /// </summary>
+        public void ReInitialize()
+        {
+            m_value = 0;
         }
     }
 }

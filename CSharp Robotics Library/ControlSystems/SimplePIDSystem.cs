@@ -62,8 +62,6 @@ namespace CSharpRoboticsLib.ControlSystems
                 motor.Set(PID.Get(sensor.PidGet()));
             else
                 motor.Set(0);
-
-            PID.Update(sensor.PidGet());
         }
 
         /// <summary>

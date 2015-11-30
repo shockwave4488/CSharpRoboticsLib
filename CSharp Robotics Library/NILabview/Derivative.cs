@@ -7,8 +7,18 @@ namespace CSharpRoboticsLib.NILabview
     /// </summary>
     public class Derivative
     {
-        private double xPrev;
-        private DeltaTime dt;
+        private double m_xPrev;
+        private DeltaTime m_dt;
+
+        /// <summary>
+        /// The change in time for this particular PID loop in seconds.
+        /// Set to negative to determine dt automatically.
+        /// </summary>
+        public double Dt
+        {
+            get { return m_dt.Value; }
+            set { m_dt.Value = value; }
+        }
 
         /// <summary>
         /// Creates a new Derivative object.
@@ -16,8 +26,8 @@ namespace CSharpRoboticsLib.NILabview
         /// <param name="InitialCondition">Initial value to set x</param>
         public Derivative(double InitialCondition)
         {
-            xPrev = InitialCondition;
-            dt = new DeltaTime();
+            m_xPrev = InitialCondition;
+            m_dt = new DeltaTime();
         }
 
         /// <summary>
@@ -31,16 +41,16 @@ namespace CSharpRoboticsLib.NILabview
         /// <returns>dx/dt</returns>
         public double Get(double x)
         {
-            double toReturn = (x - xPrev) / dt.Value;
+            double toReturn = (x - m_xPrev) / m_dt.Value;
 
-            //Handle division by zero errors, Essentially ignoring the input if there is no change in time.
+            //Handle division by zero errors, ignoring the input if there is no change in time.
             if (double.IsNaN(toReturn))
             {
                 toReturn = 0;
             }
             else
             {
-                xPrev = x;
+                m_xPrev = x;
             }
 
             return toReturn;
@@ -52,7 +62,7 @@ namespace CSharpRoboticsLib.NILabview
         /// <param name="value">value to reset to</param>
         public void ReInitialize(double value)
         {
-            xPrev = value;
+            m_xPrev = value;
         }
 
         /// <summary>

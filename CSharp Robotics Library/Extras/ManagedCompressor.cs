@@ -58,6 +58,7 @@ namespace CSharpRoboticsLib.Extras
 
         /// <summary>
         /// Updats the compressor, turning it on or off if necessary.
+        /// Called automatically if the built-in timer is enabled.
         /// </summary>
         public void Update()
         {

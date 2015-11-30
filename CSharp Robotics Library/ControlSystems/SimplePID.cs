@@ -1,4 +1,6 @@
 ﻿using System;
+using CSharpRoboticsLib.NILabview;
+using CSharpRoboticsLib.Extras;
 
 namespace CSharpRoboticsLib.ControlSystems
 {
@@ -7,10 +9,20 @@ namespace CSharpRoboticsLib.ControlSystems
     /// </summary>
     public class SimplePID
     {
-        private double m_P, m_I, m_D;
-        private double m_accumulatedIntegral;
-        private double m_currentPointFeedback;
+        private double m_kP, m_kI, m_kD;
+        private Derivative m_D;
+        private Integral m_I;
         
+        /// <summary>
+        /// The change in time for this particular PID loop in seconds.
+        /// Set to negative to determine dt automatically.
+        /// </summary>
+        public double Dt
+        {
+            get { return (m_D.Dt + m_I.Dt) / 2; } //Averaging because why not.
+            set { m_D.Dt = value; m_I.Dt = value; }
+        }
+
         /// <summary>
         /// Maximum value the PID Controller can return
         /// </summary>
@@ -37,14 +49,14 @@ namespace CSharpRoboticsLib.ControlSystems
         public SimplePID(double p, double i, double d, double min, double max)
         {
             if(max < min)
-                throw new Exception("Invalid Arguments: " + max + " Is less than " + min);
+                throw new ArgumentException($"Invalid Arguments: {max} Is less than {min}");
 
-            m_P = p; m_I = i; m_D = d;
-            m_accumulatedIntegral = 0;
-            m_currentPointFeedback = 0;
+            m_kP = p; m_kI = i; m_kD = d;
             Max = max;
             Min = min;
             SetPoint = 0;
+            m_D = new Derivative();
+            m_I = new Integral();
         }
 
         /// <summary>
@@ -62,27 +74,21 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <returns>value calculated by the PID loop</returns>
         public double Get(double currentPoint)
         {
-            return limit(((SetPoint - currentPoint) * m_P) + ((currentPoint - m_currentPointFeedback) * m_D) + m_accumulatedIntegral * m_I);
+            double error = (SetPoint - currentPoint);
+
+            double P = m_kP == 0 ? 0 : m_kP * error;
+            double I = m_kI == 0 ? 0 : m_kI * m_I.Get(error);
+            double D = m_kD == 0 ? 0 : m_kD * m_D.Get(error);
+
+            return Utility.Limit(P + I + D, Min, Max);
         }
 
         /// <summary>
-        /// Updates the Integral and Derivative for the PID loop based on the current setpoint
+        /// Reset the integral value.
         /// </summary>
-        /// <param name="currentPoint">Current point as read by a sensor</param>
-        public void Update(double currentPoint)
+        public void ResetIntegral()
         {
-            if (m_I != 0)
-                m_accumulatedIntegral += (SetPoint - currentPoint);
-
-            if (m_D != 0)
-                m_currentPointFeedback = currentPoint;
-        }
-
-        private double limit(double value)
-        {
-            value = value > Max ? Max : value;
-            value = value < Min ? Min : value;
-            return value;
+            m_I.ReInitialize();
         }
     }
 }

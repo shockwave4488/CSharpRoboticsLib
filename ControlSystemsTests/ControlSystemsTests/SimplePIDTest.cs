@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using CSharpRoboticsLib.ControlSystems;
+using CSharpRoboticsLib.Extras;
 
 namespace IndependentTests.ControlSystemsTests
 {
@@ -20,8 +21,8 @@ namespace IndependentTests.ControlSystemsTests
         {
             SimplePID p = new SimplePID(0, 0, 1);
             p.SetPoint = 1;
-            p.Update(0);
-            Assert.AreEqual(1, p.Get(1));
+            Utility.AccurateWaitSeconds(1);
+            Assert.AreEqual(1, p.Get(0), 0.02);
         }
 
         [Test]
@@ -29,8 +30,8 @@ namespace IndependentTests.ControlSystemsTests
         {
             SimplePID p = new SimplePID(0, 1, 0);
             p.SetPoint = 1;
-            p.Update(0);
-            Assert.AreEqual(1, p.Get(1));
+            Utility.AccurateWaitSeconds(1);
+            Assert.AreEqual(1, p.Get(0), 0.02);
         }
 
         [Test]
