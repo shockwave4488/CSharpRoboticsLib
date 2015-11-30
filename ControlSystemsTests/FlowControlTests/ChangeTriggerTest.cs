@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using CSharpRoboticsLib.FlowControl;
 
-namespace FlowControlTests
+namespace IndependentTests.FlowControlTests
 {
     [TestFixture]
     public class ChangeTriggerTest

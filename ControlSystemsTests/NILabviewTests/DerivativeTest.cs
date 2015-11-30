@@ -3,7 +3,7 @@ using NUnit.Framework;
 using CSharpRoboticsLib.NILabview;
 using CSharpRoboticsLib.Extras;
 
-namespace NILabviewTests
+namespace IndependentTests.NILabviewTests
 {
     [TestFixture]
     public class DerivativeTest

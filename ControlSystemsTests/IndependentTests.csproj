@@ -50,7 +50,17 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="SimplePIDTest.cs" />
+    <Compile Include="ControlSystemsTests\SimplePIDTest.cs" />
+    <Compile Include="ExtrasTests\UtilityTest.cs" />
+    <Compile Include="FlowControlTests\ChangeTriggerTest.cs" />
+    <Compile Include="FlowControlTests\EdgeTriggerTest.cs" />
+    <Compile Include="FlowControlTests\ToggleTest.cs" />
+    <Compile Include="FlowControlTests\WaitByCallCountTest.cs" />
+    <Compile Include="FlowControlTests\WaitByTimeTest.cs" />
+    <Compile Include="NILabviewTests\DeltaTimeTest.cs" />
+    <Compile Include="NILabviewTests\DerivativeTest.cs" />
+    <Compile Include="NILabviewTests\InputFilterTest.cs" />
+    <Compile Include="NILabviewTests\IntegralTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

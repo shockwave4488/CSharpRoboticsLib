@@ -3,7 +3,7 @@ using NUnit.Framework;
 using CSharpRoboticsLib.FlowControl;
 using System.Threading;
 
-namespace FlowControlTests
+namespace IndependentTests.FlowControlTests
 {
     [TestFixture]
     public class WaitByTimeTest

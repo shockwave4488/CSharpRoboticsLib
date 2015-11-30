@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using CSharpRoboticsLib.NILabview;
 
-namespace NILabviewTests
+namespace IndependentTests.NILabviewTests
 {
     [TestFixture]
     public class InputFilterTest

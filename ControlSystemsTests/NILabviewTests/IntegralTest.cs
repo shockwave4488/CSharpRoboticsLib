@@ -3,7 +3,7 @@ using CSharpRoboticsLib.NILabview;
 using CSharpRoboticsLib.Extras;
 using NUnit.Framework;
 
-namespace NILabviewTests
+namespace IndependentTests.NILabviewTests
 {
     [TestFixture]
     public class IntegralTest

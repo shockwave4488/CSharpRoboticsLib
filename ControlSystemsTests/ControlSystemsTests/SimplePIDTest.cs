@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using CSharpRoboticsLib.ControlSystems;
 
-namespace ControlSystemsTests
+namespace IndependentTests.ControlSystemsTests
 {
     [TestFixture]
     public class SimplePIDTest

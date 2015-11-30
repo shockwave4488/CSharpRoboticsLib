@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace CSharpRoboticsLib.NILabview
 {
@@ -6,7 +7,7 @@ namespace CSharpRoboticsLib.NILabview
     {
         private bool m_manualDt;
         private double m_Dt;
-        private DateTime m_lastGet;
+        private Stopwatch m_timer;
 
         /// <summary>
         /// new DeltaTime object
@@ -15,7 +16,8 @@ namespace CSharpRoboticsLib.NILabview
         {
             m_manualDt = false;
             m_Dt = 0;
-            m_lastGet = DateTime.Now;
+            m_timer = new Stopwatch();
+            m_timer.Start();
         }
 
         /// <summary>
@@ -29,8 +31,8 @@ namespace CSharpRoboticsLib.NILabview
             {
                 if (!m_manualDt)
                 {
-                    m_Dt = (DateTime.Now - m_lastGet).TotalSeconds;
-                    m_lastGet = DateTime.Now;
+                    m_Dt = m_timer.Elapsed.TotalSeconds;
+                    m_timer.Restart();
                 }
                 return m_Dt;
             }

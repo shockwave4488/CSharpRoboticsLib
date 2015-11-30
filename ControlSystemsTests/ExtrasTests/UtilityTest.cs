@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using CSharpRoboticsLib.Extras;
 
-namespace ExtrasTests
+namespace IndependentTests.ExtrasTests
 {
     [TestFixture]
     public class UtilityTest
