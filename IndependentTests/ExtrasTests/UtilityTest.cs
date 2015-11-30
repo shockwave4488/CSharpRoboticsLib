@@ -80,7 +80,6 @@ namespace IndependentTests.ExtrasTests
                 Utility.AccurateWaitMilliseconds(100);
                 sw.Stop();
                 var seconds = (double)sw.ElapsedTicks / Stopwatch.Frequency;
-                Console.WriteLine(seconds);
                 Assert.That(seconds, Is.EqualTo(0.1).Within(Error));
             }
         }
