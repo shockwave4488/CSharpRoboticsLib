@@ -17,10 +17,11 @@ namespace IndependentTests.NILabviewTests
         public void DerivativePositiveTest10hz()
         {
             Derivative d = new Derivative(0);
+            d.Dt = 0.1;
             Assert.AreEqual(0, d.Get(0), double.Epsilon);
             for (int i = 0; i < TestRepeats; i++)
             {
-                Utility.AccurateWaitSeconds(0.1);
+                //Utility.AccurateWaitSeconds(0.1);
                 Assert.AreEqual(1, d.Get(0.1 * (i + 1)), AcceptibleError);
             }
         }
@@ -29,10 +30,11 @@ namespace IndependentTests.NILabviewTests
         public void DerivativeNegativeTest10hz()
         {
             Derivative d = new Derivative(0);
+            d.Dt = 0.1;
             Assert.AreEqual(0, d.Get(0), double.Epsilon);
             for (int i = 0; i < TestRepeats; i++)
             {
-                Utility.AccurateWaitSeconds(0.1);
+                //Utility.AccurateWaitSeconds(0.1);
                 Assert.AreEqual(-1, d.Get(-0.1 * (i + 1)), AcceptibleError);
             }
         }
@@ -41,10 +43,11 @@ namespace IndependentTests.NILabviewTests
         public void DerivativePositiveTest100hz()
         {
             Derivative d = new Derivative(0);
+            d.Dt = 0.01;
             Assert.AreEqual(0, d.Get(0), double.Epsilon);
             for (int i = 0; i < TestRepeats; i++)
             {
-                Utility.AccurateWaitSeconds(0.01);
+                //Utility.AccurateWaitSeconds(0.01);
                 Assert.AreEqual(1, d.Get(0.01 * (i + 1)), AcceptibleError);
             }
         }
@@ -53,10 +56,11 @@ namespace IndependentTests.NILabviewTests
         public void DerivativeNegativeTest100hz()
         {
             Derivative d = new Derivative(0);
+            d.Dt = 0.01;
             Assert.AreEqual(0, d.Get(0), double.Epsilon);
             for (int i = 0; i < TestRepeats; i++)
             {
-                Utility.AccurateWaitSeconds(0.01);
+                //Utility.AccurateWaitSeconds(0.01);
                 Assert.AreEqual(-1, d.Get(-0.01 * (i + 1)), AcceptibleError);
             }
         }

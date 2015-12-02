@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 
 namespace CSharpRoboticsLib.Extras
 {
@@ -50,11 +51,21 @@ namespace CSharpRoboticsLib.Extras
         /// <param name="time">Time in seconds to wait</param>
         public static void AccurateWaitSeconds(double time)
         {
-            Stopwatch timer = new Stopwatch();
-            timer.Restart();
-            while (timer.Elapsed.TotalSeconds < time)
-                ;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            double ticks = (Stopwatch.Frequency * time);
+            
+            int milliSeconds = (int)(time * 1e3);
+
+            if (milliSeconds >= 20)
+            {
+                Thread.Sleep(milliSeconds - 12);
+            }
+            while (sw.ElapsedTicks < ticks) ;
+            sw.Stop();
         }
+
+        
 
         /// <summary>
         /// Waits for a specified time more accurately than Thread.Sleep()
@@ -62,10 +73,20 @@ namespace CSharpRoboticsLib.Extras
         /// <param name="time">Time in milliseconds to wait</param>
         public static void AccurateWaitMilliseconds(double time)
         {
-            Stopwatch timer = new Stopwatch();
-            timer.Restart();
-            while (timer.Elapsed.TotalMilliseconds < time)
-                ;
+            
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            int milliSeconds = (int)time;
+            time = time / 1000;
+            double ticks = (Stopwatch.Frequency * time);
+
+            if (milliSeconds >= 20)
+            {
+                Thread.Sleep(milliSeconds - 12);
+            }
+            
+            while (sw.ElapsedTicks < ticks) ;
+            sw.Stop();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace CSharpRoboticsLib.NILabview
             {
                 if (!m_manualDt)
                 {
-                    m_Dt = m_timer.Elapsed.TotalSeconds;
+                    m_Dt = (double)m_timer.ElapsedTicks / Stopwatch.Frequency;
                     m_timer.Restart();
                 }
                 return m_Dt;
