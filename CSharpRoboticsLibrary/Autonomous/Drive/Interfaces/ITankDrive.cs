@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpRoboticsLib.Autonomous.DriveCommands.Interfaces
+namespace CSharpRoboticsLib.Autonomous.Drive.Interfaces
 {
     /// <summary>
     /// Defines functions for a basic tank drive.

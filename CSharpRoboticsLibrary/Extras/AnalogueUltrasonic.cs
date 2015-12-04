@@ -5,7 +5,7 @@ namespace CSharpRoboticsLib.Extras
     /// <summary>
     /// An analogue Ultrasonic sensor class complete with built-in scaling
     /// </summary>
-    class AnalogueUltrasonic : AnalogInput
+    public class AnalogueUltrasonic : AnalogInput
     {
         private double scalingFactor;
 
@@ -32,7 +32,7 @@ namespace CSharpRoboticsLib.Extras
         /// Gets the value of the ultrasonic sensor modified by the scaling factor
         /// </summary>
         /// <returns></returns>
-        public new double PidGet() //Change to override when new version of WPILIB happens
+        public override double PidGet()
         {
             return Get();
         }

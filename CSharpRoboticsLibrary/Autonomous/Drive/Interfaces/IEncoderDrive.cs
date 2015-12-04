@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WPILib;
 
-namespace CSharpRoboticsLib.Autonomous.DriveCommands.Interfaces
+namespace CSharpRoboticsLib.Autonomous.Drive.Interfaces
 {
     /// <summary>
     /// Defines functions for a tank drive with encoders.

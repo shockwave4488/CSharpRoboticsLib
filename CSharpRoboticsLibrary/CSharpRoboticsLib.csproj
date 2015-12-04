@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -67,14 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Autonomous\AutonCommand.cs" />
-    <Compile Include="Autonomous\AutonReporter.cs" />
-    <Compile Include="Autonomous\AutonRoutine.cs" />
-    <Compile Include="Autonomous\AutonSelector.cs" />
-    <Compile Include="Autonomous\DriveCommands\AutonomousBaseCommand.cs" />
-    <Compile Include="Autonomous\DriveCommands\Interfaces\IEncoderDrive.cs" />
-    <Compile Include="Autonomous\DriveCommands\Interfaces\IGyroscopeDrive.cs" />
-    <Compile Include="Autonomous\DriveCommands\Interfaces\ITankDrive.cs" />
+    <Compile Include="Autonomous\Drive\Interfaces\IEncoderDrive.cs" />
+    <Compile Include="Autonomous\Drive\Interfaces\IGyroscopeDrive.cs" />
+    <Compile Include="Autonomous\Drive\Interfaces\ITankDrive.cs" />
+    <Compile Include="Autonomous\SafeAction.cs" />
     <Compile Include="ControlSystems\SimplePID.cs" />
     <Compile Include="ControlSystems\SimplePIDSystem.cs" />
     <Compile Include="Extras\AnalogueUltrasonic.cs" />

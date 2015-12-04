@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WPILib;
 
-namespace CSharpRoboticsLib.Autonomous.DriveCommands.Interfaces
+namespace CSharpRoboticsLib.Autonomous.Drive.Interfaces
 {
     /// <summary>
     /// Defines functions for a Tank Drive with a gyroscope.

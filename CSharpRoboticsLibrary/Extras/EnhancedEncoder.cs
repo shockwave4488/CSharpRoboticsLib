@@ -43,7 +43,7 @@ namespace CSharpRoboticsLib.Extras
         /// Gets the raw encoder value. You probably don't want this.
         /// </summary>
         /// <returns>Raw encoder value</returns>
-        public new double GetRaw() //Change to override when new version of WPILIB happens
+        public override int GetRaw() //Change to override when new version of WPILIB happens
         {
             UpdateReset();
             return base.GetRaw();
@@ -53,7 +53,7 @@ namespace CSharpRoboticsLib.Extras
         /// Gets the velocity reported by the encoder.
         /// </summary>
         /// <returns>Derivative of the distance</returns>
-        public new double GetRate() //Change to override when new version of WPILIB happens
+        public override double GetRate() //Change to override when new version of WPILIB happens
         {
             return m_velocityFilter.Get(GetDistance());
         }
@@ -71,7 +71,7 @@ namespace CSharpRoboticsLib.Extras
         /// <summary>
         /// Resets the encoder and derivative
         /// </summary>
-        public new void Reset() //Change to override when new version of WPILIB happens
+        public override void Reset() //Change to override when new version of WPILIB happens
         {
             base.Reset();
             m_velocityFilter.ReInitialize();
