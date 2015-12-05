@@ -30,7 +30,7 @@
         /// <summary>
         /// Set or get the state of the toggle latch
         /// </summary>
-        public bool state
+        public bool State
         {
             get
             {

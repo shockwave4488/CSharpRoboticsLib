@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace CSharpRoboticsLib.Autonomous
 {
-    public class SafeAction<Targ>
+    public class SafeAction<TArg>
     {
         private ParameterizedThreadStart m_action;
         private Stopwatch m_timer;
@@ -20,7 +20,7 @@ namespace CSharpRoboticsLib.Autonomous
             m_timeout = timeout;
         }
         
-        public bool Run(Targ param)
+        public bool Run(TArg param)
         {
             Thread t = new Thread(m_action);
             m_timer.Restart();

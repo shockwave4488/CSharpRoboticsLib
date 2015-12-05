@@ -15,9 +15,9 @@ namespace CSharpRoboticsLib.Autonomous.Drive.Interfaces
         /// <summary>
         /// Sets the powers of the Left and Right Motors.
         /// </summary>
-        /// <param name="LeftPower">power the Left Motor is set to</param>
-        /// <param name="RightPower">power the Left Motor is set to</param>
-        void SetPowers(double LeftPower, double RightPower);
+        /// <param name="leftPower">power the Left Motor is set to</param>
+        /// <param name="rightPower">power the Left Motor is set to</param>
+        void SetPowers(double leftPower, double rightPower);
     }
 
     /// <summary>
@@ -44,11 +44,11 @@ namespace CSharpRoboticsLib.Autonomous.Drive.Interfaces
     }
 
     public class Base { }
+
     public class Derived : Base, ITankDrive
     {
-        public void SetPowers(double LeftPower, double RightPower)
+        public void SetPowers(double leftPower, double rightPower)
         {
-            
         }
     }
 }

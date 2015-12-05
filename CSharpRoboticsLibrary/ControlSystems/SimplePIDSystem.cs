@@ -6,27 +6,27 @@ namespace CSharpRoboticsLib.ControlSystems
     /// Extendable controller for a PID Controlled mechanism.
     /// Defines No Constructors.
     /// </summary>
-    public abstract class SimplePIDSystem
+    public abstract class SimplePidSystem
     {
         /// <summary>
         /// The PID Controller
         /// </summary>
-        protected SimplePID PID;
+        protected SimplePID Pid;
 
         /// <summary>
         /// Sensor to interact with the PID Controller
         /// </summary>
-        protected IPIDSource sensor;
+        protected IPIDSource Sensor;
         
         /// <summary>
         /// Motor Controller to be controlled by the PID Controller.
         /// </summary>
-        protected ISpeedController motor;
+        protected ISpeedController Motor;
 
         /// <summary>
         /// Positional tolerance of the setpoint, used in the AtSetPoint property.
         /// </summary>
-        protected double setpointTolerance;
+        protected double SetpointTolerance;
 
         /// <summary>
         /// Set the system into a manual mode of operation
@@ -40,7 +40,7 @@ namespace CSharpRoboticsLib.ControlSystems
         {
             get
             {
-                return (sensor.PidGet() < PID.SetPoint + setpointTolerance) && (sensor.PidGet() > PID.SetPoint - setpointTolerance);
+                return (Sensor.PidGet() < Pid.SetPoint + SetpointTolerance) && (Sensor.PidGet() > Pid.SetPoint - SetpointTolerance);
             }
         }
 
@@ -49,8 +49,8 @@ namespace CSharpRoboticsLib.ControlSystems
         /// </summary>
         public virtual double SetPoint
         {
-            get { return PID.SetPoint; }
-            set { PID.SetPoint = value; }
+            get { return Pid.SetPoint; }
+            set { Pid.SetPoint = value; }
         }
 
         /// <summary>
@@ -59,9 +59,9 @@ namespace CSharpRoboticsLib.ControlSystems
         public virtual void Update()
         {
             if (!Manual)
-                motor.Set(PID.Get(sensor.PidGet()));
+                Motor.Set(Pid.Get(Sensor.PidGet()));
             else
-                motor.Set(0);
+                Motor.Set(0);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace CSharpRoboticsLib.ControlSystems
         {
             Update();
             if (Manual)
-                motor.Set(manual);
+                Motor.Set(manual);
         }
     }
 }

@@ -32,11 +32,11 @@ namespace CSharpRoboticsLib.Extras
         /// <summary>
         /// Sets <see cref="DistancePerPulse"/> to the proper value given by diameter of a wheel and counts per revolution
         /// </summary>
-        /// <param name="WheelDiameter">Diameter of the wheel. Units used here will determine units of <see cref="GetRate"/></param>
-        /// <param name="CountPerRevolution">Counts per revolution of the encoder. Usually 360 or 250.</param>
-        public void SetDistancePerPulse(double WheelDiameter, int CountPerRevolution)
+        /// <param name="wheelDiameter">Diameter of the wheel. Units used here will determine units of <see cref="GetRate"/></param>
+        /// <param name="countPerRevolution">Counts per revolution of the encoder. Usually 360 or 250.</param>
+        public void SetDistancePerPulse(double wheelDiameter, int countPerRevolution)
         {
-            DistancePerPulse = (Math.PI * WheelDiameter) / CountPerRevolution;
+            DistancePerPulse = (Math.PI * wheelDiameter) / countPerRevolution;
         }
 
         /// <summary>

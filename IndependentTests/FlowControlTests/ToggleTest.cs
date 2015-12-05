@@ -12,20 +12,20 @@ namespace IndependentTests.FlowControlTests
         {
             //Also checks edge detection
             Toggle t = new Toggle();
-            t.state = true;
-            Assert.IsTrue(t.state);
-            t.state = true;
-            Assert.IsTrue(t.state);
-            t.state = false;
-            Assert.IsTrue(t.state);
-            t.state = true;
-            Assert.IsFalse(t.state);
-            t.state = true;
-            Assert.IsFalse(t.state);
-            t.state = false;
-            Assert.IsFalse(t.state);
-            t.state = false;
-            Assert.IsFalse(t.state);
+            t.State = true;
+            Assert.IsTrue(t.State);
+            t.State = true;
+            Assert.IsTrue(t.State);
+            t.State = false;
+            Assert.IsTrue(t.State);
+            t.State = true;
+            Assert.IsFalse(t.State);
+            t.State = true;
+            Assert.IsFalse(t.State);
+            t.State = false;
+            Assert.IsFalse(t.State);
+            t.State = false;
+            Assert.IsFalse(t.State);
         }
 
         [Test]
@@ -33,15 +33,15 @@ namespace IndependentTests.FlowControlTests
         {
             //Also checking that force doesn't interfere with toggle
             Toggle t = new Toggle();
-            t.state = false;
+            t.State = false;
             t.Force(true);
-            Assert.IsTrue(t.state);
-            t.state = false;
-            Assert.IsTrue(t.state);
-            t.state = true;
-            Assert.IsFalse(t.state);
+            Assert.IsTrue(t.State);
+            t.State = false;
+            Assert.IsTrue(t.State);
+            t.State = true;
+            Assert.IsFalse(t.State);
             t.Force(false);
-            Assert.IsFalse(t.state);
+            Assert.IsFalse(t.State);
         }
     }
 }

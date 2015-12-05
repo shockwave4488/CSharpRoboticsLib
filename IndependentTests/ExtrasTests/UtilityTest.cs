@@ -14,7 +14,7 @@ namespace IndependentTests.ExtrasTests
         double Error => 1.0 - (PercentTolerance / 100);
 
         [Test]
-        public void AccurateWaitTest1hz()
+        public void AccurateWaitTest1Hz()
         {
             Stopwatch sw = new Stopwatch();
             for (int i = 0; i < TestRepeats / 10; i++) //Ain't nobody got time to wait 20 seconds for a test!
@@ -28,7 +28,7 @@ namespace IndependentTests.ExtrasTests
         }
 
         [Test]
-        public void AccurateWait10hz()
+        public void AccurateWait10Hz()
         {
             Stopwatch sw = new Stopwatch();
             for (int i = 0; i < TestRepeats; i++)
@@ -42,7 +42,7 @@ namespace IndependentTests.ExtrasTests
         }
 
         [Test]
-        public void AccurateWait100hz()
+        public void AccurateWait100Hz()
         {
             Stopwatch sw = new Stopwatch();
             for (int i = 0; i < TestRepeats; i++)
@@ -57,7 +57,7 @@ namespace IndependentTests.ExtrasTests
 
 
         [Test]
-        public void AccurateWaitTest1hzMs()
+        public void AccurateWaitTest1HzMs()
         {
             Stopwatch sw = new Stopwatch();
             for (int i = 0; i < TestRepeats / 10; i++) //Ain't nobody got time to wait 20 seconds for a test!
@@ -71,7 +71,7 @@ namespace IndependentTests.ExtrasTests
         }
 
         [Test]
-        public void AccurateWait10hzMs()
+        public void AccurateWait10HzMs()
         {
             Stopwatch sw = new Stopwatch();
             for (int i = 0; i < TestRepeats; i++)
@@ -85,7 +85,7 @@ namespace IndependentTests.ExtrasTests
         }
 
         [Test]
-        public void AccurateWait100hzMs()
+        public void AccurateWait100HzMs()
         {
             Stopwatch sw = new Stopwatch();
             for (int i = 0; i < TestRepeats; i++)

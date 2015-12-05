@@ -9,20 +9,20 @@ namespace ControlSystemsTests.AutonomousTests
     [TestFixture]
     public class SafeActionTests
     {
-        bool BasicMethodRun;
+        bool m_basicMethodRun;
 
         [Test]
         public void SafeActionBasicTest()
         {
             SafeAction s = new SafeAction(SafeActionBasicMethod);
-            BasicMethodRun = false;
+            m_basicMethodRun = false;
             Assert.IsTrue(s.Run());
-            Assert.IsTrue(BasicMethodRun);
+            Assert.IsTrue(m_basicMethodRun);
         }
 
         private void SafeActionBasicMethod()
         {
-            BasicMethodRun = true;
+            m_basicMethodRun = true;
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace ControlSystemsTests.AutonomousTests
             SpinWait.SpinUntil(() => { return false; });
         }
 
-        static Thread t;
+        static Thread _t;
 
         [Test]
         public void SafeActionAsynchronousTest()
@@ -45,30 +45,30 @@ namespace ControlSystemsTests.AutonomousTests
             ChangeTrigger<bool> e = new ChangeTrigger<bool>();
             e.Update(false);
             SafeActionAsynchronousHelper();
-            int ChangeCounts = 0;
-            while (t.IsAlive && ChangeCounts < 10)
+            int changeCounts = 0;
+            while (_t.IsAlive && changeCounts < 10)
             {
                 if (e.GetChangeUpdate(TestClass.GetState()))
-                    ChangeCounts++;
+                    changeCounts++;
             }
-            Assert.AreEqual(10, ChangeCounts);
+            Assert.AreEqual(10, changeCounts);
         }
 
         private void SafeActionAsynchronousHelper()
         {
             SafeAction s = new SafeAction(TestClass.UpdateState, 10);
-            t = new Thread(new ThreadStart(() => { Assert.IsTrue(!s.Run()); }));
-            t.Start();
+            _t = new Thread(new ThreadStart(() => { Assert.IsTrue(!s.Run()); }));
+            _t.Start();
         }
 
         private static class TestClass
         {
-            private static bool state = false;
-            public static bool GetState() => state;
+            private static bool _state = false;
+            public static bool GetState() => _state;
             public static void UpdateState()
             {
                 while(true)
-                    state = DateTime.Now.Second % 2 == 0;
+                    _state = DateTime.Now.Second % 2 == 0;
             }
         }
     }

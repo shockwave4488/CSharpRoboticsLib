@@ -10,8 +10,8 @@ namespace CSharpRoboticsLib.ControlSystems
     public class SimplePID
     {
         private double m_kP, m_kI, m_kD;
-        private Derivative m_D;
-        private Integral m_I;
+        private Derivative m_d;
+        private Integral m_i;
         
         /// <summary>
         /// The change in time for this particular PID loop in seconds.
@@ -19,8 +19,8 @@ namespace CSharpRoboticsLib.ControlSystems
         /// </summary>
         public double Dt
         {
-            get { return (m_D.Dt + m_I.Dt) / 2; } //Averaging because why not.
-            set { m_D.Dt = value; m_I.Dt = value; }
+            get { return (m_d.Dt + m_i.Dt) / 2; } //Averaging because why not.
+            set { m_d.Dt = value; m_i.Dt = value; }
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace CSharpRoboticsLib.ControlSystems
             Max = max;
             Min = min;
             SetPoint = 0;
-            m_D = new Derivative();
-            m_I = new Integral();
+            m_d = new Derivative();
+            m_i = new Integral();
         }
 
         /// <summary>
@@ -76,11 +76,11 @@ namespace CSharpRoboticsLib.ControlSystems
         {
             double error = (SetPoint - currentPoint);
 
-            double P = m_kP == 0 ? 0 : m_kP * error;
-            double I = m_kI == 0 ? 0 : m_kI * m_I.Get(error);
-            double D = m_kD == 0 ? 0 : m_kD * m_D.Get(error);
+            double p = m_kP == 0 ? 0 : m_kP * error;
+            double I = m_kI == 0 ? 0 : m_kI * m_i.Get(error);
+            double d = m_kD == 0 ? 0 : m_kD * m_d.Get(error);
 
-            return Utility.Limit(P + I + D, Min, Max);
+            return Utility.Limit(p + I + d, Min, Max);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace CSharpRoboticsLib.ControlSystems
         /// </summary>
         public void ResetIntegral()
         {
-            m_I.ReInitialize();
+            m_i.ReInitialize();
         }
     }
 }

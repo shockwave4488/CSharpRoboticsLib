@@ -6,7 +6,7 @@ namespace CSharpRoboticsLib.NILabview
     public class DeltaTime
     {
         private bool m_manualDt;
-        private double m_Dt;
+        private double m_dt;
         private Stopwatch m_timer;
 
         /// <summary>
@@ -15,7 +15,7 @@ namespace CSharpRoboticsLib.NILabview
         public DeltaTime()
         {
             m_manualDt = false;
-            m_Dt = 0;
+            m_dt = 0;
             m_timer = new Stopwatch();
             m_timer.Start();
         }
@@ -31,10 +31,10 @@ namespace CSharpRoboticsLib.NILabview
             {
                 if (!m_manualDt)
                 {
-                    m_Dt = (double)m_timer.ElapsedTicks / Stopwatch.Frequency;
+                    m_dt = (double)m_timer.ElapsedTicks / Stopwatch.Frequency;
                     m_timer.Restart();
                 }
-                return m_Dt;
+                return m_dt;
             }
             set
             {
@@ -45,7 +45,7 @@ namespace CSharpRoboticsLib.NILabview
                 else
                 {
                     m_manualDt = true;
-                    m_Dt = value;
+                    m_dt = value;
                 }
             }
         }

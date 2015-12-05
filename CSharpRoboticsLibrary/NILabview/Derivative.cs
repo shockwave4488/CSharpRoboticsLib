@@ -23,10 +23,10 @@ namespace CSharpRoboticsLib.NILabview
         /// <summary>
         /// Creates a new Derivative object.
         /// </summary>
-        /// <param name="InitialCondition">Initial value to set x</param>
-        public Derivative(double InitialCondition)
+        /// <param name="initialCondition">Initial value to set x</param>
+        public Derivative(double initialCondition)
         {
-            m_xPrev = InitialCondition;
+            m_xPrev = initialCondition;
             m_dt = new DeltaTime();
         }
 

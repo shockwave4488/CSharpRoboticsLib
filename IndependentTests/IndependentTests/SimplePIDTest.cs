@@ -6,10 +6,10 @@ namespace IndependentTests.IndependentTests
 {
     [TestFixture]
     [Category("TimeBased")]
-    public class SimplePIDTest
+    public class SimplePidTest
     {
         [Test]
-        public void SimplePIDProportionalTest()
+        public void SimplePidProportionalTest()
         {
             SimplePID p = new SimplePID(1, 0, 0);
             p.SetPoint = 1;
@@ -17,7 +17,7 @@ namespace IndependentTests.IndependentTests
         }
 
         [Test]
-        public void SimplePIDDerivativeTest()
+        public void SimplePidDerivativeTest()
         {
             SimplePID p = new SimplePID(0, 0, 1);
             p.SetPoint = 1;
@@ -26,7 +26,7 @@ namespace IndependentTests.IndependentTests
         }
 
         [Test]
-        public void SimplePIDIntegralTest()
+        public void SimplePidIntegralTest()
         {
             SimplePID p = new SimplePID(0, 1, 0);
             p.SetPoint = 1;
@@ -35,7 +35,7 @@ namespace IndependentTests.IndependentTests
         }
 
         [Test]
-        public void SimplePIDLimitTest()
+        public void SimplePidLimitTest()
         {
             SimplePID p = new SimplePID(10, 0, 0, -1, 1);
             p.SetPoint = 0;

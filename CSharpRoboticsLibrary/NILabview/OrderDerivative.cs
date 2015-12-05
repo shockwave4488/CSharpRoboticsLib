@@ -9,9 +9,9 @@ namespace CSharpRoboticsLib.NILabview
     /// </summary>
     class OrderDerivative
     {
-        private Queue<double> values;
-        private DateTime dt;
-        private int _order => values.Count - 1;
+        private Queue<double> m_values;
+        private DateTime m_dt;
+        private int _order => m_values.Count - 1;
 
         /// <summary>
         /// Set the order of the derivative function. 
@@ -26,12 +26,12 @@ namespace CSharpRoboticsLib.NILabview
                     return;
                 else if (_order < value)
                 {
-                    values.Dequeue();
+                    m_values.Dequeue();
                     Order = value;
                 }
                 else if (_order > value)
                 {
-                    values.Enqueue(values.Last());
+                    m_values.Enqueue(m_values.Last());
                     Order = value;
                 }
             }
@@ -40,14 +40,14 @@ namespace CSharpRoboticsLib.NILabview
         /// <summary>
         /// Creates a new OrderDeritative class.
         /// </summary>
-        /// <param name="InitialValue">Initial value of the derivative function</param>
+        /// <param name="initialValue">Initial value of the derivative function</param>
         /// <param name="order">Order value of the derivative</param>
-        public OrderDerivative(double InitialValue, int order)
+        public OrderDerivative(double initialValue, int order)
         {
-            values = new Queue<double>();
-            values.Enqueue(InitialValue);
+            m_values = new Queue<double>();
+            m_values.Enqueue(initialValue);
             Order = order;
-            dt = DateTime.Now;
+            m_dt = DateTime.Now;
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace CSharpRoboticsLib.NILabview
         /// <param name="x">new value of x</param>
         public void Update(double x)
         {
-            values.Enqueue(x);
-            values.Dequeue();
-            dt = DateTime.Now;
+            m_values.Enqueue(x);
+            m_values.Dequeue();
+            m_dt = DateTime.Now;
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace CSharpRoboticsLib.NILabview
         /// <returns>dx/dt</returns>
         public double Get()
         {
-            return (values.First() - values.Last()) / ((DateTime.Now - dt).TotalSeconds * _order);
+            return (m_values.First() - m_values.Last()) / ((DateTime.Now - m_dt).TotalSeconds * _order);
         }
     }
 }

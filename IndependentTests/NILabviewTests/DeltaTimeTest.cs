@@ -14,7 +14,7 @@ namespace IndependentTests.NILabviewTests
         double Error => 1.0 - (PercentAccuracy / 100.0);
 
         [Test]
-        public void DeltaTime10hz()
+        public void DeltaTime10Hz()
         {
             DeltaTime t = new DeltaTime();
             for(int i = 0; i < TestRepeats; i++)
@@ -25,7 +25,7 @@ namespace IndependentTests.NILabviewTests
         }
 
         [Test]
-        public void DeltaTime100hz()
+        public void DeltaTime100Hz()
         {
             DeltaTime t = new DeltaTime();
             for(int i = 0; i < TestRepeats; i++)

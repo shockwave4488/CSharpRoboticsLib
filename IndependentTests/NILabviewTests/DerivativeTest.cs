@@ -13,7 +13,7 @@ namespace IndependentTests.NILabviewTests
         private static double AcceptibleError => 1.0 - (PercentAccuracy / 100);
 
         [Test]
-        public void DerivativePositiveTest10hz()
+        public void DerivativePositiveTest10Hz()
         {
             Derivative d = new Derivative(0);
             d.Dt = 0.1;
@@ -26,7 +26,7 @@ namespace IndependentTests.NILabviewTests
         }
 
         [Test]
-        public void DerivativeNegativeTest10hz()
+        public void DerivativeNegativeTest10Hz()
         {
             Derivative d = new Derivative(0);
             d.Dt = 0.1;
@@ -39,7 +39,7 @@ namespace IndependentTests.NILabviewTests
         }
         
         [Test]
-        public void DerivativePositiveTest100hz()
+        public void DerivativePositiveTest100Hz()
         {
             Derivative d = new Derivative(0);
             d.Dt = 0.01;
@@ -52,7 +52,7 @@ namespace IndependentTests.NILabviewTests
         }
 
         [Test]
-        public void DerivativeNegativeTest100hz()
+        public void DerivativeNegativeTest100Hz()
         {
             Derivative d = new Derivative(0);
             d.Dt = 0.01;
