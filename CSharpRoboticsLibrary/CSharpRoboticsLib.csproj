@@ -33,24 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HAL-Base, Version=2016.0.0.116, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.116\lib\net45\HAL-Base.dll</HintPath>
+    <Reference Include="HAL, Version=2016.0.0.139, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.139\lib\net45\HAL.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="HAL-RoboRIO, Version=2016.0.0.116, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.116\lib\net45\HAL-RoboRIO.dll</HintPath>
+    <Reference Include="NetworkTables, Version=2016.0.0.131, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.NetworkTables.2016.0.0.131\lib\net45\NetworkTables.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="HAL-Simulation, Version=2016.0.0.116, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.116\lib\net45\HAL-Simulation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NetworkTables, Version=2016.0.0.124, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.NetworkTables.2016.0.0.124\lib\net45\NetworkTables.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NIVision, Version=2016.0.0.116, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.116\lib\net45\NIVision.dll</HintPath>
+    <Reference Include="NIVision, Version=2016.0.0.139, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.139\lib\net45\NIVision.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,8 +53,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="WPILib, Version=2016.0.0.116, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.116\lib\net45\WPILib.dll</HintPath>
+    <Reference Include="WPILib, Version=2016.0.0.139, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.139\lib\net45\WPILib.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
