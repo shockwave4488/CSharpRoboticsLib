@@ -1,26 +1,30 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
 using System.Diagnostics;
 
 namespace CSharpRoboticsLib.Autonomous
 {
-    public class SafeAction
+    public class SafeAction<Targ>
     {
-        private ThreadStart m_action;
+        private ParameterizedThreadStart m_action;
         private Stopwatch m_timer;
         private double m_timeout;
 
-        public SafeAction(ThreadStart action, double timeOut = 15)
+        public SafeAction(ParameterizedThreadStart action, double timeout = 15)
         {
             m_action = action;
-            m_timeout = timeOut;
             m_timer = new Stopwatch();
+            m_timeout = timeout;
         }
-
-        public bool Run()
+        
+        public bool Run(Targ param)
         {
             Thread t = new Thread(m_action);
             m_timer.Restart();
-            t.Start();
+            t.Start(param);
 
             while (m_timer.ElapsedTicks < m_timeout * Stopwatch.Frequency)
             {

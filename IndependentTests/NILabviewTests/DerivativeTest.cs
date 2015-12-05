@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using NUnit.Framework;
 using CSharpRoboticsLib.NILabview;
-using CSharpRoboticsLib.Extras;
 
 namespace IndependentTests.NILabviewTests
 {

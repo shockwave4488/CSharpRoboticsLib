@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutonomousTests\SafeActionTests.cs" />
     <Compile Include="ExtrasTests\AnalogueUltrasonic.cs" />
     <Compile Include="IndependentTests\SimplePIDTest.cs" />
     <Compile Include="ExtrasTests\UtilityTest.cs" />

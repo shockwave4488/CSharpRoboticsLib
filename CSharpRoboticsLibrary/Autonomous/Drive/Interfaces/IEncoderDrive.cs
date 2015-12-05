@@ -8,9 +8,9 @@ namespace CSharpRoboticsLib.Autonomous.Drive.Interfaces
 {
     /// <summary>
     /// Defines functions for a tank drive with encoders.
-    /// If your robot has both encoders and a gyroscope, use this.
+    /// If your drivetrain has both a Gyroscope and Encoders, use <see cref="ISensorDrive"/>
     /// </summary>
-    interface IEncoderDrive : ITankDrive
+    public interface IEncoderDrive : ITankDrive
     {
         /// <summary>
         /// Gets the encoder associated with the left motor(s).
@@ -23,5 +23,15 @@ namespace CSharpRoboticsLib.Autonomous.Drive.Interfaces
         /// </summary>
         /// <returns>Right-Side Encoder</returns>
         Encoder RightEncoder { get; }
+    }
+
+    /// <summary>
+    /// Provides extentions for <see cref="IEncoderDrive"/>. 
+    /// These methods do not need to be called statically.
+    /// You will never need to reference this class.
+    /// </summary>
+    public static class EncoderDriveExtensions
+    {
+
     }
 }
