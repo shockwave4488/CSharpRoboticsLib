@@ -9,18 +9,37 @@ namespace CSharpRoboticsLib.Extras
     /// <typeparam name="T">Type of motor controller</typeparam>
     public class RampMotor<T> : ISpeedController where T : ISpeedController
     {
-        private ISpeedController m_controller;
+        private T m_controller;
         private double m_power;
+        private double m_maxAccel, m_maxDecel;
 
         /// <summary>
         /// The max amount of change in power the motor can accelerate with
         /// </summary>
-        public double MaxAccel { get; set; }
+        public double MaxAccel
+        {
+            get { return m_maxAccel; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("MaxAccel must be greater than zero. Value given: " + value);
+                m_maxAccel = value;
+            }
+        }
 
         /// <summary>
         /// The max amount of change in power the motor can decellerate with
         /// </summary>
-        public double MaxDecel { get; set; }
+        public double MaxDecel
+        {
+            get { return m_maxDecel; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("MaxDecel must be greater than zero. Value given: " + value);
+                m_maxDecel = value;
+            }
+        }
 
         /// <summary>
         /// Sets both MaxAccel and MaxDecel
@@ -42,10 +61,21 @@ namespace CSharpRoboticsLib.Extras
         /// <summary>
         /// Opens a new RampingMotor 
         /// </summary>
-        /// <param name="channel">The PWM channel that the motor is attached to. 0-9 are on-board, 10-19 are on the MXP port</param>
-        public RampMotor(int port)
+        /// <param name="port">The PWM channel that the motor is attached to. 0-9 are on-board, 10-19 are on the MXP port</param>
+        public RampMotor(int port) : this((T)Activator.CreateInstance(typeof(T), port))
         {
-            m_controller = (ISpeedController)Activator.CreateInstance(typeof(T), port);
+
+        }
+
+        /// <summary>
+        /// Wraps an existing <see cref="ISpeedController"/> with <see cref="RampMotor{T}"/>
+        /// </summary>
+        /// <param name="motorController">existing Motor Controller</param>
+        public RampMotor(T motorController)
+        {
+            m_controller = motorController;
+            MaxChange = 1;
+            m_power = 0;
         }
 
         /// <summary>
@@ -56,8 +86,11 @@ namespace CSharpRoboticsLib.Extras
         {
             //The motor is DECELLERATING if |value| < |power| OR value and power are not both positive or both negative
             //Likewise, the motor is ACCELERATING if |value| > |power| AND value and power are both negative or both positive
+            //If power is zero, the motor is accelerating.
             //if the motor is ACCELERATING, use MaxAccel. If the robot is DECELLERATING, use MaxDecel.
-            double delta = Math.Sign(value) == Math.Sign(m_power) && Math.Abs(value) > Math.Abs(m_power) ? MaxAccel : MaxDecel;
+            bool accel = (Math.Sign(value) == Math.Sign(m_power) && Math.Abs(value) > Math.Abs(m_power)) ||
+                         Math.Abs(m_power) < MaxAccel;
+            double delta = accel ? MaxAccel : MaxDecel;
 
             if (value > m_power + delta) //If the motor wants to change power faster than it is allowed, change it by the max power change allowed
                 m_power += delta;
@@ -66,7 +99,7 @@ namespace CSharpRoboticsLib.Extras
             else //If the motor wants to go to a power within the change limitations, set the power to the value.
                 m_power = value;
 
-            m_controller.Set(value);
+            m_controller.Set(m_power);
         }
 
         /// <summary>
@@ -76,6 +109,7 @@ namespace CSharpRoboticsLib.Extras
         public void ForcePower(double value)
         {
             m_power = value;
+            m_controller.Set(value);
         }
 
         /// <summary>

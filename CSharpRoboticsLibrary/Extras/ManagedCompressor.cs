@@ -1,5 +1,4 @@
 ﻿using WPILib;
-using CSharpRoboticsLib.FlowControl;
 using System.Timers;
 
 namespace CSharpRoboticsLib.Extras
@@ -9,10 +8,17 @@ namespace CSharpRoboticsLib.Extras
     /// </summary>
     public class ManagedCompressor : Compressor
     {
+        private System.Timers.Timer m_timer;
+
         /// <summary>
         /// Voltage to turn off the compressor at
         /// </summary>
         public double VoltageThreshold { get; set; }
+
+        /// <summary>
+        /// Deadband for the voltage on/off trigger
+        /// </summary>
+        public double VoltageDeadband { get; set; }
 
         /// <summary>
         /// Set to true to use the built-in timer.
@@ -28,8 +34,6 @@ namespace CSharpRoboticsLib.Extras
                 m_timer.Enabled = value;
             }
         }
-        
-        private System.Timers.Timer m_timer;
 
         /// <summary>
         /// Creates a new Managed Compressor, which will turn off when the voltage is below the specified level.
@@ -42,18 +46,13 @@ namespace CSharpRoboticsLib.Extras
         /// </summary>
         /// <param name="voltageThreshold">Voltage to turn off the compressor at</param>
         /// <param name="hysterisis">time to wait between on and off values.</param>
-        public ManagedCompressor(double voltageThreshold, double hysterisis) : base()
+        public ManagedCompressor(double voltageThreshold, double hysterisis)
         {
             VoltageThreshold = voltageThreshold;
             m_timer = new System.Timers.Timer(hysterisis * 1000);
-            m_timer.Elapsed += M_timer_Elapsed;
+            m_timer.Elapsed += (sender, e) => Update();
             m_timer.Start();
             UseTimer = true;
-        }
-
-        private void M_timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            Update();
         }
 
         /// <summary>
@@ -62,11 +61,11 @@ namespace CSharpRoboticsLib.Extras
         /// </summary>
         public void Update()
         {
-            if (ControllerPower.GetInputVoltage() < VoltageThreshold)
+            if (ControllerPower.GetInputVoltage() < VoltageThreshold - VoltageDeadband)
             {
                 Stop();
             }
-            else if(ControllerPower.GetInputVoltage() > VoltageThreshold)
+            else if(ControllerPower.GetInputVoltage() > VoltageThreshold + VoltageDeadband)
             {
                 Start();
             }

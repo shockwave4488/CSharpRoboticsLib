@@ -14,7 +14,7 @@ namespace IndependentTests.AutonomousTests
         public void TimeoutInvokeTest()
         {
             Action a = TimeoutInvokeHelper;
-            Assert.IsTrue(a.TryExecute(20));
+            Assert.IsTrue(a.TryExecute(50));
             Assert.IsTrue(m_basicMethodRun);
         }
 
@@ -27,7 +27,7 @@ namespace IndependentTests.AutonomousTests
         public void TimeoutInvokeTimeoutTest()
         {
             Action a = TimeoutInvokeTimeoutHelper;
-            Assert.IsFalse(a.TryExecute(10));
+            Assert.IsFalse(a.TryExecute(50));
         }
 
         private void TimeoutInvokeTimeoutHelper()
@@ -40,10 +40,10 @@ namespace IndependentTests.AutonomousTests
         {
             Func<int> f = TimeoutInvokeReturnHelper;
             int i;
-            Assert.IsTrue(f.TryExecute(10, out i));
+            Assert.IsTrue(f.TryExecute(50, out i));
             Assert.AreEqual(i, 1);
 
-            Assert.AreEqual(f.TryExecute(10), 1);
+            Assert.AreEqual(f.TryExecute(50), 1);
         }
 
         public int TimeoutInvokeReturnHelper()

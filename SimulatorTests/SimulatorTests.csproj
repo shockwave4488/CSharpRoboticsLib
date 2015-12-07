@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpRoboticsLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CSharpRoboticsLibrary\Output\CSharpRoboticsLib.dll</HintPath>
+    </Reference>
     <Reference Include="HAL, Version=2016.0.0.153, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FRC.WPILib.2016.0.0.153\lib\net45\HAL.dll</HintPath>
       <Private>True</Private>
@@ -66,10 +70,18 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ExtrasTests\EnhancedDigitalInputTests.cs" />
+    <Compile Include="ExtrasTests\EnhancedEncoderTests.cs" />
+    <Compile Include="ExtrasTests\ManagedCompressorTests.cs" />
+    <Compile Include="ExtrasTests\RampMotorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AutonomousTests\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

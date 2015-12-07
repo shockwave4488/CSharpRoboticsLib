@@ -8,16 +8,11 @@ using CSharpRoboticsLib.NILabview;
 namespace CSharpRoboticsLib.Extras
 {
     /// <summary>
-    /// An encoder with additional functionality and corrected rate acquisition
+    /// An encoder with corrected rate calculation and distance per pulse setting
     /// </summary>
     public class EnhancedEncoder : Encoder
     {
         private Derivative m_velocityFilter;
-
-        /// <summary>
-        /// Resets the encoder when this DigitalInput is pressed
-        /// </summary>
-        public DigitalInput ResetOn { get; set; }
 
         /// <summary>
         /// CSharpRoboticslib.Extras.EnhancedEncoder
@@ -30,51 +25,37 @@ namespace CSharpRoboticsLib.Extras
         }
 
         /// <summary>
-        /// Sets <see cref="DistancePerPulse"/> to the proper value given by diameter of a wheel and counts per revolution
-        /// </summary>
-        /// <param name="wheelDiameter">Diameter of the wheel. Units used here will determine units of <see cref="GetRate"/></param>
-        /// <param name="countPerRevolution">Counts per revolution of the encoder. Usually 360 or 250.</param>
-        public void SetDistancePerPulse(double wheelDiameter, int countPerRevolution)
-        {
-            DistancePerPulse = (Math.PI * wheelDiameter) / countPerRevolution;
-        }
-
-        /// <summary>
-        /// Gets the raw encoder value. You probably don't want this.
-        /// </summary>
-        /// <returns>Raw encoder value</returns>
-        public override int GetRaw() //Change to override when new version of WPILIB happens
-        {
-            UpdateReset();
-            return base.GetRaw();
-        }
-
-        /// <summary>
         /// Gets the velocity reported by the encoder.
         /// </summary>
         /// <returns>Derivative of the distance</returns>
-        public override double GetRate() //Change to override when new version of WPILIB happens
+        public override double GetRate()
         {
             return m_velocityFilter.Get(GetDistance());
         }
 
         /// <summary>
-        /// Updates the resetting digital input.
-        /// Called during any Get() Function.
-        /// </summary>
-        public void UpdateReset()
-        {
-            if (ResetOn?.Get() ?? false)
-                Reset();
-        }
-
-        /// <summary>
         /// Resets the encoder and derivative
         /// </summary>
-        public override void Reset() //Change to override when new version of WPILIB happens
+        public override void Reset()
         {
             base.Reset();
             m_velocityFilter.ReInitialize();
+        }
+    }
+
+    /// <summary>
+    /// Provides an extension method for setting <see cref="Encoder.DistancePerPulse"/>
+    /// </summary>
+    public static class EncoderExtension
+    {
+        /// <summary>
+        /// Sets <see cref="DistancePerPulse"/> to the proper value given by diameter of a wheel and counts per revolution
+        /// </summary>
+        /// <param name="wheelDiameter">Diameter of the wheel. Units used here will determine units of <see cref="GetRate"/></param>
+        /// <param name="countPerRevolution">Counts per revolution of the encoder. Usually 360 or 256.</param>
+        public static void SetDistancePerPulse(this Encoder e, double wheelDiameter, int countPerRevolution)
+        {
+            e.DistancePerPulse = (Math.PI * wheelDiameter) / countPerRevolution;
         }
     }
 }
