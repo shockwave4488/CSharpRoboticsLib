@@ -40,16 +40,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\CSharpRoboticsLibrary\Output\CSharpRoboticsLib.dll</HintPath>
     </Reference>
-    <Reference Include="HAL, Version=2016.0.0.153, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.153\lib\net45\HAL.dll</HintPath>
+    <Reference Include="HAL, Version=2016.0.0.156, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.156\lib\net45\HAL.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NetworkTables, Version=2016.0.0.131, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.NetworkTables.2016.0.0.131\lib\net45\NetworkTables.dll</HintPath>
+    <Reference Include="NetworkTables, Version=2016.0.0.137, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.NetworkTables.2016.0.0.137\lib\net45\NetworkTables.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NIVision, Version=2016.0.0.153, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.153\lib\net45\NIVision.dll</HintPath>
+    <Reference Include="NIVision, Version=2016.0.0.156, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.156\lib\net45\NIVision.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
@@ -57,8 +57,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="WPILib, Version=2016.0.0.153, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.153\lib\net45\WPILib.dll</HintPath>
+    <Reference Include="WPILib, Version=2016.0.0.156, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.156\lib\net45\WPILib.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
