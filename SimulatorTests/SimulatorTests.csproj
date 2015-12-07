@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EE2DAF52-D3F0-4B95-AB31-B13691A5FFBB}</ProjectGuid>
+    <ProjectGuid>{E41C1726-8063-4A68-B595-36CB69F950AB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IndependentTests</RootNamespace>
-    <AssemblyName>IndependentTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>SimulatorTests</RootNamespace>
+    <AssemblyName>SimulatorTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,13 +16,12 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Output\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,57 +29,47 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>Output\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HAL, Version=2016.0.0.139, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.139\lib\net45\HAL.dll</HintPath>
+    <Reference Include="HAL, Version=2016.0.0.153, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.153\lib\net45\HAL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NetworkTables, Version=2016.0.0.131, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FRC.NetworkTables.2016.0.0.131\lib\net45\NetworkTables.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NIVision, Version=2016.0.0.139, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.139\lib\net45\NIVision.dll</HintPath>
+    <Reference Include="NIVision, Version=2016.0.0.153, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.153\lib\net45\NIVision.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.0.5797.27534, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.0.0\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="WPILib, Version=2016.0.0.139, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.139\lib\net45\WPILib.dll</HintPath>
+    <Reference Include="WPILib, Version=2016.0.0.153, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.153\lib\net45\WPILib.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise />
+  </Choose>
   <ItemGroup>
-    <Compile Include="AutonomousTests\TimeoutInvokeTests.cs" />
-    <Compile Include="IndependentTests\SimplePIDTest.cs" />
-    <Compile Include="ExtrasTests\UtilityTest.cs" />
-    <Compile Include="FlowControlTests\ChangeTriggerTest.cs" />
-    <Compile Include="FlowControlTests\EdgeTriggerTest.cs" />
-    <Compile Include="FlowControlTests\ToggleTest.cs" />
-    <Compile Include="FlowControlTests\WaitByCallCountTest.cs" />
-    <Compile Include="FlowControlTests\WaitByTimeTest.cs" />
-    <Compile Include="NILabviewTests\DeltaTimeTest.cs" />
-    <Compile Include="NILabviewTests\DerivativeTest.cs" />
-    <Compile Include="NILabviewTests\InputFilterTest.cs" />
-    <Compile Include="NILabviewTests\IntegralTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CSharpRoboticsLibrary\CSharpRoboticsLib.csproj">
-      <Project>{08792b9c-ab04-4fd0-a52a-d3a864d9758a}</Project>
-      <Name>CSharpRoboticsLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

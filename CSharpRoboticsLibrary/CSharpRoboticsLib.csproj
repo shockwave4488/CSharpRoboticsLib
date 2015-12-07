@@ -63,8 +63,7 @@
     <Compile Include="Autonomous\Drive\Interfaces\IGyroscopeDrive.cs" />
     <Compile Include="Autonomous\Drive\Interfaces\ISensorDrive.cs" />
     <Compile Include="Autonomous\Drive\Interfaces\ITankDrive.cs" />
-    <Compile Include="Autonomous\SafeAction.cs" />
-    <Compile Include="Autonomous\SafeParameterAction.cs" />
+    <Compile Include="Autonomous\TimeoutInvokeExtensions.cs" />
     <Compile Include="ControlSystems\SimplePID.cs" />
     <Compile Include="ControlSystems\SimplePIDSystem.cs" />
     <Compile Include="Extras\AnalogueUltrasonic.cs" />
