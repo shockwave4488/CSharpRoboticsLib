@@ -15,8 +15,9 @@ build:
 test_script:
 - nuget install OpenCover -Version 4.6.166 -OutputDirectory packages
 
-- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\IndependentTests\Output\IndependentTests.dll --framework=net-4.5 --where "cat!=TimeBased"" -filter:"+[*]* -[*]*Test" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
-- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\IndependentTests\Output\IndependentTests.dll --framework=net-4.5 --where "cat==TimeBased"" -filter:"+[*]* -[*]*Test" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
+- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\IndependentTests\Output\IndependentTests.dll --framework=net-4.5 --where "cat!=TimeBased"" -filter:"+[*]* -[*]*Test -[*]*Tests" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
+- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\IndependentTests\Output\IndependentTests.dll --framework=net-4.5 --where "cat==TimeBased"" -filter:"+[*]* -[*]*Test -[*]*Tests" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
+- .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:".\SimulatorTests\Output\SimulatorTests.dll --framework=net-4.5" -filter:"+[*]* -[*]*Test -[*]*Tests" -excludebyattribute:*.ExcludeFromCodeCoverage* -output:coverage.xml -mergeoutput -returntargetcode
 
 - cmd: >-
 
