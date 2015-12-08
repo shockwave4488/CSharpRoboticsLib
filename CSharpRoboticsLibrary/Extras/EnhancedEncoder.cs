@@ -14,6 +14,12 @@ namespace CSharpRoboticsLib.Extras
     {
         private Derivative m_velocityFilter;
 
+        public double Dt
+        {
+            get { return m_velocityFilter.Dt; }
+            set { m_velocityFilter.Dt = value; }
+        }
+
         /// <summary>
         /// CSharpRoboticslib.Extras.EnhancedEncoder
         /// </summary>

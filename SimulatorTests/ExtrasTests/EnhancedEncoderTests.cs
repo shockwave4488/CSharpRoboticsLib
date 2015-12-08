@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CSharpRoboticsLib.Extras;
+﻿using CSharpRoboticsLib.Extras;
 using HAL.Simulator;
 using NUnit.Framework;
 using WPILib;
-
-using static HAL.Simulator.SimData;
 
 namespace SimulatorTests.ExtrasTests
 {
@@ -27,12 +21,12 @@ namespace SimulatorTests.ExtrasTests
         [Test]
         public void EnhancedEncoderRateTest()
         {
-            using (Encoder e = new EnhancedEncoder(0, 1))
+            using (Encoder e = new EnhancedEncoder(0, 1) {Dt = 0.1})
             {
                 e.Reset();
-                CSharpRoboticsLib.Extras.Utility.AccurateWaitMilliseconds(100);
-                SimData.Encoder[0].Count = 10000;
-                Assert.AreEqual(1, e.GetRate());
+                e.Get(); //Push the value to the Derivative
+                SimData.Encoder[0].Count = 4000;
+                Assert.AreEqual(10000, e.GetRate());
             }
         }
     }
