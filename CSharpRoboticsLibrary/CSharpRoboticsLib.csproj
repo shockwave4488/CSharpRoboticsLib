@@ -59,10 +59,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Autonomous\Drive\Interfaces\IEncoderDrive.cs" />
-    <Compile Include="Autonomous\Drive\Interfaces\IGyroscopeDrive.cs" />
-    <Compile Include="Autonomous\Drive\Interfaces\ISensorDrive.cs" />
-    <Compile Include="Autonomous\Drive\Interfaces\ITankDrive.cs" />
+    <Compile Include="Autonomous\Drive\IEncoderDrive.cs" />
+    <Compile Include="Autonomous\Drive\IGyroscopeDrive.cs" />
+    <Compile Include="Autonomous\Drive\ISensorDrive.cs" />
+    <Compile Include="Autonomous\Drive\ITankDrive.cs" />
     <Compile Include="Autonomous\TimeoutInvokeExtensions.cs" />
     <Compile Include="ControlSystems\SimplePID.cs" />
     <Compile Include="ControlSystems\SimplePIDSystem.cs" />
@@ -86,6 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Autonomous\Drive\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

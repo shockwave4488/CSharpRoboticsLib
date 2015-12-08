@@ -71,6 +71,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AutonomousTests\TankDriveTests.cs" />
     <Compile Include="ExtrasTests\EnhancedDigitalInputTests.cs" />
     <Compile Include="ExtrasTests\EnhancedEncoderTests.cs" />
     <Compile Include="ExtrasTests\ManagedCompressorTests.cs" />
@@ -83,9 +84,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AutonomousTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

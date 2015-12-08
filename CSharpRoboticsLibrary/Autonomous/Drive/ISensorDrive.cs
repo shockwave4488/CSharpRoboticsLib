@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpRoboticsLib.Autonomous.Drive.Interfaces
+﻿namespace CSharpRoboticsLib.Autonomous.Drive
 {
     /// <summary>
     /// Defines functions for a drive train with both a gyroscope and encoders.

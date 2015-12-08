@@ -1,6 +1,6 @@
 ﻿using WPILib;
 
-namespace CSharpRoboticsLib.Autonomous.Drive.Interfaces
+namespace CSharpRoboticsLib.Autonomous.Drive
 {
     /// <summary>
     /// Defines functions for a tank drive with encoders.
