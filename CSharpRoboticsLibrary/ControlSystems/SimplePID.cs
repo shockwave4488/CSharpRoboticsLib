@@ -1,5 +1,4 @@
 ﻿using System;
-using CSharpRoboticsLib.NILabview;
 using CSharpRoboticsLib.Extras;
 
 namespace CSharpRoboticsLib.ControlSystems

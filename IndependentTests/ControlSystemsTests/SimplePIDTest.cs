@@ -2,7 +2,7 @@
 using CSharpRoboticsLib.Extras;
 using NUnit.Framework;
 
-namespace IndependentTests.IndependentTests
+namespace IndependentTests.ControlSystemsTests
 {
     [TestFixture]
     [Category("TimeBased")]

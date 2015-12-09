@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
+﻿using CSharpRoboticsLib.FlowControl;
 
-namespace CSharpRoboticsLib.NILabview
+namespace CSharpRoboticsLib.ControlSystems
 {
     /// <summary>
     /// Single-Order derivative function.

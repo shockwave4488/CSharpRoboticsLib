@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CSharpRoboticsLib.ControlSystems;
 using WPILib;
-using CSharpRoboticsLib.NILabview;
 
 namespace CSharpRoboticsLib.Extras
 {

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CSharpRoboticsLib.FlowControl;
 
-namespace CSharpRoboticsLib.NILabview
+namespace CSharpRoboticsLib.ControlSystems
 {
     /// <summary>
     /// Numeric Time-based Integration

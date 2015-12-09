@@ -1,9 +1,7 @@
-﻿using System;
-using CSharpRoboticsLib.NILabview;
-using CSharpRoboticsLib.Extras;
+﻿using CSharpRoboticsLib.ControlSystems;
 using NUnit.Framework;
 
-namespace IndependentTests.NILabviewTests
+namespace IndependentTests.ControlSystemsTests
 {
     [TestFixture]
     [Category("TimeBased")]
