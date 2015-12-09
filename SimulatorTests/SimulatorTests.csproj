@@ -72,6 +72,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AutonomousTests\TankDriveTests.cs" />
+    <Compile Include="ExtrasTests\DriveEncodersTests.cs" />
     <Compile Include="ExtrasTests\EnhancedDigitalInputTests.cs" />
     <Compile Include="ExtrasTests\EnhancedEncoderTests.cs" />
     <Compile Include="ExtrasTests\ManagedCompressorTests.cs" />

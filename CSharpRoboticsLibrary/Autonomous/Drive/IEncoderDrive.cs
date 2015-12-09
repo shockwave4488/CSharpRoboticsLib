@@ -1,4 +1,5 @@
 ﻿using WPILib;
+using CSharpRoboticsLib.Extras;
 
 namespace CSharpRoboticsLib.Autonomous.Drive
 {
@@ -9,16 +10,9 @@ namespace CSharpRoboticsLib.Autonomous.Drive
     public interface IEncoderDrive : ITankDrive
     {
         /// <summary>
-        /// Gets the encoder associated with the left motor(s).
+        /// Encoders on the Drive Train
         /// </summary>
-        /// <returns>Left-Side Encoder</returns>
-        Encoder LeftEncoder { get; }
-
-        /// <summary>
-        /// Gets the encoder associated with the right motor(s).
-        /// </summary>
-        /// <returns>Right-Side Encoder</returns>
-        Encoder RightEncoder { get; }
+        DriveEncoders Encoders { get; }
     }
 
     /// <summary>
@@ -28,6 +22,6 @@ namespace CSharpRoboticsLib.Autonomous.Drive
     /// </summary>
     public static class EncoderDriveExtensions
     {
-
+        
     }
 }
