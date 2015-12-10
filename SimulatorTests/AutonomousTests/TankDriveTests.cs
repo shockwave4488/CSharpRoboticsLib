@@ -14,4 +14,16 @@ namespace SimulatorTests.AutonomousTests
     {
         
     }
+
+    internal class TestDrive : ITankDrive
+    {
+        public double LeftPower { get; private set; }
+        public double RightPower { get; private set; }
+
+        public void SetPowers(double leftPower, double rightPower)
+        {
+            LeftPower = leftPower;
+            RightPower = rightPower;
+        }
+    }
 }

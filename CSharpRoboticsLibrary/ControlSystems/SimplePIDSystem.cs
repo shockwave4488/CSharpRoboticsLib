@@ -6,12 +6,12 @@ namespace CSharpRoboticsLib.ControlSystems
     /// Extendable controller for a PID Controlled mechanism.
     /// Defines No Constructors.
     /// </summary>
-    public abstract class SimplePidSystem
+    public abstract class SimplePIDSystem
     {
         /// <summary>
         /// The PID Controller
         /// </summary>
-        protected SimplePID Pid;
+        protected IPIDController Pid;
 
         /// <summary>
         /// Sensor to interact with the PID Controller
@@ -36,13 +36,7 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <summary>
         /// Returns true if the sensor is at the setpoint within the specified tolerance
         /// </summary>
-        public bool AtSetpoint
-        {
-            get
-            {
-                return (Sensor.PidGet() < Pid.SetPoint + SetpointTolerance) && (Sensor.PidGet() > Pid.SetPoint - SetpointTolerance);
-            }
-        }
+        public bool AtSetpoint => (Sensor.PidGet() < Pid.SetPoint + SetpointTolerance) && (Sensor.PidGet() > Pid.SetPoint - SetpointTolerance);
 
         /// <summary>
         /// Sets or returns the setpoint of the PID Controller
@@ -58,10 +52,7 @@ namespace CSharpRoboticsLib.ControlSystems
         /// </summary>
         public virtual void Update()
         {
-            if (!Manual)
-                Motor.Set(Pid.Get(Sensor.PidGet()));
-            else
-                Motor.Set(0);
+            Update(0);
         }
 
         /// <summary>
@@ -70,9 +61,7 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <param name="manual">Motor value if Manual is true</param>
         public virtual void Update(double manual)
         {
-            Update();
-            if (Manual)
-                Motor.Set(manual);
+            Motor.Set(Manual ? manual : Pid.Get(Sensor.PidGet()));
         }
     }
 }
