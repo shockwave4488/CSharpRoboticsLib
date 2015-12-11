@@ -88,5 +88,27 @@ namespace CSharpRoboticsLib.Extras
             while (sw.ElapsedTicks < ticks) ;
             sw.Stop();
         }
+
+        /// <summary>
+        /// Wraps degrees around -180 to 180
+        /// </summary>
+        /// <param name="degrees"></param>
+        /// <returns></returns>
+        public static double WrapDegrees(double degrees)
+        {
+            degrees %= 360;
+            return (degrees > 180 ? degrees - 360 : degrees);
+        }
+
+        /// <summary>
+        /// Wraos radians around -PI and PI
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
+        public static double WrapRadians(double radians)
+        {
+            radians %= Math.PI*2;
+            return (radians > Math.PI ? radians - (Math.PI*2) : radians);
+        }
     }
 }

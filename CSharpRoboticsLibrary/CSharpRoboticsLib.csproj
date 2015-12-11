@@ -65,6 +65,7 @@
     <Compile Include="Autonomous\Drive\ITankDrive.cs" />
     <Compile Include="Autonomous\TimeoutInvokeExtensions.cs" />
     <Compile Include="ControlSystems\IPIDController.cs" />
+    <Compile Include="ControlSystems\OutputRateLimit.cs" />
     <Compile Include="ControlSystems\Setpoint.cs" />
     <Compile Include="ControlSystems\SetpointProfile.cs" />
     <Compile Include="ControlSystems\SimplePID.cs" />

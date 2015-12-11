@@ -11,7 +11,7 @@ namespace SimulatorTests.ExtrasTests
         [Test]
         public void RampAccelPositiveTest()
         {
-            using (RampMotor<Talon> motor = new RampMotor<Talon>(0))
+            using (RampMotor motor = new RampMotor(typeof(Talon), 0))
             {
                 motor.MaxAccel = 0.2;
                 for (int i = 0; motor.Get() < 1; i++)
@@ -25,7 +25,7 @@ namespace SimulatorTests.ExtrasTests
         [Test]
         public void RampAccelNegativeTest()
         {
-            using (RampMotor<Talon> motor = new RampMotor<Talon>(0))
+            using (RampMotor motor = new RampMotor(typeof(Talon), 0))
             {
                 motor.MaxAccel = 0.2;
                 for (int i = 0; motor.Get() > -1; i++)
@@ -39,7 +39,7 @@ namespace SimulatorTests.ExtrasTests
         [Test]
         public void RampForceTest()
         {
-            using (RampMotor<Talon> motor = new RampMotor<Talon>(0))
+            using (RampMotor motor = new RampMotor(typeof(Talon), 0))
             {
                 motor.MaxChange = 0.2;
                 motor.ForcePower(1);
@@ -50,7 +50,7 @@ namespace SimulatorTests.ExtrasTests
         [Test]
         public void RampDecelPositiveTest()
         {
-            using (RampMotor<Talon> motor = new RampMotor<Talon>(0))
+            using (RampMotor motor = new RampMotor(typeof(Talon), 0))
             {
                 motor.MaxDecel = 0.2;
                 motor.ForcePower(1);
@@ -65,13 +65,13 @@ namespace SimulatorTests.ExtrasTests
         [Test]
         public void RampDecelNegativeTest()
         {
-            using (RampMotor<Talon> motor = new RampMotor<Talon>(0))
+            using (RampMotor motor = new RampMotor(typeof(Talon), 0))
             {
                 motor.MaxDecel = 0.2;
                 motor.ForcePower(-1);
                 for (int i = 0; motor.Get() < 0; i++)
                 {
-                    Assert.AreEqual((i*0.2) - 1, motor.Get(), 0.001);
+                    Assert.AreEqual((i * 0.2) - 1, motor.Get(), 0.001);
                     motor.Set(0);
                 }
             }

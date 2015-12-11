@@ -9,7 +9,7 @@ namespace CSharpRoboticsLib.ControlSystems
     /// <summary>
     /// Describes a set point for a profiling system.
     /// </summary>
-    public struct Setpoint
+    internal struct Setpoint
     {
         /// <summary>
         /// Location or set point
@@ -30,6 +30,16 @@ namespace CSharpRoboticsLib.ControlSystems
         {
             Point = point;
             Value = value;
+        }
+
+        public static bool operator ==(Setpoint a, Setpoint b)
+        {
+            return (a.Point == b.Point) && (a.Value == b.Value);
+        }
+
+        public static bool operator !=(Setpoint a, Setpoint b)
+        {
+            return !(a == b);
         }
     }
 }

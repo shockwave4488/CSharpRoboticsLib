@@ -6,10 +6,9 @@ namespace CSharpRoboticsLib.Extras
     /// <summary>
     /// A subclass of a motor controller intended to allow controlled change in power, for safety or voltage regulation.
     /// </summary>
-    /// <typeparam name="T">Type of motor controller</typeparam>
-    public class RampMotor<T> : ISpeedController where T : ISpeedController
+    public class RampMotor : ISpeedController 
     {
-        private T m_controller;
+        private ISpeedController m_controller;
         private double m_power;
         private double m_maxAccel, m_maxDecel;
 
@@ -59,10 +58,11 @@ namespace CSharpRoboticsLib.Extras
         }
 
         /// <summary>
-        /// Opens a new RampingMotor 
+        /// Opens a new RampingMotor of a specific motor type
         /// </summary>
+        /// <param name="controllerType">Type of motor controller (Jaguar, Victor, Spark, CAN Talon, etc.)</param>
         /// <param name="port">The PWM channel that the motor is attached to. 0-9 are on-board, 10-19 are on the MXP port</param>
-        public RampMotor(int port) : this((T)Activator.CreateInstance(typeof(T), port))
+        public RampMotor(Type controllerType, int port) : this((ISpeedController)Activator.CreateInstance(controllerType, port))
         {
 
         }
@@ -71,7 +71,7 @@ namespace CSharpRoboticsLib.Extras
         /// Wraps an existing <see cref="ISpeedController"/> with <see cref="RampMotor{T}"/>
         /// </summary>
         /// <param name="motorController">existing Motor Controller</param>
-        public RampMotor(T motorController)
+        public RampMotor(ISpeedController motorController)
         {
             m_controller = motorController;
             MaxChange = 1;

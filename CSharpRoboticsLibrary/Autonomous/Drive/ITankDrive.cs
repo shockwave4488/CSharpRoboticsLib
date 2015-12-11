@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace CSharpRoboticsLib.Autonomous.Drive
 {
@@ -32,9 +33,10 @@ namespace CSharpRoboticsLib.Autonomous.Drive
         /// <param name="d"></param>
         /// <param name="power"></param>
         /// <param name="time"></param>
-        public static void StraightForTime(this ITankDrive d, double power, double time)
+        /// <param name="brake">Set motors to zero when this is finished?</param>
+        public static void StraightForTime(this ITankDrive d, double power, double time, bool brake)
         {
-            d.DriveForTime(power, power, time);
+            d.DriveForTime(power, power, time, brake);
         }
 
         /// <summary>
@@ -43,9 +45,10 @@ namespace CSharpRoboticsLib.Autonomous.Drive
         /// <param name="d"></param>
         /// <param name="power"></param>
         /// <param name="time"></param>
-        public static void TurnForTime(this ITankDrive d, double power, double time)
+        /// <param name="brake">Set motors to zero when this is finished?</param>
+        public static void TurnForTime(this ITankDrive d, double power, double time, bool brake)
         {
-            d.DriveForTime(power, -power, time);
+            d.DriveForTime(power, -power, time, brake);
         }
 
         /// <summary>
@@ -55,7 +58,8 @@ namespace CSharpRoboticsLib.Autonomous.Drive
         /// <param name="lPower"></param>
         /// <param name="rPower"></param>
         /// <param name="time"></param>
-        public static void DriveForTime(this ITankDrive d, double lPower, double rPower, double time)
+        /// <param name="brake">Set motors to zero when this is finished?</param>
+        public static void DriveForTime(this ITankDrive d, double lPower, double rPower, double time, bool brake)
         {
             Stopwatch s = new Stopwatch();
             s.Restart();
@@ -63,6 +67,26 @@ namespace CSharpRoboticsLib.Autonomous.Drive
             while (s.Elapsed.TotalSeconds < time)
             {
                 d.SetPowers(lPower, rPower);
+            }
+
+            if(brake)
+                d.SetPowers(0, 0);
+        }
+
+        /// <summary>
+        /// Drives accordingly to an action
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="expression">Parameter: Time elapsed</param>
+        /// <param name="time"></param>
+        public static void DynamicDriveForTime(this ITankDrive d, Action<double> expression, double time)
+        {
+            Stopwatch s = new Stopwatch();
+            s.Restart();
+
+            while (s.Elapsed.TotalSeconds < time)
+            {
+                expression(s.Elapsed.TotalSeconds);
             }
 
             d.SetPowers(0, 0);

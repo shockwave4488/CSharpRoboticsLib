@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using WPILib;
 using CSharpRoboticsLib.ControlSystems;
 
@@ -30,9 +31,9 @@ namespace CSharpRoboticsLib.Autonomous.Drive
         /// <param name="d"></param>
         /// <param name="power"></param>
         /// <param name="angle"></param>
-        public static void TurnForAngle(this IGyroscopeDrive d, double power, double angle)
+        public static void TurnForAngle(this IGyroscopeDrive d, double power, double angle, bool brake)
         {
-            d.TurnToAngle(power, angle + d.Gyroscope.GetAngle());
+            d.TurnToAngle(power, angle + d.Gyroscope.GetAngle(), brake);
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace CSharpRoboticsLib.Autonomous.Drive
         /// <param name="d"></param>
         /// <param name="power"></param>
         /// <param name="angle"></param>
-        public static void TurnToAngle(this IGyroscopeDrive d, double power, double angle)
+        public static void TurnToAngle(this IGyroscopeDrive d, double power, double angle, bool brake)
         {
             int direction = 1;
             if (d.Gyroscope.GetAngle() < angle)
@@ -52,7 +53,8 @@ namespace CSharpRoboticsLib.Autonomous.Drive
                 d.SetPowers(power*direction, -power*direction);
             }
 
-            d.SetPowers(0, 0);
+            if(brake)
+              d.SetPowers(0, 0);
         }
 
         /// <summary>
@@ -62,10 +64,9 @@ namespace CSharpRoboticsLib.Autonomous.Drive
         /// <param name="PID"></param>
         /// <param name="angle"></param>
         /// <param name="tolerance"></param>
-        public static void TurnToAngle(this IGyroscopeDrive d, SimplePID PID, double angle, double tolerance)
+        public static void TurnToAngle(this IGyroscopeDrive d, IPIDController PID, double angle, double tolerance, bool brake)
         {
             PID.SetPoint = angle;
-            PID.ResetIntegral();
 
             while (Math.Abs(d.Gyroscope.GetAngle() - angle) > tolerance)
             {
@@ -73,7 +74,8 @@ namespace CSharpRoboticsLib.Autonomous.Drive
                 d.SetPowers(power, -power);
             }
 
-            d.SetPowers(0, 0);
+            if(brake)
+               d.SetPowers(0, 0);
         }
 
         /// <summary>
@@ -83,18 +85,30 @@ namespace CSharpRoboticsLib.Autonomous.Drive
         /// <param name="PID"></param>
         /// <param name="angle"></param>
         /// <param name="tolerance"></param>
-        public static void TurnForAngle(this IGyroscopeDrive d, SimplePID PID, double angle, double tolerance)
+        public static void TurnForAngle(this IGyroscopeDrive d, IPIDController PID, double angle, double tolerance, bool brake)
         {
-            PID.SetPoint = angle + d.Gyroscope.GetAngle();
-            PID.ResetIntegral();
+            d.TurnToAngle(PID, d.Gyroscope.GetAngle() + angle, tolerance, brake);
+        }
+        
+        /// <summary>
+        /// Drives the robot in a straight line for a set time
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="PID">PID Controller to use for correcting heading</param>
+        /// <param name="power"></param>
+        /// <param name="time"></param>
+        public static void DriveStraightForTime(this IGyroscopeDrive d, IPIDController PID, double power, double time, bool brake)
+        {
+            PID.SetPoint = d.Gyroscope.GetAngle();
+            Stopwatch s = new Stopwatch();
 
-            while(Math.Abs(d.Gyroscope.GetAngle() - PID.SetPoint) > tolerance)
+            while (s.Elapsed.TotalSeconds < time)
             {
-                double power = PID.Get(d.Gyroscope.GetAngle());
-                d.SetPowers(power, -power);
+                d.SetPowers(power + PID.Get(d.Gyroscope.GetAngle()), power - PID.Get(d.Gyroscope.GetAngle()));
             }
 
-            d.SetPowers(0, 0);
+            if(brake)
+                d.SetPowers(0, 0);
         }
     }
 }
