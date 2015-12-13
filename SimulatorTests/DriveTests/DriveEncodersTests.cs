@@ -1,13 +1,10 @@
-﻿using CSharpRoboticsLib.Extras;
-using WPILib;
-using NUnit.Framework;
+﻿using CSharpRoboticsLib.Drive;
+using CSharpRoboticsLib.Extras;
 using HAL.Simulator;
-using HAL.Simulator.Outputs;
-using HAL.Simulator.Inputs;
-using HAL.Simulator.Mechanisms;
-using HAL.Simulator.Extensions;
+using NUnit.Framework;
+using WPILib;
 
-namespace SimulatorTests.ExtrasTests
+namespace SimulatorTests.DriveTests
 {
     [TestFixture]
     public class DriveEncodersTests : SimTestBase

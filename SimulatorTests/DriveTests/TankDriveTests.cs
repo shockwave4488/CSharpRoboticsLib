@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using CSharpRoboticsLib.Autonomous.Drive;
-using CSharpRoboticsLib.Autonomous;
+﻿using NUnit.Framework;
+using CSharpRoboticsLib.Drive.Interfaces;
 
-namespace SimulatorTests.AutonomousTests
+namespace SimulatorTests.DriveTests
 {
     [TestFixture]
     public class TankDriveTests

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CSharpRoboticsLib.Extras;
 using WPILib;
 
-namespace CSharpRoboticsLib.Extras
+namespace CSharpRoboticsLib.Drive
 {
     public class EnhancedDriveEncoders : DriveEncoders
     {
@@ -17,7 +15,6 @@ namespace CSharpRoboticsLib.Extras
             {
                 return base.Left;
             }
-
             protected set
             {
                 if (value is EnhancedEncoder)
@@ -36,7 +33,6 @@ namespace CSharpRoboticsLib.Extras
             {
                 return base.Right;
             }
-
             protected set
             {
                 if (value is EnhancedEncoder)

@@ -1,4 +1,4 @@
-﻿namespace CSharpRoboticsLib.Autonomous.Drive
+﻿namespace CSharpRoboticsLib.Drive.Interfaces
 {
     /// <summary>
     /// Defines functions for a drive train with both a gyroscope and encoders.

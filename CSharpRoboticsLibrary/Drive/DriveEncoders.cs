@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CSharpRoboticsLib.Extras;
 using WPILib;
 
-namespace CSharpRoboticsLib.Extras
+namespace CSharpRoboticsLib.Drive
 {
     public class DriveEncoders
     {

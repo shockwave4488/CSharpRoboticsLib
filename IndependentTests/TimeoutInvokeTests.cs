@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
-using CSharpRoboticsLib.Autonomous;
+using CSharpRoboticsLib;
 using NUnit.Framework;
 
-namespace IndependentTests.AutonomousTests
+namespace IndependentTests
 {
     [TestFixture]
     public class SafeActionTests

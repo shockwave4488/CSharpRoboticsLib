@@ -2,7 +2,7 @@
 using HAL.Simulator.Mechanisms;
 using HAL.Simulator.Outputs;
 
-namespace SimulatorTests.AutonomousTests
+namespace SimulatorTests.DriveTests
 {
     public abstract class DriveTestBase : SimTestBase
     {

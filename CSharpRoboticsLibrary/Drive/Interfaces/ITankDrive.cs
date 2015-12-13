@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace CSharpRoboticsLib.Autonomous.Drive
+namespace CSharpRoboticsLib.Drive.Interfaces
 {
     /// <summary>
     /// Defines functions for a basic tank drive.

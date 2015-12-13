@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace CSharpRoboticsLib.Autonomous
+namespace CSharpRoboticsLib
 {
     /// <summary>
     /// Class providing extension methods for functions and actions allowing calls with a specified millisecond timeout.

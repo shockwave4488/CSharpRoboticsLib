@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using WPILib;
 using CSharpRoboticsLib.ControlSystems;
+using WPILib;
 
-namespace CSharpRoboticsLib.Autonomous.Drive
+namespace CSharpRoboticsLib.Drive.Interfaces
 {
     /// <summary>
     /// Defines functions for a Tank Drive with a gyroscope.

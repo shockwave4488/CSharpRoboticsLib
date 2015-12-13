@@ -59,7 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutonomousTests\TimeoutInvokeTests.cs" />
+    <Compile Include="TimeoutInvokeTests.cs" />
     <Compile Include="ControlSystemsTests\OutputRateLimitTests.cs" />
     <Compile Include="ControlSystemsTests\SetpointProfileTests.cs" />
     <Compile Include="ControlSystemsTests\SimplePIDTest.cs" />
