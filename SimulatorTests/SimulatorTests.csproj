@@ -71,6 +71,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AutonomousTests\DriveTestBase.cs" />
     <Compile Include="AutonomousTests\TankDriveTests.cs" />
     <Compile Include="ExtrasTests\DriveEncodersTests.cs" />
     <Compile Include="ExtrasTests\EnhancedDigitalInputTests.cs" />
@@ -78,7 +79,7 @@
     <Compile Include="ExtrasTests\ManagedCompressorTests.cs" />
     <Compile Include="ExtrasTests\RampMotorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestBase.cs" />
+    <Compile Include="SimTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

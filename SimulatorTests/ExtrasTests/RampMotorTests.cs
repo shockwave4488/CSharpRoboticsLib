@@ -6,7 +6,7 @@ using WPILib;
 namespace SimulatorTests.ExtrasTests
 {
     [TestFixture]
-    public class RampMotorTests : TestBase
+    public class RampMotorTests : SimTestBase
     {
         [Test]
         public void RampAccelPositiveTest()

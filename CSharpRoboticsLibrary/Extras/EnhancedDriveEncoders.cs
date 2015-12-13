@@ -9,6 +9,44 @@ namespace CSharpRoboticsLib.Extras
     public class EnhancedDriveEncoders : DriveEncoders
     {
         /// <summary>
+        /// Left Side <see cref="EnhancedEncoder"/>
+        /// </summary>
+        public override Encoder Left
+        {
+            get
+            {
+                return base.Left;
+            }
+
+            protected set
+            {
+                if (value is EnhancedEncoder)
+                    base.Left = value;
+                else
+                    throw new ArgumentException($"{value} Is not an EnhancedEncoder");
+            }
+        }
+
+        /// <summary>
+        /// Right side <see cref="EnhancedEncoder"/>
+        /// </summary>
+        public override Encoder Right
+        {
+            get
+            {
+                return base.Right;
+            }
+
+            protected set
+            {
+                if (value is EnhancedEncoder)
+                    base.Right = value;
+                else
+                    throw new ArgumentException($"{value} Is not an EnhancedEncoder");
+            }
+        }
+
+        /// <summary>
         /// Sets the Delta Time for both encoders
         /// </summary>
         public double Dt
@@ -28,6 +66,19 @@ namespace CSharpRoboticsLib.Extras
         {
             Left = new EnhancedEncoder(lAChannel, lBChannel);
             Right = new EnhancedEncoder(rAChannel, rBChannel);
+
+            Right.SetReverseDirection(true);
+        }
+
+        /// <summary>
+        /// Encapsulates a Left and Right <see cref="EnhancedEncoder"/>, with the right encoder reversed.
+        /// </summary>
+        /// <param name="left">Left Encoder</param>
+        /// <param name="right">Right Encoder</param>
+        public EnhancedDriveEncoders(EnhancedEncoder left, EnhancedEncoder right)
+        {
+            Left = left;
+            Right = right;
 
             Right.SetReverseDirection(true);
         }

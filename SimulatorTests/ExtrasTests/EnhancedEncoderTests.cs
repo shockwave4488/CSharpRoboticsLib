@@ -6,7 +6,7 @@ using WPILib;
 namespace SimulatorTests.ExtrasTests
 {
     [TestFixture]
-    public class EnhancedEncoderTests
+    public class EnhancedEncoderTests : SimTestBase
     {
         [Test]
         public void EnhancedEncoderSetDistancePerPulseTest()

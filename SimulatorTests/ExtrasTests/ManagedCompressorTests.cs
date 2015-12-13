@@ -11,7 +11,7 @@ using static HAL.Simulator.SimData;
 namespace SimulatorTests.ExtrasTests
 {
     [TestFixture]
-    public class ManagedCompressorTests : TestBase
+    public class ManagedCompressorTests : SimTestBase
     {
         [Test]
         public void CompressorVoltageStartStopTest()

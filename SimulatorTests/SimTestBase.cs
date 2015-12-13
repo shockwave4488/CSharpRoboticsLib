@@ -10,9 +10,9 @@ using WPILib.LiveWindow;
 
 namespace SimulatorTests
 {
-    public abstract class TestBase
+    public abstract class SimTestBase
     {
-        static TestBase()
+        static SimTestBase()
         {
             RobotBase.InitializeHardwareConfiguration();
             HAL.Base.HAL.HALNetworkCommunicationObserveUserProgramStarting();

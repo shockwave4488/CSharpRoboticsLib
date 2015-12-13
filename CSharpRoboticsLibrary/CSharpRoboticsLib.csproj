@@ -67,7 +67,7 @@
     <Compile Include="ControlSystems\IPIDController.cs" />
     <Compile Include="ControlSystems\OutputRateLimit.cs" />
     <Compile Include="ControlSystems\Setpoint.cs" />
-    <Compile Include="ControlSystems\SetpointProfile.cs" />
+    <Compile Include="ControlSystems\SetPointProfile.cs" />
     <Compile Include="ControlSystems\SimplePID.cs" />
     <Compile Include="ControlSystems\SimplePIDSystem.cs" />
     <Compile Include="Extras\AnalogueUltrasonic.cs" />

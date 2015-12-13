@@ -14,18 +14,19 @@ namespace IndependentTests.ControlSystemsTests
         [Test]
         public static void SetpointProfileTest()
         {
-            SetpointProfile p = new SetpointProfile();
+            SetPointProfile p = new SetPointProfile();
             p.Add(0, 0);
             p.Add(1, 1);
-            p.SetPoint = 1;
+            p.SetPoint = 100;      
 
+            //Assert.AreEqual(0, p.Get(-0.1));
             Assert.AreEqual(0.1, p.Get(0.1));
             Assert.AreEqual(0.9, p.Get(0.9));
             Assert.AreEqual(0.5, p.Get(0.5));
             Assert.AreEqual(1, p.Get(1.5));
 
             //Reverse
-            p.SetPoint = 0;
+            p.SetPoint = -100;
 
             Assert.AreEqual(0, p.Get(0));
             Assert.AreEqual(-1, p.Get(1));

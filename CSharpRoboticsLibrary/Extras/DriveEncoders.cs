@@ -11,12 +11,12 @@ namespace CSharpRoboticsLib.Extras
         /// <summary>
         /// Left side Encoder
         /// </summary>
-        public Encoder Left { get; protected set; }
+        public virtual Encoder Left { get; protected set; }
 
         /// <summary>
         /// Right side Encoder
         /// </summary>
-        public Encoder Right { get; protected set; }
+        public virtual Encoder Right { get; protected set; }
 
         /// <summary>
         /// Initialializes both encoders to the channels specified, with the RIGHT encoder reversed.
@@ -25,11 +25,20 @@ namespace CSharpRoboticsLib.Extras
         /// <param name="lBChannel">Left B Channel</param>
         /// <param name="rAChannel">Right A Channel</param>
         /// <param name="rBChannel">Right B Channel</param>
-        public DriveEncoders(int lAChannel, int lBChannel, int rAChannel, int rBChannel)
+        public DriveEncoders(int lAChannel, int lBChannel, int rAChannel, int rBChannel) : 
+            this(new Encoder(lAChannel, lBChannel), new Encoder(rAChannel, rBChannel))
         {
-            Left = new Encoder(lAChannel, lBChannel);
-            Right = new Encoder(rAChannel, rBChannel);
+        }
 
+        /// <summary>
+        /// Encapsulates a Left and Right Encoder, with the right encoder reversed.
+        /// </summary>
+        /// <param name="left">Left Encoder</param>
+        /// <param name="right">Right Encoder</param>
+        public DriveEncoders(Encoder left, Encoder right)
+        {
+            Left = left;
+            Right = right;
             Right.SetReverseDirection(true);
         }
 
@@ -87,7 +96,7 @@ namespace CSharpRoboticsLib.Extras
         }
 
         /// <summary>
-        /// Sets the Left and Right DistancePerPulse based on Wheel Diameter and counts per revolution 
+        /// Sets the Left and Right DistancePerPulse in feet based on Wheel Diameter and counts per revolution 
         /// </summary>
         /// <param name="wheelDiameter">Diameter of your drive wheels IN INCHES</param>
         /// <param name="countPerRevolution"></param>

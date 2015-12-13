@@ -12,7 +12,7 @@ using static HAL.Simulator.SimData;
 namespace SimulatorTests.ExtrasTests
 {
     [TestFixture]
-    public class EnhancedDigitalInputTests : TestBase
+    public class EnhancedDigitalInputTests : SimTestBase
     {
         [Test]
         public void EnhancedDigitalInvertedTest()
