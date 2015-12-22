@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using CSharpRoboticsLib.Utility;
+using CSharpRoboticsLib.WPIExtensions;
 using NUnit.Framework;
-using CSharpRoboticsLib.Extras;
 
 namespace IndependentTests.ExtrasTests
 {

@@ -61,16 +61,16 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// Turns the robot to an absolute angle using a <see cref="SimplePID"/>
         /// </summary>
         /// <param name="d"></param>
-        /// <param name="PID"></param>
+        /// <param name="motion"></param>
         /// <param name="angle"></param>
         /// <param name="tolerance"></param>
-        public static void TurnToAngle(this IGyroscopeDrive d, IPIDController PID, double angle, double tolerance, bool brake)
+        public static void TurnToAngle(this IGyroscopeDrive d, IMotionController motion, double angle, double tolerance, bool brake)
         {
-            PID.SetPoint = angle;
+            motion.SetPoint = angle;
 
             while (Math.Abs(d.Gyroscope.GetAngle() - angle) > tolerance)
             {
-                double power = PID.Get(d.Gyroscope.GetAngle());
+                double power = motion.Get(d.Gyroscope.GetAngle());
                 d.SetPowers(power, -power);
             }
 
@@ -82,29 +82,29 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// Turns the robot for a relative angle amount using a <see cref="SimplePID"/>
         /// </summary>
         /// <param name="d"></param>
-        /// <param name="PID"></param>
+        /// <param name="motion"></param>
         /// <param name="angle"></param>
         /// <param name="tolerance"></param>
-        public static void TurnForAngle(this IGyroscopeDrive d, IPIDController PID, double angle, double tolerance, bool brake)
+        public static void TurnForAngle(this IGyroscopeDrive d, IMotionController motion, double angle, double tolerance, bool brake)
         {
-            d.TurnToAngle(PID, d.Gyroscope.GetAngle() + angle, tolerance, brake);
+            d.TurnToAngle(motion, d.Gyroscope.GetAngle() + angle, tolerance, brake);
         }
         
         /// <summary>
         /// Drives the robot in a straight line for a set time
         /// </summary>
         /// <param name="d"></param>
-        /// <param name="PID">PID Controller to use for correcting heading</param>
+        /// <param name="motion">Motion Controller to use for correcting heading</param>
         /// <param name="power"></param>
         /// <param name="time"></param>
-        public static void DriveStraightForTime(this IGyroscopeDrive d, IPIDController PID, double power, double time, bool brake)
+        public static void DriveStraightForTime(this IGyroscopeDrive d, IMotionController motion, double power, double time, bool brake)
         {
-            PID.SetPoint = d.Gyroscope.GetAngle();
+            motion.SetPoint = d.Gyroscope.GetAngle();
             Stopwatch s = new Stopwatch();
 
             while (s.Elapsed.TotalSeconds < time)
             {
-                d.SetPowers(power + PID.Get(d.Gyroscope.GetAngle()), power - PID.Get(d.Gyroscope.GetAngle()));
+                d.SetPowers(power + motion.Get(d.Gyroscope.GetAngle()), power - motion.Get(d.Gyroscope.GetAngle()));
             }
 
             if(brake)

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace CSharpRoboticsLib.FlowControl
+namespace CSharpRoboticsLib.Utility
 {
     public class DeltaTime
     {

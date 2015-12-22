@@ -1,6 +1,4 @@
-﻿using CSharpRoboticsLib.FlowControl;
-
-namespace CSharpRoboticsLib.ControlSystems
+﻿namespace CSharpRoboticsLib.Utility
 {
     /// <summary>
     /// Numeric Time-based Integration
@@ -11,7 +9,7 @@ namespace CSharpRoboticsLib.ControlSystems
         private DeltaTime m_dt;
 
         /// <summary>
-        /// The change in time for this particular PID loop in seconds.
+        /// The change in time for this particular Motion loop in seconds.
         /// Set to negative to determine dt automatically.
         /// </summary>
         public double Dt

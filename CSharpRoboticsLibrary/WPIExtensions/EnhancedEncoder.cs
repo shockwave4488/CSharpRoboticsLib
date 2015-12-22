@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CSharpRoboticsLib.ControlSystems;
+using CSharpRoboticsLib.Utility;
 using WPILib;
 
-namespace CSharpRoboticsLib.Extras
+namespace CSharpRoboticsLib.WPIExtensions
 {
     /// <summary>
     /// An encoder with corrected rate calculation and distance per pulse setting

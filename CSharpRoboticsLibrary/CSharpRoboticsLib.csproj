@@ -59,34 +59,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlSystems\MotionProfile.cs" />
+    <Compile Include="ControlSystems\MotionSetpoint.cs" />
+    <Compile Include="ControlSystems\ProfileFollower.cs" />
     <Compile Include="Drive\Interfaces\IEncoderDrive.cs" />
     <Compile Include="Drive\Interfaces\IGyroscopeDrive.cs" />
     <Compile Include="Drive\Interfaces\ISensorDrive.cs" />
     <Compile Include="Drive\Interfaces\ITankDrive.cs" />
     <Compile Include="TimeoutInvokeExtensions.cs" />
-    <Compile Include="ControlSystems\IPIDController.cs" />
+    <Compile Include="ControlSystems\IMotionController.cs" />
     <Compile Include="ControlSystems\OutputRateLimit.cs" />
     <Compile Include="ControlSystems\Setpoint.cs" />
     <Compile Include="ControlSystems\SetPointProfile.cs" />
     <Compile Include="ControlSystems\SimplePID.cs" />
     <Compile Include="ControlSystems\SimplePIDSystem.cs" />
-    <Compile Include="Extras\AnalogueUltrasonic.cs" />
+    <Compile Include="WPIExtensions\AnalogueUltrasonic.cs" />
     <Compile Include="Drive\DriveEncoders.cs" />
-    <Compile Include="Extras\EnhancedDigitalInput.cs" />
+    <Compile Include="WPIExtensions\EnhancedDigitalInput.cs" />
     <Compile Include="Drive\EnhancedDriveEncoders.cs" />
-    <Compile Include="Extras\EnhancedEncoder.cs" />
-    <Compile Include="Extras\ManagedCompressor.cs" />
-    <Compile Include="Extras\RampMotor.cs" />
-    <Compile Include="Extras\Utility.cs" />
+    <Compile Include="WPIExtensions\EnhancedEncoder.cs" />
+    <Compile Include="WPIExtensions\ManagedCompressor.cs" />
+    <Compile Include="WPIExtensions\RampMotor.cs" />
+    <Compile Include="Utility\Utility.cs" />
     <Compile Include="FlowControl\ChangeTrigger.cs" />
     <Compile Include="FlowControl\EdgeTrigger.cs" />
     <Compile Include="FlowControl\Toggle.cs" />
     <Compile Include="FlowControl\WaitByCallCount.cs" />
     <Compile Include="FlowControl\WaitByTime.cs" />
-    <Compile Include="FlowControl\DeltaTime.cs" />
-    <Compile Include="ControlSystems\Derivative.cs" />
-    <Compile Include="ControlSystems\InputFilter.cs" />
-    <Compile Include="ControlSystems\Integral.cs" />
+    <Compile Include="Utility\DeltaTime.cs" />
+    <Compile Include="Utility\Derivative.cs" />
+    <Compile Include="Utility\InputFilter.cs" />
+    <Compile Include="Utility\Integral.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

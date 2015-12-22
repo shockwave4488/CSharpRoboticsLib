@@ -1,5 +1,5 @@
 ﻿using CSharpRoboticsLib.Drive;
-using CSharpRoboticsLib.Extras;
+using CSharpRoboticsLib.WPIExtensions;
 using HAL.Simulator;
 using NUnit.Framework;
 using WPILib;

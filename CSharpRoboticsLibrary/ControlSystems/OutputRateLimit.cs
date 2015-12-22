@@ -1,5 +1,6 @@
 ﻿using System;
 using CSharpRoboticsLib.FlowControl;
+using CSharpRoboticsLib.Utility;
 
 namespace CSharpRoboticsLib.ControlSystems
 {

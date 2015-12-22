@@ -1,6 +1,6 @@
 ﻿using WPILib;
 
-namespace CSharpRoboticsLib.Extras
+namespace CSharpRoboticsLib.WPIExtensions
 {
     /// <summary>
     /// An analogue Ultrasonic sensor class complete with built-in scaling

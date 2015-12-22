@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharpRoboticsLib.Extras;
+using CSharpRoboticsLib.WPIExtensions;
 using NUnit.Framework;
 using WPILib;
 

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 
-namespace CSharpRoboticsLib.Extras
+namespace CSharpRoboticsLib.Utility
 {
     /// <summary>
     /// Provides various mathematical and logical utility functions

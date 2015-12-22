@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using CSharpRoboticsLib.WPIExtensions;
+using NUnit.Framework;
 using HAL.Simulator;
-using CSharpRoboticsLib.Extras;
 using WPILib;
 
 namespace SimulatorTests.ExtrasTests

@@ -1,4 +1,4 @@
-﻿using CSharpRoboticsLib.Extras;
+﻿using CSharpRoboticsLib.WPIExtensions;
 using WPILib;
 
 namespace CSharpRoboticsLib.Drive

@@ -1,7 +1,7 @@
-﻿using WPILib;
-using CSharpRoboticsLib.FlowControl;
+﻿using CSharpRoboticsLib.FlowControl;
+using WPILib;
 
-namespace CSharpRoboticsLib.Extras
+namespace CSharpRoboticsLib.WPIExtensions
 {
     /// <summary>
     /// Digital input with built-in edge detecting and inversion

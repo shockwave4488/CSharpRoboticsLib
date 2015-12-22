@@ -9,7 +9,7 @@ namespace CSharpRoboticsLib.ControlSystems
     /// <summary>
     /// An interface defining different control schemes that can be used for <see cref="SimplePidSystem"/>
     /// </summary>
-    public interface IPIDController
+    public interface IMotionController
     {
         /// <summary>
         /// Gets the value of the controller and updates any internal state.

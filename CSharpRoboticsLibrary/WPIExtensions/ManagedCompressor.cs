@@ -1,7 +1,6 @@
 ﻿using WPILib;
-using System.Timers;
 
-namespace CSharpRoboticsLib.Extras
+namespace CSharpRoboticsLib.WPIExtensions
 {
     /// <summary>
     /// A Compressor which will not run if the voltage is too low.

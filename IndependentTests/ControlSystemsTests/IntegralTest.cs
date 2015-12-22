@@ -1,4 +1,5 @@
 ﻿using CSharpRoboticsLib.ControlSystems;
+using CSharpRoboticsLib.Utility;
 using NUnit.Framework;
 
 namespace IndependentTests.ControlSystemsTests

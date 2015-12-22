@@ -1,7 +1,7 @@
 ﻿using System;
 using WPILib.Interfaces;
 
-namespace CSharpRoboticsLib.Extras
+namespace CSharpRoboticsLib.WPIExtensions
 {
     /// <summary>
     /// A subclass of a motor controller intended to allow controlled change in power, for safety or voltage regulation.

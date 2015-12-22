@@ -7,7 +7,7 @@ namespace CSharpRoboticsLib.ControlSystems
     /// <summary>
     /// A custom profile for a control system. Can be used for any measurable quantity (speed, displacement, time, etc.)
     /// </summary>
-    public class SetPointProfile : IPIDController
+    public class SetPointProfile : IMotionController
     {
         private List<Setpoint> m_profile;
 

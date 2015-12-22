@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using CSharpRoboticsLib.Extras;
+using CSharpRoboticsLib.WPIExtensions;
 using WPILib;
 using NUnit.Framework;
 using static HAL.Simulator.SimData;

@@ -1,5 +1,6 @@
-﻿using CSharpRoboticsLib.Extras;
-using CSharpRoboticsLib.FlowControl;
+﻿using CSharpRoboticsLib.FlowControl;
+using CSharpRoboticsLib.Utility;
+using CSharpRoboticsLib.WPIExtensions;
 using NUnit.Framework;
 
 namespace IndependentTests.FlowControlTests
