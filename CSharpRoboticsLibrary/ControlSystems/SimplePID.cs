@@ -5,7 +5,7 @@ using CSharpRoboticsLib.WPIExtensions;
 namespace CSharpRoboticsLib.ControlSystems
 {
     /// <summary>
-    /// Simpler form of Motion logic
+    /// Simpler form of PID logic
     /// </summary>
     public class SimplePID : IMotionController
     {
@@ -14,7 +14,7 @@ namespace CSharpRoboticsLib.ControlSystems
         private Integral m_i;
         
         /// <summary>
-        /// The change in time for this particular Motion loop in seconds.
+        /// The change in time for this particular PID loop in seconds.
         /// Set to negative to determine dt automatically.
         /// </summary>
         public double Dt
@@ -24,28 +24,28 @@ namespace CSharpRoboticsLib.ControlSystems
         }
 
         /// <summary>
-        /// Maximum value the Motion Controller can return
+        /// Maximum value the PID Controller can return
         /// </summary>
         public double Max { get; set; }
 
         /// <summary>
-        /// Minumum value the Motion Controller can return
+        /// Minumum value the PID Controller can return
         /// </summary>
         public double Min { get; set; }
 
         /// <summary>
-        /// Current setpoint the Motion Controller is reacting to
+        /// Current setpoint the PID Controller is reacting to
         /// </summary>
         public double SetPoint { get; set; }
 
         /// <summary>
-        /// Creates a new instance of the SimpleMotion class
+        /// Creates a new instance of the SimplePID class
         /// </summary>
         /// <param name="p">Proportional constant</param>
         /// <param name="i">Integral Constant</param>
         /// <param name="d">Derivative Constant</param>
-        /// <param name="min">Minimum allowed output of the Motion loop</param>
-        /// <param name="max">Maximum allowed output of the Motion loop</param>
+        /// <param name="min">Minimum allowed output of the PID loop</param>
+        /// <param name="max">Maximum allowed output of the PID loop</param>
         public SimplePID(double p, double i, double d, double min, double max)
         {
             if(max < min)
@@ -60,7 +60,7 @@ namespace CSharpRoboticsLib.ControlSystems
         }
 
         /// <summary>
-        /// Creates a new SimpleMotion object
+        /// Creates a new SimplePID object
         /// </summary>
         /// <param name="p">Proportional Constant</param>
         /// <param name="i">Integral Constant</param>
@@ -68,10 +68,10 @@ namespace CSharpRoboticsLib.ControlSystems
         public SimplePID(double p, double i, double d) : this(p, i, d, double.MinValue, double.MaxValue) { }
 
         /// <summary>
-        /// Gets the value of the Motion loop, using the point given as the input for the proportional value
+        /// Gets the value of the PID loop, using the point given as the input for the proportional value
         /// </summary>
         /// <param name="currentPoint">current point of the system as read by a sensor</param>
-        /// <returns>value calculated by the Motion loop</returns>
+        /// <returns>value calculated by the PID loop</returns>
         public double Get(double currentPoint)
         {
             double error = (SetPoint - currentPoint);

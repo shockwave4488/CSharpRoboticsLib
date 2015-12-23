@@ -23,37 +23,50 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <param name="dt"></param>
         public MotionProfile(double distance, double maxVelocity, double acceleration, double dt)
         {
+            acceleration = Math.Abs(acceleration) * Math.Sign(distance);
+            maxVelocity = Math.Abs(maxVelocity)*Math.Sign(distance);
             m_dt = dt;
             m_path = new List<MotionSetpoint> {new MotionSetpoint(0, 0, acceleration)};
 
             MotionSetpoint last = m_path.Last();
 
-            while (last.Position < distance)
+            while (Math.Abs(last.Position) < Math.Abs(distance) && m_path.Count < 10000)
             {
-                MotionSetpoint next;
-                next.Acceleration = last.Acceleration;
-                next.Velocity = last.Velocity + next.Acceleration * dt;
-                next.Position = last.Position + next.Velocity * dt;
-                //2AX=Vf^2-Vo^2
-                //X = (Vf^2 - Vo^2) / 2A;
-                double stopDistance = next.Position - next.Velocity * next.Velocity / (2 * -acceleration);
+                double stopDistance = last.Position - last.Velocity * last.Velocity / (2 * -acceleration);
 
-                if (stopDistance > distance)
+                MotionSetpoint next;
+
+                if (Math.Abs(stopDistance) > Math.Abs(distance))
                     next.Acceleration = -acceleration;
-                else if (next.Velocity > maxVelocity)
+                else if (Math.Abs(last.Velocity) > Math.Abs(maxVelocity))
                 {
                     next.Velocity = maxVelocity;
                     next.Acceleration = 0;
                 }
+                else next.Acceleration = acceleration;
+                        
+                next.Velocity = last.Velocity + next.Acceleration * dt;
+                next.Position = last.Position + next.Velocity * dt;
+                //2AX=Vf^2-Vo^2
+                //X = (Vf^2 - Vo^2) / 2A;
 
                 m_path.Add(next);
                 last = next;
             }
+
+            m_path.Add(new MotionSetpoint(distance, 0, 0));
         }
 
         private MotionSetpoint Get(double time)
         {
-            return m_path[(int)(time / m_dt)];
+            try
+            {
+                return m_path[(int) (time/m_dt)];
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return time < 0 ? m_path.First() : m_path.Last();
+            }
         }
 
         /// <summary>

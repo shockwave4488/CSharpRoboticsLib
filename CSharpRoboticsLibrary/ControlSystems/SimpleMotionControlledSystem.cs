@@ -6,7 +6,7 @@ namespace CSharpRoboticsLib.ControlSystems
     /// Extendable controller for a Motion Controlled mechanism.
     /// Defines No Constructors.
     /// </summary>
-    public abstract class SimplePIDSystem
+    public abstract class SimpleMotionControlledSystem
     {
         /// <summary>
         /// The Motion Controller
