@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using static CSharpRoboticsLib.Utility.Utility;
 
 namespace CSharpRoboticsLib.Drive.Interfaces
 {
@@ -34,9 +35,9 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// <param name="power"></param>
         /// <param name="time"></param>
         /// <param name="brake">Set motors to zero when this is finished?</param>
-        public static void StraightForTime(this ITankDrive d, double power, double time, bool brake)
+        public static void StraightForTime(this ITankDrive d, double power, double time, bool brake, double interval = 0.02)
         {
-            d.DriveForTime(power, power, time, brake);
+            d.DriveForTime(power, power, time, brake, interval);
         }
 
         /// <summary>
@@ -46,9 +47,9 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// <param name="power"></param>
         /// <param name="time"></param>
         /// <param name="brake">Set motors to zero when this is finished?</param>
-        public static void TurnForTime(this ITankDrive d, double power, double time, bool brake)
+        public static void TurnForTime(this ITankDrive d, double power, double time, bool brake, double interval = 0.02)
         {
-            d.DriveForTime(power, -power, time, brake);
+            d.DriveForTime(power, -power, time, brake, interval);
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// <param name="rPower"></param>
         /// <param name="time"></param>
         /// <param name="brake">Set motors to zero when this is finished?</param>
-        public static void DriveForTime(this ITankDrive d, double lPower, double rPower, double time, bool brake)
+        public static void DriveForTime(this ITankDrive d, double lPower, double rPower, double time, bool brake, double interval = 0.02)
         {
             Stopwatch s = new Stopwatch();
             s.Restart();
@@ -67,6 +68,7 @@ namespace CSharpRoboticsLib.Drive.Interfaces
             while (s.Elapsed.TotalSeconds < time)
             {
                 d.SetPowers(lPower, rPower);
+                AccurateWaitSeconds(interval);
             }
 
             if(brake)
@@ -79,7 +81,7 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// <param name="d"></param>
         /// <param name="expression">Parameter: Time elapsed</param>
         /// <param name="time"></param>
-        public static void DynamicDriveForTime(this ITankDrive d, Action<double> expression, double time)
+        public static void DynamicDriveForTime(this ITankDrive d, Action<double> expression, double time, double interval = 0.02)
         {
             Stopwatch s = new Stopwatch();
             s.Restart();
@@ -87,9 +89,25 @@ namespace CSharpRoboticsLib.Drive.Interfaces
             while (s.Elapsed.TotalSeconds < time)
             {
                 expression(s.Elapsed.TotalSeconds);
+                AccurateWaitSeconds(interval);
             }
+        }
 
-            d.SetPowers(0, 0);
+        /// <summary>
+        /// Drives according to a function given the time
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="expression">Returns: done driving | Arg1: Time elapsed</param>
+        /// <param name="interval"></param>
+        public static void DynamicDriveForTime(this ITankDrive d, Func<double, bool> expression, double interval = 0.02)
+        {
+            Stopwatch s = new Stopwatch();
+            s.Restart();
+
+            while (!expression(s.Elapsed.TotalSeconds))
+            {
+                AccurateWaitSeconds(interval);
+            }
         }
     }
 }

@@ -8,7 +8,9 @@ namespace CSharpRoboticsLib
     /// </summary>
     public static class TimeoutInvokeExtensions
     {
-        //Func
+        //----------
+        //   Func
+        //----------
 
         public static bool TryExecute<T>(this Func<T> f, int timeoutMs, out T result)
         {
@@ -115,7 +117,9 @@ namespace CSharpRoboticsLib
             return result;
         }
 
-        //Action
+        //----------
+        //  Action
+        //----------
 
         public static bool TryExecute(this Action a, int timeoutMs)
         {

@@ -1,4 +1,9 @@
-﻿namespace CSharpRoboticsLib.Drive.Interfaces
+﻿using System;
+using CSharpRoboticsLib.ControlSystems;
+using WPILib;
+using static CSharpRoboticsLib.Utility.Utility;
+
+namespace CSharpRoboticsLib.Drive.Interfaces
 {
     /// <summary>
     /// Defines functions for a tank drive with encoders.
@@ -19,6 +24,109 @@
     /// </summary>
     public static class EncoderDriveExtensions
     {
-        
+        public static void DriveToDistance(this IEncoderDrive drive, double location, double power, bool brake, double interval = 0.02)
+        {
+            double direction = drive.Encoders.LinearDistance < location ? -1 : 1;
+
+            while ((drive.Encoders.LinearDistance - location)*direction > 0)
+            {
+                drive.SetPowers(power, power);
+                AccurateWaitSeconds(interval);
+            }
+
+            if (brake)
+                drive.SetPowers(0, 0);
+        }
+
+        public static void DriveForDistance(this IEncoderDrive drive, double location, double power, bool brake, double interval = 0.02)
+        {
+            drive.DriveToDistance(location + drive.Encoders.LinearDistance, power, brake, interval);
+        }
+
+        public static void DriveToDistance(this IEncoderDrive drive, IMotionController controller, double location, double tolerance, bool brake, double interval = 0.02)
+        {
+            controller.SetPoint = location;
+
+            while (Math.Abs(location - drive.Encoders.LinearDistance) > tolerance)
+            {
+                double power = controller.Get(drive.Encoders.LinearDistance);
+                drive.SetPowers(power, power);
+                AccurateWaitSeconds(interval);
+            }
+
+            if (brake)
+                drive.SetPowers(0, 0);
+        }
+
+        public static void DriveForDistance(this IEncoderDrive drive, IMotionController controller, double distance, double tolerance, bool brake, double interval = 0.02)
+        {
+            drive.DriveToDistance(controller, distance + drive.Encoders.LinearDistance, tolerance, brake, interval);
+        }
+
+        public static void DriveToAtSpeed(this IEncoderDrive drive, IMotionController speedController, double speed, double location, bool brake, double interval = 0.02)
+        {
+            speedController.SetPoint = drive.Encoders.LinearDistance < location ? speed : -speed;
+
+            while ((drive.Encoders.LinearDistance - location)*Math.Sign(speedController.SetPoint) > 0)
+            {
+                double power = speedController.Get(drive.Encoders.LinearSpeed);
+                drive.SetPowers(power, power);
+                AccurateWaitSeconds(interval);
+            }
+
+            if (brake)
+                drive.SetPowers(0, 0);
+        }
+
+        public static void DriveForAtSpeed(this IEncoderDrive drive, IMotionController speedController, double speed, double distance, bool brake, double interval = 0.02)
+        {
+            drive.DriveToAtSpeed(speedController, speed, distance + drive.Encoders.LinearDistance, brake, interval);
+        }
+
+        /// <summary>
+        /// Drives according to a function given enoder distances
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <param name="expression">Returns: done driving | Arg1: Left Encoder Distance | Arg2: Right Encoder Distance</param>
+        public static void DynamicDistanceDrive(this IEncoderDrive drive, Func<double, double, bool> expression, double interval = 0.02)
+        {
+            while (!expression(drive.Encoders.LeftDistance, drive.Encoders.RightDistance))
+                AccurateWaitSeconds(interval);
+        }
+
+        /// <summary>
+        /// Drives according to a function given the encoder speeds
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <param name="expression">Returns: done driving | Arg1: left encoder velocity | Arg2: right encoder velocity</param>
+        public static void DynamicSpeedDrive(this IEncoderDrive drive, Func<double, double, bool> expression, double interval = 0.02)
+        {
+            while (!expression(drive.Encoders.LeftSpeed, drive.Encoders.RightSpeed))
+                AccurateWaitSeconds(interval);
+        }
+
+        /// <summary>
+        /// Drives according to a function given the drive encoders
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <param name="expression">Returns: done driving | Arg1: drive encoders</param>
+        /// <param name="interval"></param>
+        public static void DynamicEncoderDrive(this IEncoderDrive drive, Func<DriveEncoders, bool> expression, double interval = 0.02)
+        {
+            while (!expression(drive.Encoders))
+                AccurateWaitSeconds(interval);
+        }
+
+        /// <summary>
+        /// Drives according to a function given the drive encoders
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <param name="expression">Returns: done driving | Arg1: Left Encoder | Arg2:Right Encoder</param>
+        /// <param name="interval"></param>
+        public static void DynamicEncoderDrive(this IEncoderDrive drive, Func<Encoder, Encoder, bool> expression, double interval = 0.02)
+        {
+            while (!expression(drive.Encoders.Left, drive.Encoders.Right))
+                AccurateWaitSeconds(interval);
+        }
     }
 }

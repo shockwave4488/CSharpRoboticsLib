@@ -18,5 +18,12 @@ namespace CSharpRoboticsLib.ControlSystems
             Velocity = velocity;
             Acceleration = acceleration;
         }
+
+        public MotionSetpoint(MotionSetpoint previous, double dt)
+        {
+            Acceleration = previous.Acceleration;
+            Velocity = previous.Velocity + Acceleration * dt;
+            Position = previous.Position + (previous.Velocity + Velocity)*dt/2;
+        }
     }
 }

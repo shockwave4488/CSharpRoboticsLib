@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CSharpRoboticsLib.Utility;
 
 namespace CSharpRoboticsLib.ControlSystems
 {
@@ -23,38 +22,53 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <param name="dt"></param>
         public MotionProfile(double distance, double maxVelocity, double acceleration, double dt)
         {
+            m_dt = dt;
+            m_path = new List<MotionSetpoint> { new MotionSetpoint(0, 0, acceleration) };
+
+            //Making sure signs are correct
             acceleration = Math.Abs(acceleration) * Math.Sign(distance);
             maxVelocity = Math.Abs(maxVelocity)*Math.Sign(distance);
-            m_dt = dt;
-            m_path = new List<MotionSetpoint> {new MotionSetpoint(0, 0, acceleration)};
 
             MotionSetpoint last = m_path.Last();
 
-            while (Math.Abs(last.Position) < Math.Abs(distance) && m_path.Count < 10000)
+            //Actual path generation
+            while (Math.Abs(last.Position) < Math.Abs(distance))
             {
-                double stopDistance = last.Position - last.Velocity * last.Velocity / (2 * -acceleration);
+                MotionSetpoint next = new MotionSetpoint(last, dt);
+                double nextV = next.Velocity;
 
-                MotionSetpoint next;
+                double stopDistance = next.Position - next.Velocity * next.Velocity / (2 * -acceleration);
+                double expectedV = next.Velocity + next.Acceleration * dt;
 
-                if (Math.Abs(stopDistance) > Math.Abs(distance))
-                    next.Acceleration = -acceleration;
-                else if (Math.Abs(last.Velocity) > Math.Abs(maxVelocity))
+                if (Math.Abs(stopDistance) >= Math.Abs(distance))
                 {
-                    next.Velocity = maxVelocity;
-                    next.Acceleration = 0;
+                    last.Acceleration = -acceleration;
+                    next = new MotionSetpoint(last, dt);
+                }
+                else if (Math.Abs(expectedV) >= Math.Abs(maxVelocity))
+                {
+                    last.Velocity = maxVelocity;
+                    last.Acceleration = 0;
+                    next = new MotionSetpoint(last, dt);
                 }
                 else next.Acceleration = acceleration;
-                        
-                next.Velocity = last.Velocity + next.Acceleration * dt;
-                next.Position = last.Position + next.Velocity * dt;
-                //2AX=Vf^2-Vo^2
-                //X = (Vf^2 - Vo^2) / 2A;
+
+                if(next.Acceleration != last.Acceleration)
+                    next.Velocity = last.Velocity + next.Acceleration * dt;
+
+                if(nextV != next.Velocity)
+                    next.Position = last.Position + (last.Velocity + next.Velocity) * dt / 2;
 
                 m_path.Add(next);
                 last = next;
             }
 
             m_path.Add(new MotionSetpoint(distance, 0, 0));
+        }
+
+        private MotionSetpoint calculateNext()
+        {
+            
         }
 
         private MotionSetpoint Get(double time)
@@ -89,5 +103,19 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <param name="time"></param>
         /// <returns></returns>
         public double GetPosition(double time) => Get(time).Position;
+
+        /// <summary>
+        /// String format of a MotionProfile
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string toReturn = "";
+            foreach (MotionSetpoint m in m_path)
+            {
+                toReturn += $"[{m.Position}, {m.Velocity}, {m.Acceleration}]\n";
+            }
+            return toReturn;
+        }
     }
 }

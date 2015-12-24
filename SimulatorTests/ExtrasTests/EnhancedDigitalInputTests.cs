@@ -24,11 +24,17 @@ namespace SimulatorTests.ExtrasTests
                 Assert.IsFalse(e.Get());
                 DIO[0].Value = false;
                 Assert.IsTrue(e.Get());
+
+                e.Inverted = false;
+                DIO[0].Value = true;
+                Assert.IsTrue(e.Get());
+                DIO[0].Value = false;
+                Assert.IsFalse(e.Get());
             }
         }
 
         [Test]
-        public void EnhencedDigitalOverrideTest()
+        public void EnhancedDigitalOverrideTest()
         {
             using (DigitalInput e = new EnhancedDigitalInput(0) {Inverted = true})
             {
@@ -36,6 +42,14 @@ namespace SimulatorTests.ExtrasTests
                 Assert.IsFalse(e.Get());
                 DIO[0].Value = false;
                 Assert.IsTrue(e.Get());
+            }
+
+            using (DigitalInput e = new EnhancedDigitalInput(0) {Inverted = false})
+            {
+                DIO[0].Value = true;
+                Assert.IsTrue(e.Get());
+                DIO[0].Value = false;
+                Assert.IsFalse(e.Get());
             }
         }
     }

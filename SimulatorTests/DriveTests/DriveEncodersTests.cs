@@ -3,6 +3,7 @@ using CSharpRoboticsLib.WPIExtensions;
 using HAL.Simulator;
 using NUnit.Framework;
 using WPILib;
+using System;
 
 namespace SimulatorTests.DriveTests
 {

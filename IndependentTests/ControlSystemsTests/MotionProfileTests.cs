@@ -12,13 +12,16 @@ namespace IndependentTests.ControlSystemsTests
     public class MotionProfileTests
     {
         [Test]
-        public static void ConstructorErrorTests()
+        public static void ConstructorErrorTest()
         {
             MotionProfile m1 = new MotionProfile(10, 1, 1, 0.01);
             MotionProfile m2 = new MotionProfile(10, 10, 1, 0.01);
             MotionProfile m3 = new MotionProfile(-10, 1, 1, 0.01);
             MotionProfile m4 = new MotionProfile(-10, -1, -1, 0.01);
             MotionProfile m5 = new MotionProfile(10, -1, -1, 0.01);
+
+            //string s = (new MotionProfile(20, 10, 10, 0.02)).ToString();
+            //Assert.Fail();
         }
     }
 }

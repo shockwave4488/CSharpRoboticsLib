@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using CSharpRoboticsLib.ControlSystems;
 using WPILib;
+using static CSharpRoboticsLib.Utility.Utility;
 
 namespace CSharpRoboticsLib.Drive.Interfaces
 {
@@ -15,7 +16,7 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// Returns the gyroscope reference
         /// </summary>
         /// <returns>Robot's Gyroscope</returns>
-        AnalogGyro Gyroscope { get; }
+        GyroBase Gyroscope { get; }
     }
 
     /// <summary>
@@ -31,9 +32,10 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// <param name="d"></param>
         /// <param name="power"></param>
         /// <param name="angle"></param>
-        public static void TurnForAngle(this IGyroscopeDrive d, double power, double angle, bool brake)
+        /// <param name="brake"></param>
+        public static void TurnForAngle(this IGyroscopeDrive d, double power, double angle, bool brake, double interval = 0.02)
         {
-            d.TurnToAngle(power, angle + d.Gyroscope.GetAngle(), brake);
+            d.TurnToAngle(power, angle + d.Gyroscope.GetAngle(), brake, interval);
         }
 
         /// <summary>
@@ -42,7 +44,8 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// <param name="d"></param>
         /// <param name="power"></param>
         /// <param name="angle"></param>
-        public static void TurnToAngle(this IGyroscopeDrive d, double power, double angle, bool brake)
+        /// <param name="brake"></param>
+        public static void TurnToAngle(this IGyroscopeDrive d, double power, double angle, bool brake, double interval = 0.02)
         {
             int direction = 1;
             if (d.Gyroscope.GetAngle() < angle)
@@ -51,6 +54,7 @@ namespace CSharpRoboticsLib.Drive.Interfaces
             while ((d.Gyroscope.GetAngle() - angle)*direction > 0)
             {
                 d.SetPowers(power*direction, -power*direction);
+                AccurateWaitSeconds(interval);
             }
 
             if(brake)
@@ -61,17 +65,19 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// Turns the robot to an absolute angle using a <see cref="SimplePID"/>
         /// </summary>
         /// <param name="d"></param>
-        /// <param name="motion"></param>
+        /// <param name="controller"></param>
         /// <param name="angle"></param>
         /// <param name="tolerance"></param>
-        public static void TurnToAngle(this IGyroscopeDrive d, IMotionController motion, double angle, double tolerance, bool brake)
+        /// <param name="brake"></param>
+        public static void TurnToAngle(this IGyroscopeDrive d, IMotionController controller, double angle, double tolerance, bool brake, double interval = 0.02)
         {
-            motion.SetPoint = angle;
+            controller.SetPoint = angle;
 
             while (Math.Abs(d.Gyroscope.GetAngle() - angle) > tolerance)
             {
-                double power = motion.Get(d.Gyroscope.GetAngle());
+                double power = controller.Get(d.Gyroscope.GetAngle());
                 d.SetPowers(power, -power);
+                AccurateWaitSeconds(interval);
             }
 
             if(brake)
@@ -79,36 +85,51 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         }
 
         /// <summary>
-        /// Turns the robot for a relative angle amount using a <see cref="SimplePID"/>
+        /// Turns the robot for a relative angle amount using a <see cref="IMotionController"/>
         /// </summary>
         /// <param name="d"></param>
-        /// <param name="motion"></param>
+        /// <param name="controller"></param>
         /// <param name="angle"></param>
         /// <param name="tolerance"></param>
-        public static void TurnForAngle(this IGyroscopeDrive d, IMotionController motion, double angle, double tolerance, bool brake)
+        public static void TurnForAngle(this IGyroscopeDrive d, IMotionController controller, double angle, double tolerance, bool brake, double interval = 0.02)
         {
-            d.TurnToAngle(motion, d.Gyroscope.GetAngle() + angle, tolerance, brake);
+            d.TurnToAngle(controller, d.Gyroscope.GetAngle() + angle, tolerance, brake, interval);
         }
-        
+
         /// <summary>
-        /// Drives the robot in a straight line for a set time
+        /// Drives the robot in a straight line for a set time using a <see cref="IMotionController"/> to correct heading
         /// </summary>
         /// <param name="d"></param>
-        /// <param name="motion">Motion Controller to use for correcting heading</param>
+        /// <param name="correction">Motion Controller to use for correcting heading</param>
         /// <param name="power"></param>
         /// <param name="time"></param>
-        public static void DriveStraightForTime(this IGyroscopeDrive d, IMotionController motion, double power, double time, bool brake)
+        /// <param name="brake"></param>
+        public static void DriveStraightForTime(this IGyroscopeDrive d, IMotionController correction, double power, double time, bool brake, double interval = 0.02)
         {
-            motion.SetPoint = d.Gyroscope.GetAngle();
+            correction.SetPoint = d.Gyroscope.GetAngle();
             Stopwatch s = new Stopwatch();
 
             while (s.Elapsed.TotalSeconds < time)
             {
-                d.SetPowers(power + motion.Get(d.Gyroscope.GetAngle()), power - motion.Get(d.Gyroscope.GetAngle()));
+                d.SetPowers(power + correction.Get(d.Gyroscope.GetAngle()), power - correction.Get(d.Gyroscope.GetAngle()));
+                AccurateWaitSeconds(interval);
             }
 
             if(brake)
                 d.SetPowers(0, 0);
+        }
+
+        public static void DynamicGyroscopeDrive(this IGyroscopeDrive d, Func<double, bool> expression, double interval = 0.02)
+        {
+            while (!expression(d.Gyroscope.GetAngle()))
+                AccurateWaitSeconds(interval);
+        }
+
+        public static void DynamicGyroscopeDrive(this IGyroscopeDrive d, Func<GyroBase, bool> expression,
+            double interval = 0.02)
+        {
+            while (!expression(d.Gyroscope))
+                AccurateWaitSeconds(interval);
         }
     }
 }
