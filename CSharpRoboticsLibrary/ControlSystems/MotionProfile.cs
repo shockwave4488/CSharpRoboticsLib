@@ -66,11 +66,6 @@ namespace CSharpRoboticsLib.ControlSystems
             m_path.Add(new MotionSetpoint(distance, 0, 0));
         }
 
-        private MotionSetpoint calculateNext()
-        {
-            
-        }
-
         private MotionSetpoint Get(double time)
         {
             try
