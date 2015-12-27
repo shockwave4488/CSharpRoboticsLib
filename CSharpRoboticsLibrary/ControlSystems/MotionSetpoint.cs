@@ -23,7 +23,9 @@ namespace CSharpRoboticsLib.ControlSystems
         {
             Acceleration = previous.Acceleration;
             Velocity = previous.Velocity + Acceleration * dt;
+            Velocity = Math.Round(Velocity / (dt)) * dt;
             Position = previous.Position + (previous.Velocity + Velocity)*dt/2;
+            Position = Math.Round(Position/(dt*dt*dt))*(dt*dt*dt);
         }
     }
 }

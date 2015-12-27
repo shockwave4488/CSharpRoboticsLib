@@ -2,6 +2,9 @@
 
 namespace CSharpRoboticsLib.Utility
 {
+    /// <summary>
+    /// Measures the delta-time value between Gets
+    /// </summary>
     public class DeltaTime
     {
         private bool m_manualDt;

@@ -19,9 +19,10 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <param name="distance"></param>
         /// <param name="maxVelocity"></param>
         /// <param name="acceleration"></param>
-        /// <param name="dt"></param>
+        /// <param name="dt">Time interval each point will be calculated for</param>
         public MotionProfile(double distance, double maxVelocity, double acceleration, double dt)
         {
+            //Not using DeltaTime here because this is just for mathematical purposes
             m_dt = dt;
             m_path = new List<MotionSetpoint> { new MotionSetpoint(0, 0, acceleration) };
 
@@ -37,27 +38,21 @@ namespace CSharpRoboticsLib.ControlSystems
                 MotionSetpoint next = new MotionSetpoint(last, dt);
                 double nextV = next.Velocity;
 
-                double stopDistance = next.Position - next.Velocity * next.Velocity / (2 * -acceleration);
-                double expectedV = next.Velocity + next.Acceleration * dt;
+                double stopDistance = last.Position - last.Velocity * last.Velocity / (2 * -acceleration);
+                double finalV = Math.Sqrt(2*-acceleration*(distance - last.Position) + last.Velocity*last.Velocity);
 
-                if (Math.Abs(stopDistance) >= Math.Abs(distance))
+                if (Math.Abs(stopDistance) > Math.Abs(distance) || finalV * Math.Sign(distance) > 0 || last.Acceleration < 0)
                 {
                     last.Acceleration = -acceleration;
                     next = new MotionSetpoint(last, dt);
                 }
-                else if (Math.Abs(expectedV) >= Math.Abs(maxVelocity))
+                else if (Math.Abs(next.Velocity) >= Math.Abs(maxVelocity))
                 {
                     last.Velocity = maxVelocity;
-                    last.Acceleration = 0;
+                    last.Acceleration = (last.Acceleration < 0) ? last.Acceleration : 0;
                     next = new MotionSetpoint(last, dt);
                 }
                 else next.Acceleration = acceleration;
-
-                if(next.Acceleration != last.Acceleration)
-                    next.Velocity = last.Velocity + next.Acceleration * dt;
-
-                if(nextV != next.Velocity)
-                    next.Position = last.Position + (last.Velocity + next.Velocity) * dt / 2;
 
                 m_path.Add(next);
                 last = next;

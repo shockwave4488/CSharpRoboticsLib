@@ -24,6 +24,15 @@ namespace CSharpRoboticsLib.ControlSystems
         public double UnitsPerSecond { get; set; }
 
         /// <summary>
+        /// How many seconds it should take for one unit of change
+        /// </summary>
+        public double SecondsPerUnit
+        {
+            get { return 1.0/UnitsPerSecond; }
+            set { UnitsPerSecond = 1.0 / value; }
+        }
+
+        /// <summary>
         /// new OutputRateLimit
         /// </summary>
         /// <param name="unitsPerSecond"></param>
@@ -50,6 +59,15 @@ namespace CSharpRoboticsLib.ControlSystems
             m_feedback = toReturn;
 
             return toReturn;
+        }
+
+        /// <summary>
+        /// Force the internal state to a value.
+        /// </summary>
+        /// <param name="value"></param>
+        public void Force(double value)
+        {
+            m_feedback = value;
         }
     }
 }
