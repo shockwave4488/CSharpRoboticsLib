@@ -43,5 +43,20 @@ namespace IndependentTests.ControlSystemsTests
             Assert.AreEqual(1, p.Get(-1));
             Assert.AreEqual(-1, p.Get(1));
         }
-    }
+
+        [Test]
+        public static void SimpleContinuousTest()
+        {
+            SimplePID p = new SimplePID(1, 0, 0) {Continuous = true, MaxInput = 1, MinInput = -1, SetPoint = 0.75};
+            Assert.AreEqual(-0.5, p.Get(-0.75));
+            p.SetPoint = -0.75;
+            Assert.AreEqual(0.5, p.Get(0.75));
+            p.SetPoint = 0.5;
+            Assert.AreEqual(0.5, p.Get(0));
+            p.SetPoint = 0.9;
+            Assert.AreEqual(-0.5, p.Get(-0.6));
+            p.SetPoint = -0.9;
+            Assert.AreEqual(0.5, p.Get(0.6));
+        }
+}
 }

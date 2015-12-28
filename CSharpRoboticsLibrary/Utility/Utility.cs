@@ -110,5 +110,29 @@ namespace CSharpRoboticsLib.Utility
             radians %= Math.PI*2;
             return (radians > Math.PI ? radians - (Math.PI*2) : radians);
         }
+
+        /// <summary>
+        /// Wraps an error value around a maximum and minimum input.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="setpoint"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        public static double WrapError(double value, double setpoint, double min, double max)
+        {
+            double error = setpoint - value;
+            if (Math.Abs(error) <= (max - min)/2)
+                return error;
+
+            if (error < 0) //value > setpoint
+            {
+                return (max - value) + (setpoint - min);
+            }
+            else
+            {
+                return (min - value) - (max - setpoint);
+            }
+        }
     }
 }

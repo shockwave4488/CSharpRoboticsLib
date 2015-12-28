@@ -39,6 +39,21 @@ namespace CSharpRoboticsLib.ControlSystems
         public double SetPoint { get; set; }
 
         /// <summary>
+        /// Defines if the system is continuous
+        /// </summary>
+        public bool Continuous { get; set; }
+
+        /// <summary>
+        /// Maximum possible input
+        /// </summary>
+        public double MaxInput { get; set; }
+
+        /// <summary>
+        /// Minimum possible input
+        /// </summary>
+        public double MinInput { get; set; }
+
+        /// <summary>
         /// Creates a new instance of the SimplePID class
         /// </summary>
         /// <param name="p">Proportional constant</param>
@@ -57,6 +72,7 @@ namespace CSharpRoboticsLib.ControlSystems
             SetPoint = 0;
             m_d = new Derivative();
             m_i = new Integral();
+            Continuous = false;
         }
 
         /// <summary>
@@ -75,6 +91,8 @@ namespace CSharpRoboticsLib.ControlSystems
         public double Get(double currentPoint)
         {
             double error = (SetPoint - currentPoint);
+            if (Continuous)
+                error = Utility.Utility.WrapError(currentPoint, SetPoint, MinInput, MaxInput);
 
             double p = m_kP == 0 ? 0 : m_kP * error;
             double I = m_kI == 0 ? 0 : m_kI * m_i.Get(error);
