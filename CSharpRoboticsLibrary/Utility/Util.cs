@@ -7,7 +7,7 @@ namespace CSharpRoboticsLib.Utility
     /// <summary>
     /// Provides various mathematical and logical utility functions
     /// </summary>
-    public static class Utility
+    public static class Util
     {
         /// <summary>
         /// Converts degrees to radians

@@ -22,7 +22,7 @@ namespace IndependentTests.ControlSystemsTests
         {
             SimplePID p = new SimplePID(0, 0, 1);
             p.SetPoint = 1;
-            Utility.AccurateWaitSeconds(1);
+            Util.AccurateWaitSeconds(1);
             Assert.AreEqual(1, p.Get(0), 0.02);
         }
 
@@ -31,7 +31,7 @@ namespace IndependentTests.ControlSystemsTests
         {
             SimplePID p = new SimplePID(0, 1, 0);
             p.SetPoint = 1;
-            Utility.AccurateWaitSeconds(1);
+            Util.AccurateWaitSeconds(1);
             Assert.AreEqual(1, p.Get(0), 0.02);
         }
 

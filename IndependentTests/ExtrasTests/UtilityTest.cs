@@ -21,7 +21,7 @@ namespace IndependentTests.ExtrasTests
             for (int i = 0; i < TestRepeats / 10; i++) //Ain't nobody got time to wait 20 seconds for a test!
             {
                 sw.Restart();
-                Utility.AccurateWaitSeconds(1.0);
+                Util.AccurateWaitSeconds(1.0);
                 sw.Stop();
                 var seconds = sw.Elapsed.TotalSeconds;
                 Assert.That(seconds, Is.EqualTo(1.0).Within(Error));
@@ -35,7 +35,7 @@ namespace IndependentTests.ExtrasTests
             for (int i = 0; i < TestRepeats; i++)
             {
                 sw.Restart();
-                Utility.AccurateWaitSeconds(0.1);
+                Util.AccurateWaitSeconds(0.1);
                 sw.Stop();
                 var seconds = (double)sw.ElapsedTicks / Stopwatch.Frequency;
                 Assert.That(seconds, Is.EqualTo(0.1).Within(Error));
@@ -49,7 +49,7 @@ namespace IndependentTests.ExtrasTests
             for (int i = 0; i < TestRepeats; i++)
             {
                 sw.Restart();
-                Utility.AccurateWaitSeconds(0.01);
+                Util.AccurateWaitSeconds(0.01);
                 sw.Stop();
                 var seconds = (double)sw.ElapsedTicks / Stopwatch.Frequency;
                 Assert.That(seconds, Is.EqualTo(0.01).Within(Error));
@@ -64,7 +64,7 @@ namespace IndependentTests.ExtrasTests
             for (int i = 0; i < TestRepeats / 10; i++) //Ain't nobody got time to wait 20 seconds for a test!
             {
                 sw.Restart();
-                Utility.AccurateWaitMilliseconds(1000);
+                Util.AccurateWaitMilliseconds(1000);
                 sw.Stop();
                 var seconds = sw.Elapsed.TotalSeconds;
                 Assert.That(seconds, Is.EqualTo(1.0).Within(Error));
@@ -78,7 +78,7 @@ namespace IndependentTests.ExtrasTests
             for (int i = 0; i < TestRepeats; i++)
             {
                 sw.Restart();
-                Utility.AccurateWaitMilliseconds(100);
+                Util.AccurateWaitMilliseconds(100);
                 sw.Stop();
                 var seconds = (double)sw.ElapsedTicks / Stopwatch.Frequency;
                 Assert.That(seconds, Is.EqualTo(0.1).Within(Error));
@@ -92,7 +92,7 @@ namespace IndependentTests.ExtrasTests
             for (int i = 0; i < TestRepeats; i++)
             {
                 sw.Restart();
-                Utility.AccurateWaitMilliseconds(10);
+                Util.AccurateWaitMilliseconds(10);
                 sw.Stop();
                 var seconds = (double)sw.ElapsedTicks / Stopwatch.Frequency;
                 Assert.That(seconds, Is.EqualTo(0.01).Within(Error));

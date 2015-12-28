@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using CSharpRoboticsLib.ControlSystems;
 using WPILib;
-using static CSharpRoboticsLib.Utility.Utility;
+using static CSharpRoboticsLib.Utility.Util;
 
 namespace CSharpRoboticsLib.Drive.Interfaces
 {

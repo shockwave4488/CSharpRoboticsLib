@@ -92,13 +92,13 @@ namespace CSharpRoboticsLib.ControlSystems
         {
             double error = (SetPoint - currentPoint);
             if (Continuous)
-                error = Utility.Utility.WrapError(currentPoint, SetPoint, MinInput, MaxInput);
+                error = Utility.Util.WrapError(currentPoint, SetPoint, MinInput, MaxInput);
 
             double p = m_kP == 0 ? 0 : m_kP * error;
             double I = m_kI == 0 ? 0 : m_kI * m_i.Get(error);
             double d = m_kD == 0 ? 0 : m_kD * m_d.Get(error);
 
-            return Utility.Utility.Limit(p + I + d, Min, Max);
+            return Utility.Util.Limit(p + I + d, Min, Max);
         }
 
         /// <summary>

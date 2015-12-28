@@ -79,6 +79,7 @@
     <Compile Include="ExtensionsTests\ManagedCompressorTests.cs" />
     <Compile Include="ExtensionsTests\PistonTests.cs" />
     <Compile Include="ExtensionsTests\RampMotorTests.cs" />
+    <Compile Include="ExtensionsTests\SpeedControllerGroupTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimTestBase.cs" />
   </ItemGroup>

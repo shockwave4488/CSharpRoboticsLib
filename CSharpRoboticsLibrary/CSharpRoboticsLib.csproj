@@ -81,7 +81,7 @@
     <Compile Include="WPIExtensions\ManagedCompressor.cs" />
     <Compile Include="WPIExtensions\Piston.cs" />
     <Compile Include="WPIExtensions\RampMotor.cs" />
-    <Compile Include="Utility\Utility.cs" />
+    <Compile Include="Utility\Util.cs" />
     <Compile Include="FlowControl\ChangeTrigger.cs" />
     <Compile Include="FlowControl\EdgeTrigger.cs" />
     <Compile Include="FlowControl\Toggle.cs" />
@@ -92,6 +92,7 @@
     <Compile Include="Utility\InputFilter.cs" />
     <Compile Include="Utility\Integral.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WPIExtensions\SpeedControllerGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

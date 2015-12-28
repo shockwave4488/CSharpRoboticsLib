@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using static CSharpRoboticsLib.Utility.Utility;
+using static CSharpRoboticsLib.Utility.Util;
 
 namespace CSharpRoboticsLib.Drive.Interfaces
 {

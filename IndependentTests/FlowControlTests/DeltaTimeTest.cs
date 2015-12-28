@@ -19,7 +19,7 @@ namespace IndependentTests.FlowControlTests
             DeltaTime t = new DeltaTime();
             for(int i = 0; i < TestRepeats; i++)
             {
-                Utility.AccurateWaitMilliseconds(100);
+                Util.AccurateWaitMilliseconds(100);
                 Assert.AreEqual(0.1, t.Value, Error);
             }
         }
@@ -30,7 +30,7 @@ namespace IndependentTests.FlowControlTests
             DeltaTime t = new DeltaTime();
             for(int i = 0; i < TestRepeats; i++)
             {
-                Utility.AccurateWaitMilliseconds(10);
+                Util.AccurateWaitMilliseconds(10);
                 Assert.AreEqual(0.01, t.Value, Error);
             }
         }
@@ -47,7 +47,7 @@ namespace IndependentTests.FlowControlTests
             t.Value = -1;
             for(int i = 0; i < TestRepeats; i++)
             {
-                Utility.AccurateWaitSeconds(0.01);
+                Util.AccurateWaitSeconds(0.01);
                 Assert.AreEqual(0.01, t.Value, Error);
             }
         }
