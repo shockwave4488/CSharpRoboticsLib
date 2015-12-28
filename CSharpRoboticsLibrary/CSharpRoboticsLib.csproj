@@ -72,7 +72,7 @@
     <Compile Include="ControlSystems\Setpoint.cs" />
     <Compile Include="ControlSystems\SetPointProfile.cs" />
     <Compile Include="ControlSystems\SimplePID.cs" />
-    <Compile Include="ControlSystems\SimpleMotionControlledSystem.cs" />
+    <Compile Include="ControlSystems\MotionControlledSystem.cs" />
     <Compile Include="WPIExtensions\AnalogueUltrasonic.cs" />
     <Compile Include="Drive\DriveEncoders.cs" />
     <Compile Include="WPIExtensions\EnhancedDigitalInput.cs" />

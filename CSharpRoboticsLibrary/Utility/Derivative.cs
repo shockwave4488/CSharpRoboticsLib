@@ -9,7 +9,7 @@
         private DeltaTime m_dt;
 
         /// <summary>
-        /// The change in time for this particular Motion loop in seconds.
+        /// The change in time for this particular Controller loop in seconds.
         /// Set to negative to determine dt automatically.
         /// </summary>
         public double Dt

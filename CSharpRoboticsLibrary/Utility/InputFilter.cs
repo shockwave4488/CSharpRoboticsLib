@@ -1,7 +1,7 @@
 ﻿namespace CSharpRoboticsLib.Utility
 {
     /// <summary>
-    /// Input filter functionally identical to that in the NI LabVIEW Motion library
+    /// Input filter functionally identical to that in the NI LabVIEW Controller library
     /// </summary>
     public class InputFilter
     {

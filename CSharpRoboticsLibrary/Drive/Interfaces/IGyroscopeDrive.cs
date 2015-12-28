@@ -100,7 +100,7 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// Drives the robot in a straight line for a set time using a <see cref="IMotionController"/> to correct heading
         /// </summary>
         /// <param name="d"></param>
-        /// <param name="correction">Motion Controller to use for correcting heading</param>
+        /// <param name="correction"> <see cref="IMotionController"/> to use for correcting heading</param>
         /// <param name="power"></param>
         /// <param name="time"></param>
         /// <param name="brake"></param>
