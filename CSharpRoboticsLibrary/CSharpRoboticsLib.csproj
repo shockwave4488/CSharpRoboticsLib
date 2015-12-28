@@ -79,6 +79,7 @@
     <Compile Include="Drive\EnhancedDriveEncoders.cs" />
     <Compile Include="WPIExtensions\EnhancedEncoder.cs" />
     <Compile Include="WPIExtensions\ManagedCompressor.cs" />
+    <Compile Include="WPIExtensions\Piston.cs" />
     <Compile Include="WPIExtensions\RampMotor.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="FlowControl\ChangeTrigger.cs" />
