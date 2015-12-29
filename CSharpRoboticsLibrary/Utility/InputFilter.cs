@@ -41,7 +41,7 @@
         /// Updates the internal state by adding the input
         /// </summary>
         /// <param name="input">new input</param>
-        public void Update(double input)
+        private void Update(double input)
         {
             for (int i = m_internalState.Length - 1; i >= 1; i--)
                 m_internalState[i] = m_internalState[i - 1];
@@ -52,7 +52,7 @@
         /// <summary>
         /// Gets the filtered output of the internal state
         /// </summary>
-        public double Value
+        private double Value
         {
             get
             {
@@ -62,6 +62,26 @@
 
                 return toReturn;
             }
+        }
+
+        /// <summary>
+        /// Gets the filtered output of the internal state
+        /// </summary>
+        /// <param name="value">Value to update the <see cref="InputFilter"/> with</param>
+        /// <returns>Filtered output</returns>
+        public double Get(double value)
+        {
+            Update(value);
+            return Value;
+        }
+
+        /// <summary>
+        /// Gets the filtered value of the input without pushing a new value to the internal buffer
+        /// </summary>
+        /// <returns></returns>
+        public double Get()
+        {
+            return Value;
         }
     }
 }

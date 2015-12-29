@@ -62,6 +62,7 @@
     <Compile Include="ControlSystems\MotionProfile.cs" />
     <Compile Include="ControlSystems\MotionSetpoint.cs" />
     <Compile Include="ControlSystems\ProfileFollower.cs" />
+    <Compile Include="Drive\DriveHelper.cs" />
     <Compile Include="Drive\Interfaces\IEncoderDrive.cs" />
     <Compile Include="Drive\Interfaces\IGyroscopeDrive.cs" />
     <Compile Include="Drive\Interfaces\ISensorDrive.cs" />

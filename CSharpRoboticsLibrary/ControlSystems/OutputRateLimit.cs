@@ -14,7 +14,6 @@ namespace CSharpRoboticsLib.ControlSystems
 
         public double Dt
         {
-            get { return m_dt.Value; }
             set { m_dt.Value = value; }
         }
 

@@ -19,7 +19,6 @@ namespace CSharpRoboticsLib.ControlSystems
         /// </summary>
         public double Dt
         {
-            get { return (m_d.Dt + m_i.Dt) / 2; } //Averaging because why not.
             set { m_d.Dt = value; m_i.Dt = value; }
         }
 

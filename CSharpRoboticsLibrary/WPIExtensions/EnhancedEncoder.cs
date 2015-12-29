@@ -14,7 +14,6 @@ namespace CSharpRoboticsLib.WPIExtensions
 
         public double Dt
         {
-            get { return m_velocityFilter.Dt; }
             set { m_velocityFilter.Dt = value; }
         }
 

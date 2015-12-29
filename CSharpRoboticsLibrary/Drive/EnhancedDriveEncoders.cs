@@ -47,7 +47,6 @@ namespace CSharpRoboticsLib.Drive
         /// </summary>
         public double Dt
         {
-            get { return ((Left as EnhancedEncoder).Dt + (Right as EnhancedEncoder).Dt)/2; }
             set { (Left as EnhancedEncoder).Dt = value; (Right as EnhancedEncoder).Dt = value; }
         }
 
