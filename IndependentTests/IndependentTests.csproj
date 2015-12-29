@@ -64,16 +64,17 @@
     <Compile Include="ControlSystemsTests\OutputRateLimitTests.cs" />
     <Compile Include="ControlSystemsTests\SetpointProfileTests.cs" />
     <Compile Include="ControlSystemsTests\SimplePIDTest.cs" />
-    <Compile Include="ExtrasTests\UtilityTest.cs" />
+    <Compile Include="UtilityTests\LoggerTests.cs" />
+    <Compile Include="UtilityTests\UtilityTest.cs" />
     <Compile Include="FlowControlTests\ChangeTriggerTest.cs" />
     <Compile Include="FlowControlTests\EdgeTriggerTest.cs" />
     <Compile Include="FlowControlTests\ToggleTest.cs" />
     <Compile Include="FlowControlTests\WaitByCallCountTest.cs" />
     <Compile Include="FlowControlTests\WaitByTimeTest.cs" />
-    <Compile Include="FlowControlTests\DeltaTimeTest.cs" />
-    <Compile Include="ControlSystemsTests\DerivativeTest.cs" />
-    <Compile Include="ControlSystemsTests\InputFilterTest.cs" />
-    <Compile Include="ControlSystemsTests\IntegralTest.cs" />
+    <Compile Include="UtilityTests\DeltaTimeTest.cs" />
+    <Compile Include="UtilityTests\DerivativeTest.cs" />
+    <Compile Include="UtilityTests\InputFilterTest.cs" />
+    <Compile Include="UtilityTests\IntegralTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
