@@ -8,6 +8,7 @@ using CSharpRoboticsLib.Utility;
 using NetworkTables;
 using NUnit.Framework;
 using WPILib;
+using WPILib.Internal;
 
 namespace IndependentTests.UtilityTests
 {
@@ -17,6 +18,7 @@ namespace IndependentTests.UtilityTests
         [OneTimeSetUp]
         public static void Setup()
         {
+            HLUsageReporting.Implementation = new HardwareHLUsageReporting();
             NetworkTable.SetNetworkIdentity("Robot");
             NetworkTable.SetServerMode();
             NetworkTable.GetTable("");
@@ -49,8 +51,8 @@ namespace IndependentTests.UtilityTests
             Logger.SmartDashboardName = var;
             Logger.AddMessage("Hello SmartDashboard!");
 
-            //Assert.IsNotNull(SmartDashboard.GetString(var, null));
-            //Assert.AreNotEqual("", SmartDashboard.GetString(var, null));
+            Assert.IsNotNull(SmartDashboard.GetString(var, null));
+            Assert.AreNotEqual("", SmartDashboard.GetString(var, null));
         }
 
         [Test] //This is just going to be a manual test - me looking at values making sure it works.
