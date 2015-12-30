@@ -15,7 +15,7 @@ namespace IndependentTests.FlowControlTests
             Assert.IsFalse(t.DoneWaiting);
             t.Reset();
             Assert.IsFalse(t.DoneWaiting);
-            Thread.Sleep(100);
+            Thread.Sleep(125);
             Assert.IsTrue(t.DoneWaiting);
         }
     }

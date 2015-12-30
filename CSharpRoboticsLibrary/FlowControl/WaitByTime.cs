@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace CSharpRoboticsLib.FlowControl
 {
@@ -7,7 +8,7 @@ namespace CSharpRoboticsLib.FlowControl
     /// </summary>
     public class WaitByTime
     {
-        private DateTime m_doneWaiting;
+        private Stopwatch m_timer;
 
         /// <summary>
         /// Time until the timer is finished in seconds. Does not reset the timer.
@@ -49,12 +50,15 @@ namespace CSharpRoboticsLib.FlowControl
         /// </summary>
         public void Reset()
         {
-            m_doneWaiting = DateTime.Now.AddMilliseconds(WaitTimeMilliseconds);
+            if (null == m_timer)
+                m_timer = new Stopwatch();
+
+            m_timer.Restart();
         }
         
         /// <summary>
         /// Returns true if enough time has passed since last reset
         /// </summary>
-        public bool DoneWaiting => DateTime.Now > m_doneWaiting;
+        public bool DoneWaiting => m_timer.ElapsedMilliseconds > WaitTimeMilliseconds;
     }
 }
