@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpRoboticsLib.ControlSystems
 {
-    struct MotionSetpoint
+    internal struct MotionSetpoint
     {
         public double Position;
         public double Velocity;

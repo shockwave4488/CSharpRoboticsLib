@@ -8,6 +8,10 @@ namespace CSharpRoboticsLib.FlowControl
     public class WaitByCallCount
     {
         private int m_count;
+
+        /// <summary>
+        /// Call Count limit - after this, <see cref="WaitComplete"/> will return true
+        /// </summary>
         public int Threshold { get; set; }
 
         /// <summary>

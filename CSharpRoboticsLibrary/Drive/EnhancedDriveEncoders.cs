@@ -4,6 +4,9 @@ using WPILib;
 
 namespace CSharpRoboticsLib.Drive
 {
+    /// <summary>
+    /// <see cref="DriveEncoders"/> implementation with <see cref="EnhancedEncoder"/>s
+    /// </summary>
     public class EnhancedDriveEncoders : DriveEncoders
     {
         /// <summary>

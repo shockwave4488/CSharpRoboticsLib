@@ -9,6 +9,9 @@ namespace CSharpRoboticsLib.ControlSystems
     /// </summary>
     public abstract class MotionControlledSystem
     {
+        /// <summary>
+        /// Notifier to update the <see cref="MotionControlledSystem"/> periodically
+        /// </summary>
         protected Notifier Periodic;
 
         /// <summary>

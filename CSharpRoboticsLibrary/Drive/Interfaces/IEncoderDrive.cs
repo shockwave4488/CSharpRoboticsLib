@@ -24,6 +24,14 @@ namespace CSharpRoboticsLib.Drive.Interfaces
     /// </summary>
     public static class EncoderDriveExtensions
     {
+        /// <summary>
+        /// Drives the robot at a power until it reaches an absolute distance
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <param name="location"></param>
+        /// <param name="power"></param>
+        /// <param name="brake"></param>
+        /// <param name="interval"></param>
         public static void DriveToDistance(this IEncoderDrive drive, double location, double power, bool brake, double interval = 0.02)
         {
             double direction = drive.Encoders.LinearDistance < location ? -1 : 1;
@@ -38,11 +46,28 @@ namespace CSharpRoboticsLib.Drive.Interfaces
                 drive.SetPowers(0, 0);
         }
 
+        /// <summary>
+        /// Drives the robot at a power until it reaches a relative distance
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <param name="location"></param>
+        /// <param name="power"></param>
+        /// <param name="brake"></param>
+        /// <param name="interval"></param>
         public static void DriveForDistance(this IEncoderDrive drive, double location, double power, bool brake, double interval = 0.02)
         {
             drive.DriveToDistance(location + drive.Encoders.LinearDistance, power, brake, interval);
         }
 
+        /// <summary>
+        /// Drives the robot to a location according to an <see cref="IMotionController"/>
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <param name="controller"></param>
+        /// <param name="location"></param>
+        /// <param name="tolerance"></param>
+        /// <param name="brake"></param>
+        /// <param name="interval"></param>
         public static void DriveToDistance(this IEncoderDrive drive, IMotionController controller, double location, double tolerance, bool brake, double interval = 0.02)
         {
             controller.SetPoint = location;
@@ -58,11 +83,29 @@ namespace CSharpRoboticsLib.Drive.Interfaces
                 drive.SetPowers(0, 0);
         }
 
+        /// <summary>
+        /// Drive the robot to a relative position according to an <see cref="IMotionController"/>
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <param name="controller"></param>
+        /// <param name="distance"></param>
+        /// <param name="tolerance"></param>
+        /// <param name="brake"></param>
+        /// <param name="interval"></param>
         public static void DriveForDistance(this IEncoderDrive drive, IMotionController controller, double distance, double tolerance, bool brake, double interval = 0.02)
         {
             drive.DriveToDistance(controller, distance + drive.Encoders.LinearDistance, tolerance, brake, interval);
         }
 
+        /// <summary>
+        /// Drives the robot at a set speed to a location
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <param name="speedController"></param>
+        /// <param name="speed"></param>
+        /// <param name="location"></param>
+        /// <param name="brake"></param>
+        /// <param name="interval"></param>
         public static void DriveToAtSpeed(this IEncoderDrive drive, IMotionController speedController, double speed, double location, bool brake, double interval = 0.02)
         {
             speedController.SetPoint = drive.Encoders.LinearDistance < location ? speed : -speed;
@@ -78,6 +121,15 @@ namespace CSharpRoboticsLib.Drive.Interfaces
                 drive.SetPowers(0, 0);
         }
 
+        /// <summary>
+        /// Drives the robot at a set speed for a set distance
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <param name="speedController"></param>
+        /// <param name="speed"></param>
+        /// <param name="distance"></param>
+        /// <param name="brake"></param>
+        /// <param name="interval"></param>
         public static void DriveForAtSpeed(this IEncoderDrive drive, IMotionController speedController, double speed, double distance, bool brake, double interval = 0.02)
         {
             drive.DriveToAtSpeed(speedController, speed, distance + drive.Encoders.LinearDistance, brake, interval);

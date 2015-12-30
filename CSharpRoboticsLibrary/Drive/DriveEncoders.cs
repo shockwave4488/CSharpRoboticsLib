@@ -3,6 +3,9 @@ using WPILib;
 
 namespace CSharpRoboticsLib.Drive
 {
+    /// <summary>
+    /// Encapsulates a left and right encoder and provides drive-specific calculations
+    /// </summary>
     public class DriveEncoders
     {
         /// <summary>
@@ -39,7 +42,10 @@ namespace CSharpRoboticsLib.Drive
             Right.SetReverseDirection(true);
         }
 
-        protected DriveEncoders()
+        /// <summary>
+        /// Just for <see cref="EnhancedDriveEncoders"/>
+        /// </summary>
+        protected internal DriveEncoders()
         {
         }
 

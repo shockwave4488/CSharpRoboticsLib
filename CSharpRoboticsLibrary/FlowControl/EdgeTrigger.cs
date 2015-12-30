@@ -7,9 +7,20 @@
     {
         private bool m_feedback;
 
-        public EdgeTrigger()
+        /// <summary>
+        /// <see cref="EdgeTrigger"/> with initial value false
+        /// </summary>
+        public EdgeTrigger() : this(false)
         {
-            m_feedback = false;
+        }
+
+        /// <summary>
+        /// <see cref="EdgeTrigger"/> with the given initial value
+        /// </summary>
+        /// <param name="initial"></param>
+        public EdgeTrigger(bool initial)
+        {
+            m_feedback = initial;
         }
 
         /// <summary>

@@ -12,6 +12,9 @@ namespace CSharpRoboticsLib.ControlSystems
         private DeltaTime m_dt;
         private double m_feedback;
 
+        /// <summary>
+        /// Delta-Time value - set negative to determine dt automatically
+        /// </summary>
         public double Dt
         {
             set { m_dt.Value = value; }

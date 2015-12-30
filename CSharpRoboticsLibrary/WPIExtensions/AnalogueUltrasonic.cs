@@ -22,7 +22,10 @@ namespace CSharpRoboticsLib.WPIExtensions
         /// <summary>
         /// Gets the value of the ultrasonic sensor modified by the scaling factor
         /// </summary>
-        public double Value => GetAverageVoltage() / scalingFactor;
+        public double Get()
+        {
+            return GetAverageVoltage()/scalingFactor;
+        }
 
         /// <summary>
         /// Gets the value of the ultrasonic sensor modified by the scaling factor
@@ -30,7 +33,7 @@ namespace CSharpRoboticsLib.WPIExtensions
         /// <returns></returns>
         public override double PidGet()
         {
-            return Value;
+            return Get();
         }
     }
 }

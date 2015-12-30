@@ -43,7 +43,7 @@ namespace CSharpRoboticsLib.WPIExtensions
         }
 
         /// <summary>
-        /// 
+        /// <see cref="Piston"/> with specified forward and reverse channels
         /// </summary>
         /// <param name="forwardChannel"></param>
         /// <param name="reverseChannel"></param>
@@ -52,6 +52,12 @@ namespace CSharpRoboticsLib.WPIExtensions
             Extended = Inverted = false;
         }
 
+        /// <summary>
+        /// <see cref="Piston"/> with forward and reverse channels at a specific PCM
+        /// </summary>
+        /// <param name="moduleNumber"></param>
+        /// <param name="forwardChannel"></param>
+        /// <param name="reverseChannel"></param>
         public Piston(int moduleNumber, int forwardChannel, int reverseChannel) : base(moduleNumber, forwardChannel, reverseChannel)
         {
             Extended = Inverted = false;

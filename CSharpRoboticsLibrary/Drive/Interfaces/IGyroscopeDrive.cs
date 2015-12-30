@@ -119,14 +119,25 @@ namespace CSharpRoboticsLib.Drive.Interfaces
                 d.SetPowers(0, 0);
         }
 
+        /// <summary>
+        /// Drives the robot according to a function
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="expression">Returns: done driving | Arg1: gyroscope angle</param>
+        /// <param name="interval"></param>
         public static void DynamicGyroscopeDrive(this IGyroscopeDrive d, Func<double, bool> expression, double interval = 0.02)
         {
             while (!expression(d.Gyroscope.GetAngle()))
                 AccurateWaitSeconds(interval);
         }
 
-        public static void DynamicGyroscopeDrive(this IGyroscopeDrive d, Func<GyroBase, bool> expression,
-            double interval = 0.02)
+        /// <summary>
+        /// Drives the robot according to a function
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="expression">Returns : done driving | Arg1: robot's gyroscope</param>
+        /// <param name="interval"></param>
+        public static void DynamicGyroscopeDrive(this IGyroscopeDrive d, Func<GyroBase, bool> expression, double interval = 0.02)
         {
             while (!expression(d.Gyroscope))
                 AccurateWaitSeconds(interval);

@@ -44,24 +44,39 @@ namespace CSharpRoboticsLib.WPIExtensions
             }
         }
 
+        /// <summary>
+        /// Set output to the value calculated by <see cref="PIDController"/>
+        /// </summary>
+        /// <param name="value"></param>
         public void PidWrite(double value)
         {
             foreach (ISpeedController s in m_controllers)
                 s.PidWrite(value);
         }
-
+         
+        /// <summary>
+        /// Performs appication-defined tasks associated with freeing, releasing, or resetting unmanaged resources
+        /// </summary>
         public void Dispose()
         {
             foreach (ISpeedController s in m_controllers)
                 s.Dispose();
         }
 
+        /// <summary>
+        /// Sets the output value for these speed controllers
+        /// </summary>
+        /// <param name="value"></param>
         public void Set(double value)
         {
             foreach (ISpeedController s in m_controllers)
                 s.Set(value);
         }
 
+        /// <summary>
+        /// returns the last value set to these speed controllers
+        /// </summary>
+        /// <returns></returns>
         public double Get()
         {
             double toReturn = 0;
@@ -72,18 +87,29 @@ namespace CSharpRoboticsLib.WPIExtensions
             return toReturn/m_controllers.Length;
         }
 
+        /// <summary>
+        /// Sets the output value for these speed controllers
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="syncGroup"></param>
         public void Set(double value, byte syncGroup)
         {
             foreach (ISpeedController s in m_controllers)
                 s.Set(value, syncGroup);
         }
 
+        /// <summary>
+        /// Disables the speed controllers
+        /// </summary>
         public void Disable()
         {
             foreach (ISpeedController s in m_controllers)
                 s.Disable();
         }
 
+        /// <summary>
+        /// Inverts the direction of the motors' rotation
+        /// </summary>
         public bool Inverted
         {
             get { return m_controllers[0].Inverted; }

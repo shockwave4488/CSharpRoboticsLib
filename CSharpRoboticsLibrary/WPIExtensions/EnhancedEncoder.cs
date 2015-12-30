@@ -12,6 +12,9 @@ namespace CSharpRoboticsLib.WPIExtensions
     {
         private Derivative m_velocityFilter;
 
+        /// <summary>
+        /// Delta-time value to determine velocity. Set negative to determine dt automatically.
+        /// </summary>
         public double Dt
         {
             set { m_velocityFilter.Dt = value; }

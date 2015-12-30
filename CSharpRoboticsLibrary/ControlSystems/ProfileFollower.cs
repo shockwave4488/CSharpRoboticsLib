@@ -27,7 +27,7 @@ namespace CSharpRoboticsLib.ControlSystems
         /// <param name="kv"></param>
         /// <param name="ka"></param>
         public ProfileFollower(MotionProfile profile, double kv, double ka) 
-            : this(profile, kv, ka, new SimplePID(0, 0, 0))
+            : this(profile, kv, ka, null)
         {
         }
 
@@ -64,7 +64,7 @@ namespace CSharpRoboticsLib.ControlSystems
 
             double velocity = m_kv*m_profile.GetVelocity(m_timer.ElapsedTicks/Stopwatch.Frequency);
             double acceleration = m_ka*m_profile.GetAcceleration(m_timer.ElapsedTicks/Stopwatch.Frequency);
-            double correction = m_correction.Get(m_profile.GetPosition(m_timer.ElapsedTicks/Stopwatch.Frequency) - input);
+            double correction = m_correction?.Get(m_profile.GetPosition(m_timer.ElapsedTicks/Stopwatch.Frequency) - input) ?? 0;
             bool reverse = m_profile.GetPosition(m_timer.ElapsedMilliseconds/Stopwatch.Frequency) > SetPoint;
 
             return (velocity + acceleration + correction) * (reverse ? -1 : 1);

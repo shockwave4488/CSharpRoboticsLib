@@ -2,6 +2,9 @@
 
 namespace CSharpRoboticsLib.FlowControl
 {
+    /// <summary>
+    /// Will return true after an amount of time has passed
+    /// </summary>
     public class WaitByTime
     {
         private DateTime m_doneWaiting;

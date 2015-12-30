@@ -25,9 +25,6 @@ namespace CSharpRoboticsLib.Drive.Interfaces
     /// </summary>
     public static class TankDriveExtensions
     {
-        //I have successfully circumvented the limitation that all interface functions
-        //must be abstract, allowing for some aspects of multiple inheritance.
-
         /// <summary>
         /// Drives at a speed for a set time
         /// </summary>
