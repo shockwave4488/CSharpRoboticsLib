@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSharpRoboticsLib.Utility;
 
 namespace CSharpRoboticsLib.ControlSystems
 {
@@ -36,7 +35,6 @@ namespace CSharpRoboticsLib.ControlSystems
             while (Math.Abs(last.Position) < Math.Abs(distance))
             {
                 MotionSetpoint next = new MotionSetpoint(last, dt);
-                double nextV = next.Velocity;
 
                 double stopDistance = last.Position - last.Velocity * last.Velocity / (2 * -acceleration);
                 double finalV = Math.Sqrt(2*-acceleration*(distance - last.Position) + last.Velocity*last.Velocity);

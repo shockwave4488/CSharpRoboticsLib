@@ -47,9 +47,7 @@ namespace CSharpRoboticsLib.Drive.Interfaces
         /// <param name="brake"></param>
         public static void TurnToAngle(this IGyroscopeDrive d, double power, double angle, bool brake, double interval = 0.02)
         {
-            int direction = 1;
-            if (d.Gyroscope.GetAngle() < angle)
-                direction = -1;
+            int direction = d.Gyroscope.GetAngle() < angle ? -1 : 1;
 
             while ((d.Gyroscope.GetAngle() - angle)*direction > 0)
             {

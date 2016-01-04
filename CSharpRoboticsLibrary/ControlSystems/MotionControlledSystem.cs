@@ -40,7 +40,7 @@ namespace CSharpRoboticsLib.ControlSystems
         public bool Manual { get; set; }
 
         /// <summary>
-        /// Te power to be used if <see cref="Manual"/> is enabled
+        /// The power to be used if <see cref="Manual"/> is enabled
         /// </summary>
         public double ManualPower { get; set; }
         

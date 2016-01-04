@@ -6,7 +6,7 @@
     /// <typeparam name="T">An equatable type</typeparam>
     public class ChangeTrigger<T>
     {
-        T m_state;
+        private T m_state;
 
         /// <summary>
         /// Creates a new ChangeTrigger with a default initial state

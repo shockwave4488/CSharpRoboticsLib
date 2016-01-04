@@ -38,7 +38,7 @@ namespace CSharpRoboticsLib.Drive.Interfaces
 
             while ((drive.Encoders.LinearDistance - location)*direction > 0)
             {
-                drive.SetPowers(power, power);
+                drive.SetPowers(power * direction, power * direction);
                 AccurateWaitSeconds(interval);
             }
 
