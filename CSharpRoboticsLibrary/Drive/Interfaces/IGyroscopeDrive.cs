@@ -109,7 +109,8 @@ namespace CSharpRoboticsLib.Drive.Interfaces
 
             while (s.Elapsed.TotalSeconds < time)
             {
-                d.SetPowers(power + correction.Get(d.Gyroscope.GetAngle()), power - correction.Get(d.Gyroscope.GetAngle()));
+                double correctingPower = correction.Get(d.Gyroscope.GetAngle());
+                d.SetPowers(power + correctingPower, power - correctingPower);
                 AccurateWaitSeconds(interval);
             }
 
