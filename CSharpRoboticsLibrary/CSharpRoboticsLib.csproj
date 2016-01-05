@@ -33,16 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HAL, Version=2016.0.0.156, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.156\lib\net45\HAL.dll</HintPath>
+    <Reference Include="HAL, Version=2016.0.0.257, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.257\lib\net45\HAL.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NetworkTables, Version=2016.0.0.137, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.NetworkTables.2016.0.0.137\lib\net45\NetworkTables.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NIVision, Version=2016.0.0.156, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.156\lib\net45\NIVision.dll</HintPath>
+    <Reference Include="NetworkTables, Version=2016.0.0.148, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.NetworkTables.2016.0.0.148\lib\net45\NetworkTables.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -53,8 +49,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="WPILib, Version=2016.0.0.156, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.WPILib.2016.0.0.156\lib\net45\WPILib.dll</HintPath>
+    <Reference Include="WPILib, Version=2016.0.0.257, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FRC.WPILib.2016.0.0.257\lib\net45\WPILib.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -99,7 +95,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
