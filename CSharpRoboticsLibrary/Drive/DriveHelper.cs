@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CSharpRoboticsLib.Drive.Interfaces;
-using CSharpRoboticsLib.Utility;
 using WPILib;
 
-namespace _2015_Pre_build_week_project.Team_Code.Drive_Code
+namespace CSharpRoboticsLib.Drive
 {
     //Shamelessly copy-pasted from Team 254©'s Robot Code©
 
