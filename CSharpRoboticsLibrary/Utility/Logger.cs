@@ -90,7 +90,7 @@ namespace CSharpRoboticsLib.Utility
             TimeStampedMessage toAdd = new TimeStampedMessage(message);
 
             if (PrintToConsole)
-                Console.Write(toAdd);
+                Console.WriteLine(toAdd);
 
             _messages.Add(toAdd);
             UpdateSmartDashboard();
